@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-label="Clean original England themed graphic">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f5f7fb"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="360" rx="28" fill="url(#panel)"/>
+  <rect x="54" y="54" width="260" height="170" rx="18" fill="#fff" stroke="#dbe2ee" stroke-width="3"/>
+  <rect x="54" y="122" width="260" height="34" fill="#e31b23"/>
+  <rect x="166" y="54" width="36" height="170" fill="#e31b23"/>
+  <g fill="none" stroke="#08285a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M430 95c45-55 115-35 120 10 42-18 86 10 80 52-7 48-72 66-119 31-34 23-83 23-116-2"/>
+    <path d="M415 175c55 35 125 35 178-4"/>
+    <path d="M500 84l22-28 20 34"/>
+    <circle cx="558" cy="126" r="8" fill="#e31b23" stroke="none"/>
+  </g>
+  <g fill="#e31b23">
+    <circle cx="715" cy="86" r="16"/><circle cx="746" cy="86" r="16"/><circle cx="730" cy="62" r="16"/><circle cx="730" cy="110" r="16"/><circle cx="730" cy="86" r="9" fill="#fff"/>
+    <circle cx="770" cy="222" r="16"/><circle cx="801" cy="222" r="16"/><circle cx="785" cy="198" r="16"/><circle cx="785" cy="246" r="16"/><circle cx="785" cy="222" r="9" fill="#fff"/>
+  </g>
+  <text x="54" y="292" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="900" fill="#08285a">THREE LIONS</text>
+  <text x="54" y="324" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="8" fill="#e31b23">COUNTDOWN</text>
+</svg>

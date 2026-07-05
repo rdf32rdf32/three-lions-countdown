@@ -1,17 +1,16 @@
-Richard Freedman England v7
+Three Lions Countdown - clean final version
 
-Adds:
-- England flag after ENGLAND
-- prediction maker
-- WhatsApp share for predictions
-- personal app name: Richard Freedman England
-- original safe graphics only
+Upload ALL files and the assets folder to your GitHub repository root:
+https://github.com/rdf32rdf32/three-lions-countdown
 
-Upload all files and the assets folder to your GitHub repository root.
+Replace existing files and commit changes.
 
-Current URL:
-https://rdf32rdf32.github.io/england-countdown/
+Public link:
+https://rdf32rdf32.github.io/three-lions-countdown/
 
-Optional personal URL:
-Rename the repository to richard-freedman-england for:
-https://rdf32rdf32.github.io/richard-freedman-england/
+This version uses:
+- no third-party images
+- no official crest
+- no player photos
+- one clean original SVG graphic
+- automatic self-detecting share URL

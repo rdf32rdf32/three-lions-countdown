@@ -1,1 +1,9 @@
-{"name":"Richard Freedman England","short_name":"RF England","start_url":"./","display":"standalone","background_color":"#071a33","theme_color":"#071a33","description":"Richard Freedman England Match Centre"}
+{
+  "name": "Three Lions Countdown",
+  "short_name": "Three Lions",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#08285a",
+  "description": "A clean England countdown and prediction site"
+}
