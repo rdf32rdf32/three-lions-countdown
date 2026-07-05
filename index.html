@@ -1,1 +1,138 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>England Match Centre</title></head><body style="font-family:Arial;background:#0b1f3a;color:white;text-align:center;padding:30px"><h1>🏴 England Match Centre</h1><h2>Mexico v England</h2><div id="cd" style="font-size:2em"></div><button onclick="alarm()">🔔 Set 15 min reminder</button><p><a style="color:#9cf" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt" target="_blank">BBC Live Coverage</a></p><p id="m"></p><script>const k=new Date("2026-07-06T01:00:00Z");function t(){let d=k-new Date();if(d<0){cd.innerHTML="Match started";return;}let s=Math.floor(d/1000),D=Math.floor(s/86400);s%=86400;let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60),ss=s%60;cd.innerHTML=`${D}d ${h}h ${m}m ${ss}s`;}setInterval(t,1000);t();function alarm(){Notification.requestPermission().then(p=>{if(p!="granted"){m.textContent="Notifications not allowed.";return;}let ms=(k-new Date())-900000;if(ms<=0){m.textContent="Less than 15 minutes remaining.";return;}setTimeout(()=>new Notification("England kick-off in 15 minutes!"),ms);m.textContent="Reminder set. Keep this page open.";});}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>England Match Centre</title>
+  <style>
+    :root{--bg:#071a33;--card:#102f5f;--white:#fff;--muted:#c9d7ee;--red:#e31b23}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#071a33,#0e2d57);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:100%;max-width:760px;background:rgba(16,47,95,.94);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.28);text-align:center}
+    .tag{display:inline-block;background:rgba(227,27,35,.95);padding:7px 12px;border-radius:999px;font-weight:700;font-size:14px;margin-bottom:12px}
+    h1{font-size:34px;margin:6px 0 8px}
+    h2{font-size:24px;margin:0 0 18px;color:var(--muted)}
+    .countdown{font-size:42px;font-weight:800;letter-spacing:.5px;background:rgba(255,255,255,.08);border-radius:18px;padding:20px;margin:18px 0}
+    .small{color:var(--muted);font-size:14px;line-height:1.45}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+    button,.btn{appearance:none;border:0;border-radius:12px;padding:13px 14px;background:#fff;color:#102f5f;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+    button:hover,.btn:hover{filter:brightness(.95)}
+    button.secondary{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}
+    .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+    .status{margin-top:16px;padding:13px;background:rgba(255,255,255,.08);border-radius:12px;color:#fff;min-height:46px}
+    .warning{color:#ffe1e1}
+    @media(max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}.countdown{font-size:31px}h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="tag">England Match Centre</div>
+    <h1>Mexico 🇲🇽 v England 🏴</h1>
+    <h2>Round of 16 · Kick-off countdown</h2>
+
+    <div id="countdown" class="countdown">Calculating…</div>
+    <p class="small">Countdown runs locally in your browser. For the reminder, keep this page open.</p>
+
+    <h3>Set reminder</h3>
+    <div class="grid">
+      <button onclick="setReminder(60)">60 mins</button>
+      <button onclick="setReminder(30)">30 mins</button>
+      <button onclick="setReminder(15)">15 mins</button>
+      <button onclick="setReminder(10)">10 mins</button>
+      <button onclick="setReminder(5)">5 mins</button>
+      <button onclick="setReminder(1)">1 min</button>
+    </div>
+
+    <div class="actions">
+      <a class="btn" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt">BBC live coverage</a>
+      <button class="secondary" onclick="testSound()">Test sound</button>
+      <button class="secondary" onclick="clearReminder()">Clear reminder</button>
+    </div>
+
+    <div id="status" class="status">Ready.</div>
+    <p class="small warning" id="help"></p>
+  </main>
+
+<script>
+  // Kick-off: 8pm EDT, 5 July 2026 = 02:00 Brussels, 6 July 2026.
+  const kickOff = new Date("2026-07-06T00:00:00+02:00");
+  let reminderTimer = null;
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function updateCountdown(){
+    const diff = kickOff - new Date();
+    if(diff <= 0){
+      document.getElementById("countdown").textContent = "Match started";
+      document.getElementById("status").textContent = "Use the BBC live coverage button for updates.";
+      return;
+    }
+    let s = Math.floor(diff / 1000);
+    const d = Math.floor(s / 86400); s %= 86400;
+    const h = Math.floor(s / 3600); s %= 3600;
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    document.getElementById("countdown").textContent = `${d}d ${pad(h)}h ${pad(m)}m ${pad(sec)}s`;
+  }
+
+  function beep(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.03);
+      osc.start();
+      setTimeout(()=>{ osc.stop(); ctx.close(); }, 900);
+    }catch(e){}
+  }
+
+  function notify(text){
+    beep();
+    if("Notification" in window && Notification.permission === "granted"){
+      new Notification(text);
+    }
+    alert(text);
+  }
+
+  async function setReminder(minutes){
+    clearReminder(false);
+    const status = document.getElementById("status");
+    const help = document.getElementById("help");
+    help.textContent = "";
+
+    if("Notification" in window && Notification.permission === "default"){
+      try{ await Notification.requestPermission(); }catch(e){}
+    }
+
+    if("Notification" in window && Notification.permission === "denied"){
+      help.textContent = "Notifications are blocked. The page will still use sound and an on-screen alert if it stays open.";
+    }
+
+    const delay = (kickOff - new Date()) - minutes * 60 * 1000;
+    if(delay <= 0){
+      status.textContent = `Too late for a ${minutes}-minute reminder. Choose a shorter one.`;
+      return;
+    }
+
+    reminderTimer = setTimeout(()=>notify(`England kick-off in ${minutes} minute${minutes===1?"":"s"}!`), delay);
+    status.textContent = `Reminder set for ${minutes} minute${minutes===1?"":"s"} before kick-off. Keep this page open.`;
+  }
+
+  function clearReminder(show=true){
+    if(reminderTimer){ clearTimeout(reminderTimer); reminderTimer = null; }
+    if(show) document.getElementById("status").textContent = "Reminder cleared.";
+  }
+
+  function testSound(){
+    beep();
+    alert("Sound test. If you heard it, the fallback alarm sound works.");
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-Upload these files to your GitHub repository root.
+Upload these files to the root of your GitHub england-countdown repository, replacing the old files.
