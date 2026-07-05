@@ -1,21 +1,16 @@
-England Match Centre v5 - final version
+England Match Centre v6
 
-Upload these files to the root of:
+This version adds original safe graphics:
+- custom lion motif
+- St George colours
+- football motif
+- no player photos
+- no official crest
+- no third-party artwork
+
+Upload all files and the assets folder to the root of:
 https://github.com/rdf32rdf32/england-countdown
 
-Replace the old files and commit changes.
-
+Replace old files and commit changes.
 Public link:
 https://rdf32rdf32.github.io/england-countdown/
-
-Version 5 adds:
-- stronger England branding using safe CSS/emoji/text graphics
-- "It's Coming Home" styling
-- reliable countdown
-- reminder options
-- multiple alarm sounds
-- BBC live link
-- WhatsApp sharing
-- copy link
-- iPhone and Android Add to Home Screen instructions
-- Designed by R. Freedman and copyright footer

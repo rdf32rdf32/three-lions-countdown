@@ -7,105 +7,59 @@
   <meta name="theme-color" content="#071a33">
   <link rel="manifest" href="manifest.json">
   <style>
-    :root{
-      --navy:#06172e;--navy2:#0e2d57;--panel:#0d274e;--panel2:#102f5f;
-      --white:#fff;--muted:#c9d7ee;--red:#e31b23;--green:#25D366;--gold:#ffd166;
-    }
+    :root{--navy:#06172e;--navy2:#0e2d57;--panel:#0d274e;--white:#fff;--muted:#c9d7ee;--red:#e31b23;--green:#25D366;--gold:#ffd166}
     *{box-sizing:border-box}
-    body{
-      margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--white);min-height:100vh;padding:18px;
-      background:
-        radial-gradient(circle at 12% 10%,rgba(227,27,35,.32),transparent 24%),
-        radial-gradient(circle at 90% 10%,rgba(255,255,255,.16),transparent 20%),
-        linear-gradient(180deg,var(--navy),var(--navy2));
-    }
-    body:before{
-      content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
-      background:
-        linear-gradient(90deg,transparent 0 44%,#fff 44% 56%,transparent 56%),
-        linear-gradient(0deg,transparent 0 44%,#fff 44% 56%,transparent 56%);
-      mix-blend-mode:screen;
-    }
-    .wrap{max-width:1160px;margin:0 auto;position:relative}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--white);min-height:100vh;padding:18px;background:
+      radial-gradient(circle at 12% 10%,rgba(227,27,35,.32),transparent 24%),
+      radial-gradient(circle at 90% 10%,rgba(255,255,255,.16),transparent 20%),
+      linear-gradient(180deg,var(--navy),var(--navy2))}
+    .wrap{max-width:1180px;margin:0 auto}
     header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .crest{
-      width:72px;height:72px;border-radius:18px;background:#fff;color:#0b2a55;display:flex;align-items:center;justify-content:center;
-      font-size:38px;box-shadow:0 10px 30px rgba(0,0,0,.3);border:3px solid rgba(227,27,35,.9)
-    }
+    .brand{display:flex;align-items:center;gap:14px}.crest{width:72px;height:72px;border-radius:18px;background:#fff;color:#0b2a55;display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 10px 30px rgba(0,0,0,.3);border:3px solid rgba(227,27,35,.9)}
     h1{font-size:38px;margin:0;line-height:.95;letter-spacing:.5px}.red{color:var(--red)}
     .topnav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .hero{
-      position:relative;overflow:hidden;background:
-      radial-gradient(circle at 10% 50%,rgba(227,27,35,.28),transparent 28%),
-      linear-gradient(90deg,rgba(6,23,46,.98),rgba(16,47,95,.86)),
-      repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 2px,transparent 2px 12px);
-      border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:30px;text-align:center;box-shadow:0 22px 65px rgba(0,0,0,.3)
-    }
-    .hero:after{content:"🦁 🦁 🦁";position:absolute;right:22px;bottom:14px;font-size:38px;opacity:.16;letter-spacing:8px}
-    .chant{font-family:Georgia,serif;font-style:italic;font-size:30px;margin:0 0 8px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35)}
-    .pill{display:inline-block;background:var(--red);padding:8px 14px;border-radius:999px;font-weight:900;margin:5px 0 12px;text-transform:uppercase;font-size:13px;letter-spacing:.5px}
-    h2{font-size:54px;margin:8px 0 4px;letter-spacing:1px;text-shadow:0 3px 12px rgba(0,0,0,.35)}
-    .sub{color:var(--muted);font-size:16px;margin:0 0 18px}
-    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px auto;max-width:800px}
-    .timebox{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:20px 10px}
-    .num{font-size:56px;font-weight:900}.label{font-size:13px;color:var(--muted);font-weight:800;text-transform:uppercase}
-    .ticker{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-weight:800}
-    .grid{display:grid;grid-template-columns:1.25fr .95fr;gap:18px;margin-top:18px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    .panel{background:rgba(13,39,78,.95);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:20px;box-shadow:0 10px 28px rgba(0,0,0,.16)}
-    .panel h3{margin:0 0 12px;font-size:22px}
-    .buttons{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-    button,.btn,select{appearance:none;border:0;border-radius:12px;padding:13px 14px;background:#fff;color:#102f5f;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
-    select{width:100%;margin-top:10px;text-align:left}
-    button:hover,.btn:hover{filter:brightness(.96)}
-    button.selected{background:var(--red);color:#fff}
-    button.secondary,.btn.secondary{background:rgba(255,255,255,.11);color:#fff;border:1px solid rgba(255,255,255,.22)}
-    .btn.red{background:var(--red);color:#fff}.btn.green{background:var(--green);color:#fff}.btn.gold{background:var(--gold);color:#0b1f3a}
-    .actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
-    .status{margin-top:16px;padding:13px;background:rgba(255,255,255,.08);border-radius:12px;color:#fff;min-height:46px}
-    .small{color:var(--muted);font-size:14px;line-height:1.5}
-    .fixture{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.12);padding:10px 0;color:var(--muted)}
-    .fixture:first-of-type{border-top:0}.badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800;color:#fff}
-    .motto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-    .motto div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:12px;border-radius:14px;font-weight:900}
-    footer{margin:20px 0 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
-    .signature{font-family:Georgia,serif;font-style:italic;color:#fff;font-size:17px}
-    @media(max-width:940px){.grid,.cards{grid-template-columns:1fr}.buttons{grid-template-columns:repeat(3,1fr)}.topnav{display:none}}
-    @media(max-width:560px){body{padding:12px}h1{font-size:27px}h2{font-size:34px}.countdown{grid-template-columns:repeat(2,1fr)}.num{font-size:42px}.actions,.motto{grid-template-columns:1fr}.crest{width:58px;height:58px;font-size:31px}.chant{font-size:23px}}
+    .btn,button,select{appearance:none;border:0;border-radius:12px;padding:13px 14px;background:#fff;color:#102f5f;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+    .btn.red{background:var(--red);color:#fff}.btn.green{background:var(--green);color:#fff}.secondary,button.secondary{background:rgba(255,255,255,.11);color:#fff;border:1px solid rgba(255,255,255,.22)}
+    .hero{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;align-items:stretch}
+    .graphic{background:rgba(13,39,78,.94);border:1px solid rgba(255,255,255,.16);border-radius:28px;padding:10px;box-shadow:0 22px 65px rgba(0,0,0,.3);overflow:hidden}
+    .graphic img{width:100%;height:100%;min-height:360px;object-fit:cover;border-radius:20px;display:block}
+    .main{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(6,23,46,.98),rgba(16,47,95,.90));border:1px solid rgba(255,255,255,.18);border-radius:28px;padding:30px;text-align:center;box-shadow:0 22px 65px rgba(0,0,0,.3)}
+    .main:after{content:"🦁 🦁 🦁";position:absolute;right:18px;bottom:10px;font-size:34px;opacity:.14;letter-spacing:6px}
+    .chant{font-family:Georgia,serif;font-style:italic;font-size:30px;margin:0 0 8px;color:#fff}.pill{display:inline-block;background:var(--red);padding:8px 14px;border-radius:999px;font-weight:900;margin:5px 0 12px;text-transform:uppercase;font-size:13px}
+    h2{font-size:46px;margin:8px 0 4px;letter-spacing:1px}.sub{color:var(--muted);font-size:16px;margin:0 0 18px}
+    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px auto;max-width:760px}.timebox{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:18px 8px}.num{font-size:48px;font-weight:900}.label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase}
+    .ticker{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;color:var(--muted);font-weight:800}.motto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.motto div{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:12px;border-radius:14px;font-weight:900}
+    .grid{display:grid;grid-template-columns:1.25fr .95fr;gap:18px;margin-top:18px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .panel{background:rgba(13,39,78,.95);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:20px;box-shadow:0 10px 28px rgba(0,0,0,.16)}.panel h3{margin:0 0 12px;font-size:22px}.small{color:var(--muted);font-size:14px;line-height:1.5}
+    .buttons{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}button.selected{background:var(--red);color:#fff}select{width:100%;margin-top:10px;text-align:left}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.status{margin-top:16px;padding:13px;background:rgba(255,255,255,.08);border-radius:12px;min-height:46px}
+    .fixture{display:flex;justify-content:space-between;gap:12px;border-top:1px solid rgba(255,255,255,.12);padding:10px 0;color:var(--muted)}.fixture:first-of-type{border-top:0}.badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800;color:#fff}
+    footer{margin:20px 0 0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}.signature{font-family:Georgia,serif;font-style:italic;color:#fff;font-size:17px}
+    @media(max-width:980px){.hero,.grid,.cards{grid-template-columns:1fr}.buttons{grid-template-columns:repeat(3,1fr)}.topnav{display:none}.graphic img{min-height:auto}}
+    @media(max-width:560px){body{padding:12px}h1{font-size:27px}h2{font-size:32px}.countdown{grid-template-columns:repeat(2,1fr)}.num{font-size:40px}.actions,.motto{grid-template-columns:1fr}.crest{width:58px;height:58px;font-size:31px}.chant{font-size:23px}}
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="brand">
-      <div class="crest" aria-label="England themed crest">🦁</div>
-      <div><h1>ENGLAND<br><span class="red">MATCH CENTRE</span></h1></div>
-    </div>
-    <nav class="topnav">
-      <a class="btn secondary" href="#reminder">Reminder</a>
-      <a class="btn secondary" href="#share">Share</a>
-      <a class="btn red" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt">BBC live</a>
-    </nav>
+    <div class="brand"><div class="crest">🦁</div><div><h1>ENGLAND<br><span class="red">MATCH CENTRE</span></h1></div></div>
+    <nav class="topnav"><a class="btn secondary" href="#reminder">Reminder</a><a class="btn secondary" href="#share">Share</a><a class="btn red" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt">BBC live</a></nav>
   </header>
 
   <section class="hero">
-    <p class="chant">It’s Coming Home!</p>
-    <div class="pill" id="matchLabel">Next match</div>
-    <h2 id="matchTitle">Mexico 🇲🇽 v England 🏴</h2>
-    <p class="sub" id="matchSub">World Cup · reliable countdown and reminders</p>
-
-    <div class="countdown">
-      <div class="timebox"><div class="num" id="days">00</div><div class="label">days</div></div>
-      <div class="timebox"><div class="num" id="hours">00</div><div class="label">hours</div></div>
-      <div class="timebox"><div class="num" id="minutes">00</div><div class="label">minutes</div></div>
-      <div class="timebox"><div class="num" id="seconds">00</div><div class="label">seconds</div></div>
-    </div>
-    <div class="ticker">
-      <span id="kickoffText">Kick-off: 02:00 Brussels</span><span>•</span><span id="statusText">Pre-match</span><span>•</span><span>One nation. One team.</span>
-    </div>
-    <div class="motto">
-      <div>Believe</div><div>Support</div><div>Roar</div>
+    <div class="graphic"><img src="assets/england-safe-graphic.svg" alt="Original England themed football graphic with lions, St George colours and football motif"></div>
+    <div class="main">
+      <p class="chant">It’s Coming Home!</p>
+      <div class="pill" id="matchLabel">Next match</div>
+      <h2 id="matchTitle">Mexico 🇲🇽 v England 🏴</h2>
+      <p class="sub" id="matchSub">World Cup · reliable countdown and reminders</p>
+      <div class="countdown">
+        <div class="timebox"><div class="num" id="days">00</div><div class="label">days</div></div>
+        <div class="timebox"><div class="num" id="hours">00</div><div class="label">hours</div></div>
+        <div class="timebox"><div class="num" id="minutes">00</div><div class="label">minutes</div></div>
+        <div class="timebox"><div class="num" id="seconds">00</div><div class="label">seconds</div></div>
+      </div>
+      <div class="ticker"><span id="kickoffText">Kick-off: 02:00 Brussels</span><span>•</span><span id="statusText">Pre-match</span><span>•</span><span>One nation. One team.</span></div>
+      <div class="motto"><div>Believe</div><div>Support</div><div>Roar</div></div>
     </div>
   </section>
 
@@ -113,193 +67,47 @@
     <div class="panel">
       <h3>🔔 Match reminder</h3>
       <p class="small">Choose when you want to be reminded. For reliability, keep this page open.</p>
-      <div class="buttons">
-        <button onclick="chooseReminder(60,this)">60</button><button onclick="chooseReminder(30,this)">30</button><button onclick="chooseReminder(15,this)" class="selected">15</button>
-        <button onclick="chooseReminder(10,this)">10</button><button onclick="chooseReminder(5,this)">5</button><button onclick="chooseReminder(1,this)">1</button>
-      </div>
-      <select id="soundChoice">
-        <option value="classic">Classic beep</option>
-        <option value="whistle">Whistle style</option>
-        <option value="horn">Stadium horn</option>
-        <option value="roar">Lion roar style</option>
-      </select>
-      <div class="actions">
-        <button onclick="setReminder()">Set reminder</button>
-        <button class="secondary" onclick="clearReminder()">Clear reminder</button>
-      </div>
-      <div id="status" class="status">Ready. Default reminder: 15 minutes before kick-off.</div>
-      <p class="small" id="help"></p>
+      <div class="buttons"><button onclick="chooseReminder(60,this)">60</button><button onclick="chooseReminder(30,this)">30</button><button onclick="chooseReminder(15,this)" class="selected">15</button><button onclick="chooseReminder(10,this)">10</button><button onclick="chooseReminder(5,this)">5</button><button onclick="chooseReminder(1,this)">1</button></div>
+      <select id="soundChoice"><option value="classic">Classic beep</option><option value="whistle">Whistle style</option><option value="horn">Stadium horn</option><option value="roar">Lion roar style</option></select>
+      <div class="actions"><button onclick="setReminder()">Set reminder</button><button class="secondary" onclick="clearReminder()">Clear reminder</button></div>
+      <div id="status" class="status">Ready. Default reminder: 15 minutes before kick-off.</div><p class="small" id="help"></p>
     </div>
-
-    <div class="panel">
-      <h3>🔊 Sound and alert test</h3>
-      <p class="small">Test the selected alarm sound before sharing with friends.</p>
-      <button class="secondary" onclick="testSound()">Test sound</button>
-      <p class="small">If notifications are blocked, this site still uses sound and an on-screen alert while open.</p>
-    </div>
+    <div class="panel"><h3>🔊 Sound and alert test</h3><p class="small">Test the selected alarm sound before sharing with friends.</p><button class="secondary" onclick="testSound()">Test sound</button><p class="small">If notifications are blocked, this site still uses sound and an on-screen alert while open.</p></div>
   </section>
 
   <section class="cards">
-    <div class="panel">
-      <h3>📺 Live coverage</h3>
-      <p class="small">Open the BBC live build-up, commentary and analysis page.</p>
-      <a class="btn red" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt">Open BBC live</a>
-    </div>
-
-    <div class="panel" id="share">
-      <h3>📲 Share with mates</h3>
-      <p class="small">Send the countdown on WhatsApp.</p>
-      <a id="whatsapp" class="btn green" target="_blank" rel="noopener">Share on WhatsApp</a>
-      <button class="secondary" onclick="copyLink()" style="margin-top:10px;width:100%">Copy link</button>
-    </div>
-
-    <div class="panel">
-      <h3>📱 Add to Home Screen</h3>
-      <p class="small"><b>iPhone:</b> Open in Safari → Share → Add to Home Screen.</p>
-      <p class="small"><b>Android:</b> Open in Chrome → three-dot menu → Add to Home screen.</p>
-    </div>
+    <div class="panel"><h3>📺 Live coverage</h3><p class="small">Open the BBC live build-up, commentary and analysis page.</p><a class="btn red" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt">Open BBC live</a></div>
+    <div class="panel" id="share"><h3>📲 Share with mates</h3><p class="small">Send the countdown on WhatsApp.</p><a id="whatsapp" class="btn green" target="_blank" rel="noopener">Share on WhatsApp</a><button class="secondary" onclick="copyLink()" style="margin-top:10px;width:100%">Copy link</button></div>
+    <div class="panel"><h3>📱 Add to Home Screen</h3><p class="small"><b>iPhone:</b> Open in Safari → Share → Add to Home Screen.</p><p class="small"><b>Android:</b> Open in Chrome → three-dot menu → Add to Home screen.</p></div>
   </section>
 
   <section class="cards">
-    <div class="panel">
-      <h3>🗓️ England path</h3>
-      <div class="fixture"><b>Round of 16</b><span>Mexico v England</span></div>
-      <div class="fixture"><b>Quarter-final</b><span>Winner faces Brazil/Norway winner</span></div>
-      <div class="fixture"><b>Semi-final</b><span>Possible 15 July slot</span></div>
-      <p class="small">This final static version shows the next known slot. Update after results if you want exact future opponents.</p>
-    </div>
-
-    <div class="panel">
-      <h3>🌦️ Reliable mode</h3>
-      <span class="badge">No fake live data</span>
-      <p class="small">For trust, this page avoids pretending to show live scores or weather. Use BBC live coverage for current match updates.</p>
-    </div>
-
-    <div class="panel">
-      <h3>⚽ Match info</h3>
-      <p class="small">Competition: World Cup 2026<br>Reminder type: local browser alarm<br>Designed for: iPhone, Android and desktop<br>Style: safe England-themed graphics</p>
-    </div>
+    <div class="panel"><h3>🗓️ England path</h3><div class="fixture"><b>Round of 16</b><span>Mexico v England</span></div><div class="fixture"><b>Quarter-final</b><span>Winner faces Brazil/Norway winner</span></div><div class="fixture"><b>Semi-final</b><span>Possible 15 July slot</span></div><p class="small">This version shows the next known slot. Update after results if you want exact future opponents.</p></div>
+    <div class="panel"><h3>🌦️ Reliable mode</h3><span class="badge">No fake live data</span><p class="small">For trust, this page avoids pretending to show live scores or weather. Use BBC live coverage for current match updates.</p></div>
+    <div class="panel"><h3>⚽ Match info</h3><p class="small">Competition: World Cup 2026<br>Reminder type: local browser alarm<br>Designed for: iPhone, Android and desktop<br>Graphics: original safe SVG artwork</p></div>
   </section>
 
-  <footer>
-    <div>One nation. One team. One dream.</div>
-    <div class="signature">Designed by R. Freedman</div>
-    <div>© 2026 R. Freedman. All rights reserved.</div>
-  </footer>
+  <footer><div>One nation. One team. One dream.</div><div class="signature">Designed by R. Freedman</div><div>© 2026 R. Freedman. All rights reserved.</div></footer>
 </div>
 
 <script>
-  const fixtures = [
-    {title:"Mexico 🇲🇽 v England 🏴", label:"Next match", sub:"World Cup · reliable countdown and reminders", kickoff:"2026-07-06T02:00:00+02:00", kickoffText:"Kick-off: 02:00 Brussels"},
-    {title:"England quarter-final slot 🏴", label:"If England progress", sub:"Quarter-final slot · opponent depends on Brazil v Norway", kickoff:"2026-07-11T23:00:00+02:00", kickoffText:"Possible kick-off: 23:00 Brussels, 11 July"},
-    {title:"England semi-final slot 🏴", label:"If England progress", sub:"Semi-final slot · to be confirmed", kickoff:"2026-07-15T21:00:00+02:00", kickoffText:"Possible kick-off: 21:00 Brussels, 15 July"}
-  ];
-
-  const pageUrl = "https://rdf32rdf32.github.io/england-countdown/";
-  const shareText = "England Match Centre: countdown and match reminder. It’s Coming Home! ⚽🏴 " + pageUrl;
-  document.getElementById("whatsapp").href = "https://wa.me/?text=" + encodeURIComponent(shareText);
-
-  let fixture = fixtures.find(f => new Date(f.kickoff) > new Date()) || fixtures[fixtures.length-1];
-  let kickOff = new Date(fixture.kickoff);
-  let reminderMinutes = 15;
-  let reminderTimer = null;
-
-  matchTitle.textContent = fixture.title;
-  matchLabel.textContent = fixture.label;
-  matchSub.textContent = fixture.sub;
-  kickoffText.textContent = fixture.kickoffText;
-
-  function pad(n){ return String(n).padStart(2,"0"); }
-
-  function updateCountdown(){
-    const diff = kickOff - new Date();
-    if(diff <= 0){
-      days.textContent = "00"; hours.textContent = "00"; minutes.textContent = "00"; seconds.textContent = "00";
-      statusText.textContent = "Match started";
-      status.textContent = "Match started. Use BBC live coverage for updates.";
-      return;
-    }
-    let s = Math.floor(diff / 1000);
-    const d = Math.floor(s / 86400); s %= 86400;
-    const h = Math.floor(s / 3600); s %= 3600;
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
-    days.textContent = pad(d); hours.textContent = pad(h); minutes.textContent = pad(m); seconds.textContent = pad(sec);
-    const minutesToGo = Math.floor(diff/60000);
-    statusText.textContent = minutesToGo < 60 ? "Less than 1 hour to go" : "Pre-match";
-  }
-
-  function chooseReminder(mins, el){
-    reminderMinutes = mins;
-    document.querySelectorAll(".buttons button").forEach(b=>b.classList.remove("selected"));
-    el.classList.add("selected");
-    status.textContent = `Selected: ${mins} minute${mins===1?"":"s"} before kick-off.`;
-  }
-
-  function tone(freq, duration, delay=0){
-    setTimeout(()=>{
-      try{
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain); gain.connect(ctx.destination);
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.03);
-        osc.start();
-        setTimeout(()=>{ osc.stop(); ctx.close(); }, duration);
-      }catch(e){}
-    }, delay);
-  }
-
-  function playSound(){
-    const choice = soundChoice.value;
-    if(choice === "whistle"){ tone(1200,250); tone(1400,250,280); return; }
-    if(choice === "horn"){ tone(280,700); tone(220,700,780); return; }
-    if(choice === "roar"){ tone(170,500); tone(120,650,520); tone(90,850,1220); return; }
-    tone(880,900);
-  }
-
-  function fireReminder(){
-    const text = `England kick-off in ${reminderMinutes} minute${reminderMinutes===1?"":"s"}!`;
-    playSound();
-    if("Notification" in window && Notification.permission === "granted"){ new Notification(text); }
-    alert(text);
-  }
-
-  async function setReminder(){
-    clearReminder(false);
-    help.textContent = "";
-    if("Notification" in window && Notification.permission === "default"){
-      try{ await Notification.requestPermission(); }catch(e){}
-    }
-    if("Notification" in window && Notification.permission === "denied"){
-      help.textContent = "Notifications are blocked. Sound and on-screen alert still work if this page stays open.";
-    }
-    const delay = (kickOff - new Date()) - reminderMinutes * 60 * 1000;
-    if(delay <= 0){
-      status.textContent = `Too late for a ${reminderMinutes}-minute reminder. Choose a shorter option.`;
-      return;
-    }
-    reminderTimer = setTimeout(fireReminder, delay);
-    status.textContent = `Reminder set for ${reminderMinutes} minute${reminderMinutes===1?"":"s"} before kick-off. Keep this page open.`;
-  }
-
-  function clearReminder(show=true){
-    if(reminderTimer){ clearTimeout(reminderTimer); reminderTimer = null; }
-    if(show) status.textContent = "Reminder cleared.";
-  }
-
-  function testSound(){ playSound(); alert("Sound test. If you heard it, the alarm sound works."); }
-
-  async function copyLink(){
-    try{ await navigator.clipboard.writeText(pageUrl); status.textContent = "Link copied."; }
-    catch(e){ prompt("Copy this link:", pageUrl); }
-  }
-
-  if("serviceWorker" in navigator){ navigator.serviceWorker.register("./service-worker.js").catch(()=>{}); }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  const fixtures=[{title:"Mexico 🇲🇽 v England 🏴",label:"Next match",sub:"World Cup · reliable countdown and reminders",kickoff:"2026-07-06T02:00:00+02:00",kickoffText:"Kick-off: 02:00 Brussels"},{title:"England quarter-final slot 🏴",label:"If England progress",sub:"Quarter-final slot · opponent depends on Brazil v Norway",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Possible kick-off: 23:00 Brussels, 11 July"},{title:"England semi-final slot 🏴",label:"If England progress",sub:"Semi-final slot · to be confirmed",kickoff:"2026-07-15T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 15 July"}];
+  const pageUrl="https://rdf32rdf32.github.io/england-countdown/";
+  document.getElementById("whatsapp").href="https://wa.me/?text="+encodeURIComponent("England Match Centre: countdown and match reminder. It’s Coming Home! ⚽🏴 "+pageUrl);
+  let fixture=fixtures.find(f=>new Date(f.kickoff)>new Date())||fixtures[fixtures.length-1],kickOff=new Date(fixture.kickoff),reminderMinutes=15,reminderTimer=null;
+  matchTitle.textContent=fixture.title;matchLabel.textContent=fixture.label;matchSub.textContent=fixture.sub;kickoffText.textContent=fixture.kickoffText;
+  function pad(n){return String(n).padStart(2,"0")}
+  function updateCountdown(){const diff=kickOff-new Date();if(diff<=0){days.textContent=hours.textContent=minutes.textContent=seconds.textContent="00";statusText.textContent="Match started";status.textContent="Match started. Use BBC live coverage for updates.";return}let s=Math.floor(diff/1000),d=Math.floor(s/86400);s%=86400;let h=Math.floor(s/3600);s%=3600;let m=Math.floor(s/60),sec=s%60;days.textContent=pad(d);hours.textContent=pad(h);minutes.textContent=pad(m);seconds.textContent=pad(sec);statusText.textContent=Math.floor(diff/60000)<60?"Less than 1 hour to go":"Pre-match"}
+  function chooseReminder(mins,el){reminderMinutes=mins;document.querySelectorAll(".buttons button").forEach(b=>b.classList.remove("selected"));el.classList.add("selected");status.textContent=`Selected: ${mins} minute${mins===1?"":"s"} before kick-off.`}
+  function tone(freq,duration,delay=0){setTimeout(()=>{try{const ctx=new(window.AudioContext||window.webkitAudioContext)(),osc=ctx.createOscillator(),gain=ctx.createGain();osc.connect(gain);gain.connect(ctx.destination);osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.25,ctx.currentTime+.03);osc.start();setTimeout(()=>{osc.stop();ctx.close()},duration)}catch(e){}},delay)}
+  function playSound(){const c=soundChoice.value;if(c==="whistle"){tone(1200,250);tone(1400,250,280);return}if(c==="horn"){tone(280,700);tone(220,700,780);return}if(c==="roar"){tone(170,500);tone(120,650,520);tone(90,850,1220);return}tone(880,900)}
+  function fireReminder(){const text=`England kick-off in ${reminderMinutes} minute${reminderMinutes===1?"":"s"}!`;playSound();if("Notification"in window&&Notification.permission==="granted")new Notification(text);alert(text)}
+  async function setReminder(){clearReminder(false);help.textContent="";if("Notification"in window&&Notification.permission==="default"){try{await Notification.requestPermission()}catch(e){}}if("Notification"in window&&Notification.permission==="denied")help.textContent="Notifications are blocked. Sound and on-screen alert still work if this page stays open.";const delay=(kickOff-new Date())-reminderMinutes*60*1000;if(delay<=0){status.textContent=`Too late for a ${reminderMinutes}-minute reminder. Choose a shorter option.`;return}reminderTimer=setTimeout(fireReminder,delay);status.textContent=`Reminder set for ${reminderMinutes} minute${reminderMinutes===1?"":"s"} before kick-off. Keep this page open.`}
+  function clearReminder(show=true){if(reminderTimer){clearTimeout(reminderTimer);reminderTimer=null}if(show)status.textContent="Reminder cleared."}
+  function testSound(){playSound();alert("Sound test. If you heard it, the alarm sound works.")}
+  async function copyLink(){try{await navigator.clipboard.writeText(pageUrl);status.textContent="Link copied."}catch(e){prompt("Copy this link:",pageUrl)}}
+  if("serviceWorker"in navigator)navigator.serviceWorker.register("./service-worker.js").catch(()=>{});
+  updateCountdown();setInterval(updateCountdown,1000);
 </script>
 </body>
 </html>
