@@ -1,4 +1,4 @@
-const CACHE_NAME = "england-match-centre-v4";
+const CACHE_NAME = "england-match-centre-v5";
 const FILES = ["./", "./index.html", "./manifest.json"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(FILES)));
