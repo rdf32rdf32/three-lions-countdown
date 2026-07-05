@@ -1,1 +1,9 @@
-{"name":"England Match Centre","short_name":"England","start_url":"./","display":"standalone","background_color":"#071a33","theme_color":"#071a33"}
+{
+  "name": "England Match Centre",
+  "short_name": "England",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#071a33",
+  "theme_color": "#071a33",
+  "description": "England match countdown and reminder"
+}
