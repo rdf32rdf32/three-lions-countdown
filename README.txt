@@ -1,16 +1,17 @@
-England Match Centre v6
+Richard Freedman England v7
 
-This version adds original safe graphics:
-- custom lion motif
-- St George colours
-- football motif
-- no player photos
-- no official crest
-- no third-party artwork
+Adds:
+- England flag after ENGLAND
+- prediction maker
+- WhatsApp share for predictions
+- personal app name: Richard Freedman England
+- original safe graphics only
 
-Upload all files and the assets folder to the root of:
-https://github.com/rdf32rdf32/england-countdown
+Upload all files and the assets folder to your GitHub repository root.
 
-Replace old files and commit changes.
-Public link:
+Current URL:
 https://rdf32rdf32.github.io/england-countdown/
+
+Optional personal URL:
+Rename the repository to richard-freedman-england for:
+https://rdf32rdf32.github.io/richard-freedman-england/
