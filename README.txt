@@ -1,10 +1,14 @@
-Three Lions Match Centre - Final Fixed
-
-Fixes countdown ambiguity:
-- sticky bar now says "X days X hours X mins X secs"
-- kick-off clearly shows 23:00 Brussels / 22:00 UK
-- no alarm, no penalty predictor, no stats panel
-- cookie notice included
+England Match Centre - Polished
 
 Upload all files to:
 https://github.com/rdf32rdf32/three-lions-countdown
+
+Replace existing files and commit changes.
+
+Focus:
+- cleaner premium design
+- better mobile layout
+- original copyright-free graphic
+- sticky countdown with clear wording
+- XI picker with small pitch summary
+- no alarm, no penalty predictor, no stats panel
