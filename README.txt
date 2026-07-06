@@ -1,24 +1,31 @@
-England Match Centre - Live Ready
+England Match Centre - TRUE FINAL
 
 Upload all files to:
 https://github.com/rdf32rdf32/three-lions-countdown
 
 Replace existing files and commit changes.
 
-What is new:
-- Live Match Centre section added
-- config.js added for a widget URL
-- no API key is exposed in the website
-- BBC England remains as fallback
-- existing countdown, XI picker, predictions, mood, cookie notice and dark mode remain
+Confirmed removed:
+- no live widget
+- no config.js
+- no API section
+- no alarm
+- no penalty predictor
+- no stats panel
 
-How to activate live data:
-1. Create a live football widget with a provider such as Sportmonks or API-Football.
-2. Copy the iframe/widget URL.
-3. Open config.js.
-4. Paste it here:
-   window.LIVE_WIDGET_URL = "https://...";
-5. Commit changes.
-
-Public site:
-https://rdf32rdf32.github.io/three-lions-countdown/
+Included:
+- polished premium design
+- original copyright-free fan graphic
+- sticky countdown
+- BBC England link
+- cookie notice
+- England XI picker with pitch summary
+- score prediction sharing
+- mood sharing
+- match facts
+- probable line-ups
+- tournament journey
+- kick-off times
+- useful links
+- dark mode
+- unofficial fan site disclaimer
