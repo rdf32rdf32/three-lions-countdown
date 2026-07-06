@@ -45,8 +45,10 @@ function getQuiz(){ return Array.isArray(window.WORLD_CUP_QUIZ) && window.WORLD_
 
 function renderContent(){
   const c = getContent();
-  const day = new Date().getDate();
-  if($('factText')) $('factText').textContent = c.facts[day % c.facts.length];
+  if($('factText')) {
+    const facts = Array.isArray(c.facts) && c.facts.length ? c.facts : FALLBACK_CONTENT.facts;
+    $('factText').textContent = facts[Math.floor(Math.random() * facts.length)];
+  }
 }
 
 function fillScorers(){

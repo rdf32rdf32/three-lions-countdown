@@ -1,13 +1,9 @@
-Three Lions Countdown - slim fixed version
+Three Lions Countdown - clean slim version
 
-Upload all files in this folder to your GitHub Pages repository.
+Upload all files to the root of your GitHub Pages repository.
 
 Changes in this version:
-- Removed host cities.
-- Removed history/timeline.
-- Removed England World Cup Records.
-- Removed England Greats/Legend section.
-- Fixed the quiz data and added fallback quiz questions so the quiz still appears if the data file has a problem.
-- Kept the countdown, dashboard, road to final, World Cup quiz, score predictor, fact and useful links.
-
-Use test.html after upload to confirm the quiz is loading.
+- Removed top BBC/Flashscore/FIFA buttons because links are already at the bottom.
+- Removed weather tile.
+- England World Cup Fact now changes randomly every time the page opens.
+- Quiz remains fixed with fallback questions if the data file does not load.
