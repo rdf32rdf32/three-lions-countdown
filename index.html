@@ -8,29 +8,32 @@
 <link rel="manifest" href="manifest.json">
 <style>
 :root{
-  --navy:#08285a;--navy2:#0d3a7a;--red:#e31b23;--bg:#f6f8fc;--card:#fff;--text:#101828;--muted:#667085;--line:#dbe2ee;--green:#25D366;--gold:#ffca3a;
+  --navy:#08285a;--navy2:#0d3a7a;--red:#e31b23;--bg:#f6f8fc;--card:#fff;
+  --text:#101828;--muted:#667085;--line:#dbe2ee;--green:#25D366;--gold:#ffca3a;
 }
 [data-theme="dark"]{
-  --bg:#071427;--card:#0d203c;--text:#f7fbff;--muted:#b7c4d8;--line:#203a5f;--navy:#8fb7ff;--navy2:#152f55;
+  --bg:#071427;--card:#0d203c;--text:#f7fbff;--muted:#b7c4d8;--line:#203a5f;
+  --navy:#9ec2ff;--navy2:#152f55;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);transition:.2s background,.2s color}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
 a,button,input,select{font:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:18px}
-.sticky{position:sticky;top:0;z-index:50;background:rgba(8,40,90,.96);color:white;backdrop-filter:blur(10px);border-bottom:3px solid var(--red)}
+.sticky{position:sticky;top:0;z-index:50;background:rgba(8,40,90,.96);color:white;backdrop-filter:blur(10px);border-bottom:3px solid #e31b23}
 .sticky-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 18px}
-.sticky strong{white-space:nowrap}.mini-count{font-weight:900;letter-spacing:.5px}.sticky a{color:#fff;text-decoration:none;font-weight:800}
+.sticky strong{white-space:nowrap}.mini-count{font-weight:900;letter-spacing:.4px}.sticky a{color:white;text-decoration:none;font-weight:800}
 header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0 20px}
-.brand{display:flex;gap:12px;align-items:center}.logo{width:58px;height:58px;border:2px solid var(--navy);border-radius:15px;background:var(--card);display:grid;place-items:center;color:var(--navy);font-weight:900}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:60px;height:60px;border:2px solid var(--navy);border-radius:16px;background:var(--card);display:grid;place-items:center;color:var(--navy);font-weight:900}
+.logo svg{width:44px;height:44px}
 h1{margin:0;font-size:32px;line-height:1;color:var(--navy)}h1 span{display:block;color:var(--red);font-size:16px;letter-spacing:7px}
 .nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .btn,button{border:0;border-radius:12px;padding:11px 14px;font-weight:800;text-decoration:none;cursor:pointer;display:inline-block;text-align:center}
 .primary{background:var(--red);color:white}.secondary{background:var(--card);color:var(--navy);border:1px solid var(--line)}.green{background:var(--green);color:white}.ghost{background:transparent;color:var(--navy);border:1px solid var(--line)}
-.hero{display:grid;grid-template-columns:1fr 1.1fr;gap:18px;margin:8px 0 18px;align-items:stretch}
+.hero{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;margin:8px 0 18px;align-items:stretch}
 .panel,.hero-card,.graphic{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px rgba(8,40,90,.08)}
-.graphic{padding:18px;display:grid;place-items:center;min-height:320px}
-.hero-svg{width:100%;max-width:560px;height:auto;display:block}
+.graphic{padding:22px;display:grid;place-items:center;min-height:320px}
+.hero-svg{width:100%;max-width:520px;height:auto;display:block}
 .hero-card{padding:24px;text-align:center;background:linear-gradient(135deg,#08285a,#0d3a7a);color:#fff}
 .eyebrow{text-transform:uppercase;letter-spacing:2px;color:#d7e3ff;font-size:12px;font-weight:900}
 h2{font-size:38px;margin:10px 0 8px}.sub{color:#d7e3ff;margin:0 0 16px}
@@ -39,18 +42,16 @@ h2{font-size:38px;margin:10px 0 8px}.sub{color:#d7e3ff;margin:0 0 16px}
 h3{margin:0 0 10px;color:var(--navy);font-size:21px}.small{color:var(--muted);font-size:14px;line-height:1.5}
 .chips{display:flex;gap:8px;flex-wrap:wrap}.chip{background:var(--card);color:var(--navy);border:1px solid var(--line);padding:9px 11px;border-radius:999px;font-size:13px}.selected{background:var(--red)!important;color:#fff!important;border-color:var(--red)!important}
 select,input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px;margin-top:10px;background:var(--card);color:var(--text)}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.status,.box{margin-top:12px;background:rgba(127,151,180,.12);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.box{margin-top:12px;background:rgba(127,151,180,.12);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--text)}
 .predict-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.output{white-space:pre-wrap;text-align:left}
-.squad-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.squad-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.player{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:left;color:var(--text)}.player.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.stat-table{width:100%;border-collapse:collapse;font-size:14px}.stat-table th,.stat-table td{text-align:left;border-bottom:1px solid var(--line);padding:9px}.stat-table th{color:var(--navy)}
+.squad-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.squad-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.player{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:left;color:var(--text)}.player.on{background:#08285a;color:#fff;border-color:#08285a}
 .fact{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:10px 0;color:var(--muted)}.fact:first-child{border-top:0}.fact b{color:var(--text)}
+.timeline{display:grid;gap:10px}.step{display:flex;align-items:center;gap:10px;color:var(--muted)}.dot{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#dbe2ee;color:#08285a;font-size:12px;font-weight:900}.done .dot{background:#19a974;color:#fff}.current .dot{background:var(--red);color:#fff}.current{color:var(--text);font-weight:800}
 .lineups{display:grid;grid-template-columns:1fr 1fr;gap:12px}.team-list{margin:0;padding-left:20px;color:var(--muted);line-height:1.65}
 .mood{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.mood button{background:var(--card);border:1px solid var(--line);color:var(--text)}
 .news a{display:block;color:var(--navy);font-weight:800;margin:8px 0;text-decoration:none}
-.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;display:none}
-.cookie-inner{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.22);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
-.cookie h3{margin:0 0 4px;font-size:18px}.cookie p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
-footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:24px 0 0;padding-top:18px;border-top:2px solid var(--red);color:var(--muted);font-size:14px}.sig{font-family:Georgia,serif;font-style:italic;color:var(--navy)}
+.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;display:none}.cookie-inner{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.22);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}.cookie h3{margin:0 0 4px;font-size:18px}.cookie p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:24px 0 0;padding-top:18px;border-top:2px solid var(--red);color:var(--muted);font-size:14px}.sig{font-family:Georgia,serif;font-style:italic;color:var(--navy)}.disclaimer{width:100%;font-size:13px;color:var(--muted);margin-top:8px}
 @media(max-width:900px){.hero,.grid,.cards{grid-template-columns:1fr}.nav{display:none}.lineups{grid-template-columns:1fr}.sticky-inner{font-size:14px}.squad-list{grid-template-columns:1fr}.cookie-inner{grid-template-columns:1fr}}
 @media(max-width:560px){.wrap{padding:12px}h1{font-size:24px}h1 span{font-size:12px;letter-spacing:5px}.logo{width:50px;height:50px}h2{font-size:30px}.countdown{grid-template-columns:repeat(2,1fr)}.num{font-size:36px}.actions,.predict-grid,.mood{grid-template-columns:1fr}.cards{gap:12px}.sticky-inner{padding:9px 12px}.sticky strong{display:none}.graphic{min-height:auto}.cookie{left:10px;right:10px;bottom:10px}}
 </style>
@@ -66,9 +67,19 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 
 <div class="wrap">
 <header>
-  <div class="brand"><div class="logo">3L</div><div><h1>THREE LIONS 🏴<span>MATCH CENTRE</span></h1></div></div>
+  <div class="brand">
+    <div class="logo" aria-label="Original fan crest">
+      <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+        <rect x="12" y="8" width="76" height="84" rx="12" fill="none" stroke="currentColor" stroke-width="6"/>
+        <text x="50" y="36" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">3</text>
+        <text x="50" y="64" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">L</text>
+        <path d="M24 78h52" stroke="#e31b23" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div><h1>THREE LIONS 🏴<span>MATCH CENTRE</span></h1></div>
+  </div>
   <div class="nav">
-    <a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#stats">Stats</a><a class="btn secondary" href="#prediction">Predict</a>
+    <a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#facts">Facts</a><a class="btn secondary" href="#prediction">Predict</a>
     <button class="btn ghost" onclick="toggleDark()">Dark mode</button>
     <a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a>
   </div>
@@ -76,26 +87,26 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 
 <section class="hero">
   <div class="graphic">
-    <svg class="hero-svg" viewBox="0 0 420 420" role="img" aria-label="Original three lions style crest, copyright-free">
-      <rect x="18" y="18" width="384" height="384" rx="44" fill="#fff" stroke="#dbe2ee" stroke-width="6"/>
-      <path d="M64 210h292" stroke="#e31b23" stroke-width="28" stroke-linecap="round"/>
-      <path d="M210 64v292" stroke="#e31b23" stroke-width="28" stroke-linecap="round"/>
-      <rect x="96" y="82" width="228" height="256" rx="28" fill="#08285a"/>
-      <g fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="900" text-anchor="middle">
-        <text x="210" y="158">♌</text>
-        <text x="210" y="228">♌</text>
-        <text x="210" y="298">♌</text>
+    <svg class="hero-svg" viewBox="0 0 560 420" role="img" aria-label="Original copyright-free Three Lions fan graphic">
+      <rect x="20" y="20" width="520" height="380" rx="36" fill="#fff" stroke="#dbe2ee" stroke-width="6"/>
+      <rect x="20" y="185" width="520" height="38" fill="#e31b23"/>
+      <rect x="261" y="20" width="38" height="380" fill="#e31b23"/>
+      <rect x="150" y="72" width="260" height="255" rx="28" fill="#08285a"/>
+      <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" text-anchor="middle" font-weight="900">
+        <text x="280" y="145" font-size="46">LION</text>
+        <text x="280" y="218" font-size="46">LION</text>
+        <text x="280" y="291" font-size="46">LION</text>
       </g>
       <g fill="#e31b23">
-        <circle cx="138" cy="122" r="10"/><circle cx="282" cy="122" r="10"/><circle cx="138" cy="306" r="10"/><circle cx="282" cy="306" r="10"/>
+        <circle cx="190" cy="110" r="10"/><circle cx="370" cy="110" r="10"/><circle cx="190" cy="287" r="10"/><circle cx="370" cy="287" r="10"/>
       </g>
-      <text x="210" y="376" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="900" fill="#08285a">THREE LIONS</text>
+      <text x="280" y="368" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="900" fill="#08285a">THREE LIONS MATCH CENTRE</text>
     </svg>
   </div>
   <div class="hero-card">
     <div class="eyebrow" id="roundLabel">Quarter-final</div>
     <h2 id="matchTitle">Norway v England</h2>
-    <p class="sub" id="matchSub">Countdown, predictions, squad and stats</p>
+    <p class="sub" id="matchSub">Countdown, predictions, squad and match facts</p>
     <div class="countdown">
       <div class="timebox"><div class="num" id="days">00</div><div class="label">days</div></div>
       <div class="timebox"><div class="num" id="hours">00</div><div class="label">hours</div></div>
@@ -119,13 +130,13 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
     <div class="actions"><button class="primary" onclick="makePrediction()">Create</button><button class="secondary" onclick="sharePrediction()">Share</button></div>
     <div id="predictionText" class="box output">My prediction: England 2–1 Norway. England win.</div>
   </div>
-  <div class="panel">
+  <div class="panel" id="facts">
     <h3>Match facts</h3>
     <div class="fact"><b>Fixture</b><span id="factFixture">Norway v England</span></div>
     <div class="fact"><b>Stage</b><span>World Cup quarter-final</span></div>
     <div class="fact"><b>Kick-off</b><span>23:00 Brussels</span></div>
-    <div class="fact"><b>BBC</b><span>England team page</span></div>
-    <div class="fact"><b>Reliable mode</b><span>No fake live data</span></div>
+    <div class="fact"><b>Coverage</b><span>BBC England page</span></div>
+    <div class="fact"><b>Status</b><span>Fan site, no fake live data</span></div>
   </div>
 </section>
 
@@ -155,15 +166,20 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
   </div>
 </section>
 
-<section class="cards" id="stats">
+<section class="cards">
   <div class="panel">
-    <h3>England World Cup so far</h3>
-    <table class="stat-table"><tr><th>Match</th><th>Result</th></tr><tr><td>Round of 32</td><td>England 2–1 DR Congo</td></tr><tr><td>Round of 16</td><td>England 3–2 Mexico</td></tr><tr><td>Total goals</td><td>5 scored, 3 conceded</td></tr></table>
+    <h3>Tournament journey</h3>
+    <div class="timeline">
+      <div class="step done"><span class="dot">✓</span><span>Round of 32: England 2–1 DR Congo</span></div>
+      <div class="step done"><span class="dot">✓</span><span>Round of 16: England 3–2 Mexico</span></div>
+      <div class="step current"><span class="dot">•</span><span>Quarter-final: Norway v England</span></div>
+      <div class="step"><span class="dot">○</span><span>Semi-final: if England progress</span></div>
+      <div class="step"><span class="dot">○</span><span>Final: if England progress</span></div>
+    </div>
   </div>
   <div class="panel">
-    <h3>Player stats</h3>
-    <p class="small">Manual fan tracker. Replace with official stats when confirmed.</p>
-    <table class="stat-table"><tr><th>Player</th><th>Tracker</th></tr><tr><td>Kane</td><td>Captain / striker</td></tr><tr><td>Bellingham</td><td>Midfield</td></tr><tr><td>Saka</td><td>Forward</td></tr><tr><td>Pickford</td><td>Goalkeeper</td></tr></table>
+    <h3>Kick-off times</h3>
+    <div class="fact"><b>London</b><span>22:00</span></div><div class="fact"><b>Brussels</b><span>23:00</span></div><div class="fact"><b>New York</b><span>17:00</span></div><div class="fact"><b>Sydney</b><span>07:00 next day</span></div>
   </div>
   <div class="panel news">
     <h3>Useful links</h3>
@@ -175,26 +191,26 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 
 <section class="cards">
   <div class="panel"><h3>Fan mood</h3><div class="mood"><button onclick="setMood('Confident')">😎 Confident</button><button onclick="setMood('Nervous')">😬 Nervous</button><button onclick="setMood('Buzzing')">🔥 Buzzing</button><button onclick="setMood('It’s coming home')">🏆 Home</button></div><div id="moodBox" class="box">Mood: Confident</div><button class="secondary" onclick="shareMood()" style="width:100%;margin-top:10px">Share mood</button></div>
-  <div class="panel"><h3>Kick-off times</h3><div class="fact"><b>London</b><span>22:00</span></div><div class="fact"><b>Brussels</b><span>23:00</span></div><div class="fact"><b>New York</b><span>17:00</span></div><div class="fact"><b>Sydney</b><span>07:00 next day</span></div></div>
-  <div class="panel"><h3>About</h3><p class="small">Clean original design, no third-party images, no official crest, no fake live data. Uses local storage only for theme and cookie notice.</p><a class="btn green" id="whatsapp" target="_blank" rel="noopener">Share app</a></div>
+  <div class="panel"><h3>Player to watch</h3><p class="small"><b>Jude Bellingham</b><br>Watch for late runs, pressing and creative passing between midfield and attack.</p></div>
+  <div class="panel"><h3>Share the site</h3><p class="small">Send Three Lions Match Centre to your friends.</p><a class="btn green" id="whatsapp" target="_blank" rel="noopener">Share on WhatsApp</a></div>
 </section>
 
-<footer><div>Three Lions Match Centre</div><div class="sig">Designed by R. Freedman</div><div>© 2026 R. Freedman. All rights reserved.</div></footer>
+<footer>
+  <div>Three Lions Match Centre</div><div class="sig">Designed by R. Freedman</div><div>© 2026 R. Freedman. All rights reserved.</div>
+  <div class="disclaimer">Unofficial England fan website. Independently created and not affiliated with The Football Association, FIFA or the BBC.</div>
+</footer>
 </div>
 
 <div class="cookie" id="cookieBox">
   <div class="cookie-inner">
-    <div>
-      <h3>Cookie notice</h3>
-      <p>This site does not use tracking cookies. It only saves basic preferences such as dark mode and whether you dismissed this notice.</p>
-    </div>
+    <div><h3>Cookie notice</h3><p>This site does not use tracking cookies. It only saves basic preferences such as dark mode and whether you dismissed this notice.</p></div>
     <button class="primary" onclick="acceptCookies()">Accept</button>
   </div>
 </div>
 
 <script>
 const fixtures=[
- {title:"Norway v England",round:"Quarter-final",sub:"Countdown, predictions, squad and stats",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Kick-off: 23:00 Brussels, 11 July",opponent:"Norway"},
+ {title:"Norway v England",round:"Quarter-final",sub:"Countdown, predictions, squad and match facts",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Kick-off: 23:00 Brussels, 11 July",opponent:"Norway"},
  {title:"England semi-final slot",round:"If England progress",sub:"Semi-final countdown",kickoff:"2026-07-15T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 15 July",opponent:"TBD"},
  {title:"England final slot",round:"If England progress",sub:"Final countdown",kickoff:"2026-07-19T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 19 July",opponent:"TBD"}
 ];

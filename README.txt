@@ -1,21 +1,25 @@
-Three Lions Match Centre v11
+Three Lions Match Centre - Final
 
 Upload all files to:
 https://github.com/rdf32rdf32/three-lions-countdown
 
 Replace existing files and commit changes.
 
-Changes:
-- alarm removed
-- penalty predictor removed
-- BBC button now links to BBC England team page
-- inline copyright-free crest graphic, no image file dependency
-- cookie notice added
-- England XI picker uses squad list by position
-- max 11 player selection
+Includes:
+- clean original copyright-free graphics
 - sticky countdown
-- dark mode
-- prediction sharing
-- mood selector
+- BBC England link
+- cookie notice
+- score prediction sharing
+- England XI picker from squad list
+- probable line-ups
 - match facts
-- stats sections
+- tournament journey
+- kick-off times
+- mood selector
+- useful links
+- dark mode
+- no stats panel
+- no alarm
+- no penalty predictor
+- unofficial fan site disclaimer
