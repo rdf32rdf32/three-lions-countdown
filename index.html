@@ -16,6 +16,7 @@
     <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="brand-badge">ENG</span><span>Three Lions Countdown</span></a>
     <nav aria-label="Main navigation">
       <a href="#quiz">Quiz</a>
+      <a href="#predictor">Predictor</a>
       <a href="#pick-xi">Pick XI</a>
       <a href="#road">Road</a>
       <a href="#links">Links</a>
@@ -55,12 +56,28 @@
       <div class="section-heading">
         <p class="eyebrow">Fresh each visit</p>
         <h2>England quiz</h2>
-        <p>Three random questions. The question bank is now in its own file and can hold 250+ questions cleanly.</p>
+        <p>Three tougher questions each time, pulled from a 250-question England football bank.</p>
       </div>
       <div id="quizQuestions" class="quiz-grid"></div>
       <div class="quiz-footer">
         <strong id="quizScore">Score: 0/0</strong>
         <button class="button secondary" id="newQuizBtn" type="button">Try 3 new questions</button>
+      </div>
+    </section>
+
+    <section id="predictor" class="card predictor-card">
+      <div class="section-heading">
+        <p class="eyebrow">Selection predictor</p>
+        <h2>England XI predictor</h2>
+        <p>Projected starter chances. Pick players in your XI and the predictor reacts instantly on this device.</p>
+      </div>
+      <div class="predictor-layout">
+        <div id="predictorList" class="predictor-list" aria-live="polite"></div>
+        <aside class="predictor-summary">
+          <strong id="predictorPicked">0/11 selected</strong>
+          <span>Build your XI below to nudge the predicted chances.</span>
+          <button class="button secondary" id="predictorResetBtn" type="button">Reset predictor view</button>
+        </aside>
       </div>
     </section>
 
@@ -106,17 +123,6 @@
           <div id="playerList" class="player-list"></div>
         </aside>
       </div>
-    </section>
-
-    <section class="card predictor-card">
-      <div class="section-heading">
-        <p class="eyebrow">Local fan feature</p>
-        <h2>Fan confidence meter</h2>
-        <p>No server needed: this runs in the visitor's browser.</p>
-      </div>
-      <label for="confidenceRange" class="meter-label">How confident are you?</label>
-      <input id="confidenceRange" type="range" min="0" max="100" value="72" />
-      <div class="meter-output"><span id="confidenceValue">72</span>% England confidence</div>
     </section>
 
     <section id="road" class="card road-card">

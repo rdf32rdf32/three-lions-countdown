@@ -35,6 +35,16 @@
     { id:'beever-jones', name:'Aggie Beever-Jones', pos:'FWD', club:'Chelsea' }
   ];
 
+
+
+  const predictorBase = {
+    hampton: 82, bronze: 78, greenwood: 76, bright: 72, carter: 70,
+    stanway: 84, walsh: 86, toone: 68, hemp: 88, russo: 83, james: 74,
+    mead: 65, kelly: 58, charles: 55, 'le-tissier': 52, park: 50,
+    clinton: 45, earps: 40, morgan: 36, roebuck: 30, coombs: 25,
+    daly: 42, 'beever-jones': 35
+  };
+
   const formations = {
     '433': [
       ['GK',50,92], ['LB',20,73], ['CB',40,76], ['CB',60,76], ['RB',80,73],
@@ -74,6 +84,28 @@
 
   function playerById(id) { return squad.find(p => p.id === id); }
   function usedPlayerIds() { return new Set(Object.values(xi).filter(Boolean)); }
+
+
+  function renderPredictor() {
+    const host = $('predictorList');
+    if (!host) return;
+    const used = usedPlayerIds();
+    const rows = squad.map(player => {
+      const boost = used.has(player.id) ? 7 : 0;
+      const base = predictorBase[player.id] ?? 30;
+      return { ...player, chance: Math.min(96, base + boost), picked: used.has(player.id) };
+    }).sort((a, b) => b.chance - a.chance).slice(0, 15);
+    host.innerHTML = '';
+    rows.forEach((player, index) => {
+      const row = document.createElement('div');
+      row.className = 'predictor-row' + (player.picked ? ' picked' : '');
+      row.innerHTML = `<span class="predictor-rank">${index + 1}</span><span class="predictor-name"><strong>${player.name}</strong><small>${player.pos} • ${player.club}</small></span><span class="predictor-bar"><i style="width:${player.chance}%"></i></span><strong class="predictor-percent">${player.chance}%</strong>`;
+      host.appendChild(row);
+    });
+    const picked = Object.values(xi).filter(Boolean).length;
+    const pickedText = $('predictorPicked');
+    if (pickedText) pickedText.textContent = `${picked}/11 selected`;
+  }
 
   function renderPitch() {
     const pitch = $('pitch');
@@ -144,14 +176,14 @@
     selectedPlayerId = null;
     $('selectedHint').textContent = 'Tap or drag a player';
     $('xiStatus').textContent = `${p.name} added to your XI.`;
-    renderPitch(); renderPlayers();
+    renderPitch(); renderPlayers(); renderPredictor();
   }
 
   function resetXI() {
     xi = {}; selectedPlayerId = null;
     storage.set('engXI', xi);
     $('xiStatus').textContent = 'XI reset. Choose a player, then choose a shirt.';
-    renderPitch(); renderPlayers();
+    renderPitch(); renderPlayers(); renderPredictor();
   }
 
   function initQuiz() {
@@ -196,7 +228,7 @@
       formation = e.target.value; xi = {}; selectedPlayerId = null;
       storage.set('engFormation', formation); storage.set('engXI', xi);
       $('xiStatus').textContent = 'Formation changed. Pick your XI again.';
-      renderPitch(); renderPlayers();
+      renderPitch(); renderPlayers(); renderPredictor();
     });
     $('saveXiBtn').addEventListener('click', () => { storage.set('engXI', xi); storage.set('engFormation', formation); $('xiStatus').textContent = 'XI saved on this device.'; });
     $('resetXiBtn').addEventListener('click', resetXI);
@@ -206,14 +238,15 @@
       chip.classList.add('active'); currentFilter = chip.dataset.filter; renderPlayers();
     }));
     $('newQuizBtn').addEventListener('click', initQuiz);
-    $('confidenceRange').addEventListener('input', e => $('confidenceValue').textContent = e.target.value);
+    const predictorResetBtn = $('predictorResetBtn');
+    if (predictorResetBtn) predictorResetBtn.addEventListener('click', renderPredictor);
     if (!storage.get('cookiesOK', false)) $('cookieBanner').classList.add('show');
     $('acceptCookiesBtn').addEventListener('click', () => { storage.set('cookiesOK', true); $('cookieBanner').classList.remove('show'); });
   }
 
   function boot() {
     countdown(); setInterval(countdown, 1000);
-    initControls(); renderPitch(); renderPlayers(); initQuiz();
+    initControls(); renderPitch(); renderPlayers(); renderPredictor(); initQuiz();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
