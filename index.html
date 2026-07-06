@@ -188,6 +188,17 @@
         <h2>Pick your starting team</h2>
         <p>Tap a player, then tap a position on the pitch. Desktop users can also drag and drop. Your XI is saved on your device only.</p>
       </div>
+      <div class="xi-controls" aria-label="Formation controls">
+        <label>Formation
+          <select id="formationSelect">
+            <option value="433">4-3-3</option>
+            <option value="4231">4-2-3-1</option>
+            <option value="352">3-5-2</option>
+            <option value="442">4-4-2</option>
+          </select>
+        </label>
+        <button id="quickPickXi" type="button">Pick a balanced XI</button>
+      </div>
       <div class="xi-layout">
         <article class="pitch-card" aria-label="Selected England XI">
           <div class="mini-pitch formation-pitch" id="xiPitch"></div>

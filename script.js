@@ -238,24 +238,60 @@ function playerLabel(player) {
   return typeof player === 'string' ? player : `${player.no ? player.no + '. ' : ''}${player.name} · ${player.position}`;
 }
 
-const formationSlots = [
-  { id: 'lw', label: 'LW', line: 'forwards' },
-  { id: 'st', label: 'ST', line: 'forwards' },
-  { id: 'rw', label: 'RW', line: 'forwards' },
-  { id: 'cm1', label: 'CM', line: 'midfield' },
-  { id: 'am', label: 'AM', line: 'midfield' },
-  { id: 'cm2', label: 'CM', line: 'midfield' },
-  { id: 'lb', label: 'LB', line: 'defence' },
-  { id: 'cb1', label: 'CB', line: 'defence' },
-  { id: 'cb2', label: 'CB', line: 'defence' },
-  { id: 'rb', label: 'RB', line: 'defence' },
-  { id: 'gk', label: 'GK', line: 'goalkeeper' }
-];
+const FORMATIONS = {
+  '433': {
+    label: '4-3-3',
+    rows: [['lw', 'st', 'rw'], ['cm1', 'am', 'cm2'], ['lb', 'cb1', 'cb2', 'rb'], ['gk']],
+    slots: {
+      gk: ['GK', 'Goalkeeper only'], lb: ['LB', 'Left-back'], cb1: ['CB', 'Centre-back'], cb2: ['CB', 'Centre-back'], rb: ['RB', 'Right-back'],
+      cm1: ['CM', 'Midfield'], am: ['AM', 'Attacking midfield'], cm2: ['CM', 'Midfield'], lw: ['LW', 'Left wing'], st: ['ST', 'Striker'], rw: ['RW', 'Right wing']
+    }
+  },
+  '4231': {
+    label: '4-2-3-1',
+    rows: [['st'], ['lw', 'am', 'rw'], ['dm1', 'dm2'], ['lb', 'cb1', 'cb2', 'rb'], ['gk']],
+    slots: {
+      gk: ['GK', 'Goalkeeper only'], lb: ['LB', 'Left-back'], cb1: ['CB', 'Centre-back'], cb2: ['CB', 'Centre-back'], rb: ['RB', 'Right-back'],
+      dm1: ['DM', 'Holding midfield'], dm2: ['DM', 'Holding midfield'], lw: ['LW', 'Left wing'], am: ['AM', 'No 10'], rw: ['RW', 'Right wing'], st: ['ST', 'Striker']
+    }
+  },
+  '352': {
+    label: '3-5-2',
+    rows: [['st1', 'st2'], ['lwb', 'cm1', 'am', 'cm2', 'rwb'], ['cb1', 'cb2', 'cb3'], ['gk']],
+    slots: {
+      gk: ['GK', 'Goalkeeper only'], cb1: ['CB', 'Centre-back'], cb2: ['CB', 'Centre-back'], cb3: ['CB', 'Centre-back'], lwb: ['LWB', 'Left wing-back'], rwb: ['RWB', 'Right wing-back'],
+      cm1: ['CM', 'Midfield'], am: ['AM', 'Attacking midfield'], cm2: ['CM', 'Midfield'], st1: ['ST', 'Striker'], st2: ['ST', 'Striker']
+    }
+  },
+  '442': {
+    label: '4-4-2',
+    rows: [['st1', 'st2'], ['lm', 'cm1', 'cm2', 'rm'], ['lb', 'cb1', 'cb2', 'rb'], ['gk']],
+    slots: {
+      gk: ['GK', 'Goalkeeper only'], lb: ['LB', 'Left-back'], cb1: ['CB', 'Centre-back'], cb2: ['CB', 'Centre-back'], rb: ['RB', 'Right-back'],
+      lm: ['LM', 'Left midfield'], cm1: ['CM', 'Midfield'], cm2: ['CM', 'Midfield'], rm: ['RM', 'Right midfield'], st1: ['ST', 'Striker'], st2: ['ST', 'Striker']
+    }
+  }
+};
+
+function getFormationKey() {
+  return localStorage.getItem('tlcFormation') || '433';
+}
+
+function activeFormation() {
+  return FORMATIONS[getFormationKey()] || FORMATIONS['433'];
+}
+
+function activeSlotIds() {
+  return activeFormation().rows.flat();
+}
 
 function initEnglandXi() {
   const squadList = document.getElementById('squadList');
   const pitch = document.getElementById('xiPitch');
   if (!squadList || !pitch) return;
+
+  const formationSelect = document.getElementById('formationSelect');
+  if (formationSelect) formationSelect.value = getFormationKey();
 
   let assignments = loadXiAssignments();
   let activePlayerName = '';
@@ -266,30 +302,41 @@ function initEnglandXi() {
   const playerByName = name => players.find(player => player.name === name) || { name, position: '', group: '' };
 
   const save = () => {
+    const valid = activeSlotIds();
+    const clean = {};
+    valid.forEach(slotId => clean[slotId] = assignments[slotId] || '');
+    assignments = clean;
     localStorage.setItem('tlcEnglandXiSlots', JSON.stringify(assignments));
     localStorage.setItem('tlcEnglandXi', JSON.stringify(selectedNames()));
   };
 
   const findPlayerSlot = name => Object.keys(assignments).find(slotId => assignments[slotId] === name);
-  const firstFreeSlotFor = player => {
-    const preferred = preferredSlotsFor(player);
-    return preferred.find(slotId => !assignments[slotId]) || formationSlots.map(slot => slot.id).find(slotId => !assignments[slotId]);
-  };
 
   const assignPlayerToSlot = (name, slotId) => {
-    if (!name || !slotId || !formationSlots.some(slot => slot.id === slotId)) return;
+    if (!name || !slotId || !activeSlotIds().includes(slotId)) return;
     const player = playerByName(name);
     if (!canUseSlot(player, slotId)) {
       const result = document.getElementById('xiResult');
       if (result) result.textContent = slotId === 'gk' ? 'Only a goalkeeper can go in goal.' : 'Goalkeepers can only be placed in goal.';
       return;
     }
+
+    const currentName = assignments[slotId];
     const previousSlot = findPlayerSlot(name);
     if (previousSlot) assignments[previousSlot] = '';
+    if (currentName && currentName !== name) {
+      const swapSlot = previousSlot || firstFreeSlotFor(playerByName(currentName));
+      if (swapSlot && swapSlot !== slotId && canUseSlot(playerByName(currentName), swapSlot)) assignments[swapSlot] = currentName;
+    }
     assignments[slotId] = name;
     activePlayerName = '';
     save();
     render();
+  };
+
+  const firstFreeSlotFor = player => {
+    const preferred = preferredSlotsFor(player).filter(id => activeSlotIds().includes(id));
+    return preferred.find(slotId => !assignments[slotId]) || activeSlotIds().find(slotId => !assignments[slotId]);
   };
 
   const removeFromSlot = slotId => {
@@ -299,43 +346,57 @@ function initEnglandXi() {
   };
 
   const selectPlayer = player => {
-    const existing = findPlayerSlot(player.name);
-    if (existing) {
-      activePlayerName = player.name;
-      const result = document.getElementById('xiResult');
-      if (result) result.textContent = `${player.name} selected. Tap a new position to move him, or tap his current position to remove him.`;
-    } else {
-      activePlayerName = activePlayerName === player.name ? '' : player.name;
-    }
+    activePlayerName = activePlayerName === player.name ? '' : player.name;
     render();
   };
 
   const handleSlotTap = slotId => {
     const currentName = assignments[slotId];
     if (activePlayerName) {
-      if (currentName === activePlayerName) {
-        removeFromSlot(slotId);
-      } else {
-        assignPlayerToSlot(activePlayerName, slotId);
-      }
+      if (currentName === activePlayerName) removeFromSlot(slotId);
+      else assignPlayerToSlot(activePlayerName, slotId);
     } else if (currentName) {
       activePlayerName = currentName;
       render();
     }
   };
 
+  const quickPick = () => {
+    const pick = {
+      gk: 'Jordan Pickford', lb: "Nico O'Reilly", lwb: "Nico O'Reilly", cb1: 'Marc Guéhi', cb2: 'John Stones', cb3: 'Ezri Konsa', rb: 'Reece James', rwb: 'Reece James',
+      dm1: 'Declan Rice', dm2: 'Kobbie Mainoo', cm1: 'Declan Rice', cm2: 'Elliot Anderson', am: 'Jude Bellingham', lm: 'Anthony Gordon', rm: 'Bukayo Saka',
+      lw: 'Marcus Rashford', rw: 'Bukayo Saka', st: 'Harry Kane', st1: 'Harry Kane', st2: 'Ollie Watkins'
+    };
+    assignments = emptyAssignments();
+    activeSlotIds().forEach(slotId => { assignments[slotId] = pick[slotId] || ''; });
+    activePlayerName = '';
+    save();
+    render();
+  };
+
   const render = () => {
+    ensureValidAssignments(assignments);
     renderPitchSlots(pitch, assignments, assignPlayerToSlot, handleSlotTap, playerByName, activePlayerName);
     renderSquadList(squadList, groups, players, selectedNames(), selectPlayer, assignPlayerToSlot, activePlayerName);
     document.getElementById('xiCounter').textContent = `${selectedNames().length}/11 selected`;
     const result = document.getElementById('xiResult');
     if (result) {
-      if (selectedNames().length === 11) result.textContent = 'Your England XI is ready to share.';
+      if (selectedNames().length === 11) result.textContent = `Your ${activeFormation().label} England XI is ready to share.`;
       else if (activePlayerName) result.textContent = `${activePlayerName} selected. Tap a position on the pitch.`;
-      else result.textContent = 'Tap a player, then tap a position. Desktop users can also drag and drop.';
+      else result.textContent = 'Tap a player, then tap a shirt position. Desktop users can also drag and drop.';
     }
-    updateXiShare(selectedNames());
+    updateXiShare(selectedNames(), assignments, playerByName);
   };
+
+  formationSelect?.addEventListener('change', () => {
+    localStorage.setItem('tlcFormation', formationSelect.value);
+    assignments = migrateAssignments(assignments);
+    activePlayerName = '';
+    save();
+    render();
+  });
+
+  document.getElementById('quickPickXi')?.addEventListener('click', quickPick);
 
   document.getElementById('clearXi')?.addEventListener('click', () => {
     assignments = emptyAssignments();
@@ -346,7 +407,7 @@ function initEnglandXi() {
   });
 
   document.getElementById('copyXi')?.addEventListener('click', async () => {
-    const text = selectedNames().length ? `My England XI: ${formatXiByLine(assignments, playerByName)}.` : 'I am choosing my England XI.';
+    const text = selectedNames().length ? `My England XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.` : 'I am choosing my England XI.';
     try {
       await navigator.clipboard.writeText(`${text} ${window.location.href}`);
       document.getElementById('copyXi').textContent = 'Copied';
@@ -359,14 +420,29 @@ function initEnglandXi() {
 }
 
 function emptyAssignments() {
-  return formationSlots.reduce((acc, slot) => ({ ...acc, [slot.id]: '' }), {});
+  const assignments = {};
+  activeSlotIds().forEach(slotId => assignments[slotId] = '');
+  return assignments;
+}
+
+function ensureValidAssignments(assignments) {
+  const validSlots = activeSlotIds();
+  Object.keys(assignments).forEach(slotId => { if (!validSlots.includes(slotId)) delete assignments[slotId]; });
+  validSlots.forEach(slotId => { if (!(slotId in assignments)) assignments[slotId] = ''; });
+  const seen = new Set();
+  validSlots.forEach(slotId => {
+    const name = assignments[slotId];
+    if (!name) return;
+    if (seen.has(name)) assignments[slotId] = '';
+    else seen.add(name);
+  });
 }
 
 function loadXiAssignments() {
   const empty = emptyAssignments();
   try {
     const savedSlots = JSON.parse(localStorage.getItem('tlcEnglandXiSlots') || 'null');
-    if (savedSlots && typeof savedSlots === 'object') return { ...empty, ...savedSlots };
+    if (savedSlots && typeof savedSlots === 'object') return migrateAssignments({ ...savedSlots });
   } catch {}
   try {
     const oldSaved = JSON.parse(localStorage.getItem('tlcEnglandXi') || '[]');
@@ -374,7 +450,7 @@ function loadXiAssignments() {
     const assignments = { ...empty };
     names.forEach(name => {
       const player = (config.players || []).find(p => p.name === name) || { name, position: '', group: '' };
-      const slotId = preferredSlotsFor(player).find(id => !assignments[id]) || formationSlots.map(slot => slot.id).find(id => !assignments[id]);
+      const slotId = preferredSlotsFor(player).find(id => activeSlotIds().includes(id) && !assignments[id]) || activeSlotIds().find(id => !assignments[id]);
       if (slotId) assignments[slotId] = name;
     });
     return assignments;
@@ -383,42 +459,49 @@ function loadXiAssignments() {
   }
 }
 
+function migrateAssignments(oldAssignments) {
+  const newAssignments = emptyAssignments();
+  const names = Object.values(oldAssignments || {}).filter(Boolean);
+  names.forEach(name => {
+    const player = (config.players || []).find(p => p.name === name) || { name, position: '', group: '' };
+    const slotId = preferredSlotsFor(player).find(id => activeSlotIds().includes(id) && !newAssignments[id]) || activeSlotIds().find(id => !newAssignments[id]);
+    if (slotId && canUseSlot(player, slotId)) newAssignments[slotId] = name;
+  });
+  return newAssignments;
+}
+
 function preferredSlotsFor(player) {
   const position = `${player.position || ''} ${player.group || ''}`.toLowerCase();
   if (position.includes('goalkeeper')) return ['gk'];
-  if (position.includes('right winger')) return ['rw', 'lw', 'st'];
-  if (position.includes('left winger')) return ['lw', 'rw', 'st'];
-  if (position.includes('centre-forward') || position.includes('striker')) return ['st', 'rw', 'lw'];
-  if (position.includes('attacking midfielder')) return ['am', 'cm1', 'cm2', 'lw', 'rw'];
-  if (position.includes('defensive midfielder')) return ['cm1', 'cm2', 'am'];
-  if (position.includes('midfielder')) return ['cm1', 'cm2', 'am'];
-  if (position.includes('right-back')) return ['rb', 'cb1', 'cb2'];
-  if (position.includes('left-back')) return ['lb', 'cb1', 'cb2', 'cm1'];
-  if (position.includes('centre-back')) return ['cb1', 'cb2', 'rb', 'lb'];
-  if (position.includes('full-back')) return ['rb', 'lb', 'cb1', 'cb2'];
-  if (position.includes('defender')) return ['cb1', 'cb2', 'rb', 'lb'];
+  if (position.includes('right winger')) return ['rw', 'rm', 'rwb', 'st2'];
+  if (position.includes('left winger')) return ['lw', 'lm', 'lwb', 'st2'];
+  if (position.includes('centre-forward') || position.includes('striker') || position.includes('forward')) return ['st', 'st1', 'st2', 'lw', 'rw'];
+  if (position.includes('attacking midfielder')) return ['am', 'cm2', 'cm1', 'lw', 'rw'];
+  if (position.includes('defensive midfielder')) return ['dm1', 'dm2', 'cm1', 'cm2'];
+  if (position.includes('central midfielder') || position.includes('midfielder')) return ['cm1', 'cm2', 'dm1', 'dm2', 'am', 'lm', 'rm'];
+  if (position.includes('right-back')) return ['rb', 'rwb', 'cb3', 'cb2'];
+  if (position.includes('left-back')) return ['lb', 'lwb', 'cb1', 'cm1'];
+  if (position.includes('centre-back')) return ['cb1', 'cb2', 'cb3', 'rb', 'lb'];
+  if (position.includes('full-back')) return ['rb', 'lb', 'rwb', 'lwb', 'cb1', 'cb2'];
+  if (position.includes('defender')) return ['cb1', 'cb2', 'cb3', 'rb', 'lb'];
   return ['cm1', 'cm2', 'am'];
 }
 
 function canUseSlot(player, slotId) {
-  if (slotId === 'gk') return (player.position || '').toLowerCase().includes('goalkeeper');
-  if ((player.position || '').toLowerCase().includes('goalkeeper')) return false;
+  const position = (player.position || '').toLowerCase();
+  if (slotId === 'gk') return position.includes('goalkeeper');
+  if (position.includes('goalkeeper')) return false;
   return true;
 }
 
 function renderPitchSlots(pitch, assignments, assignPlayerToSlot, handleSlotTap, playerByName, activePlayerName) {
   pitch.innerHTML = '';
-  const lines = [
-    ['lw', 'st', 'rw'],
-    ['cm1', 'am', 'cm2'],
-    ['lb', 'cb1', 'cb2', 'rb'],
-    ['gk']
-  ];
-  lines.forEach(lineSlots => {
+  pitch.dataset.formation = getFormationKey();
+  activeFormation().rows.forEach(lineSlots => {
     const row = document.createElement('div');
-    row.className = 'xi-line xi-slot-line';
+    row.className = `xi-line xi-slot-line slots-${lineSlots.length}`;
     lineSlots.forEach(slotId => {
-      const slot = formationSlots.find(item => item.id === slotId);
+      const slot = activeFormation().slots[slotId];
       const name = assignments[slotId];
       const player = name ? playerByName(name) : null;
       const el = document.createElement('button');
@@ -426,8 +509,8 @@ function renderPitchSlots(pitch, assignments, assignPlayerToSlot, handleSlotTap,
       el.className = `xi-slot ${name ? 'filled' : 'empty'} ${activePlayerName && (!name || name === activePlayerName) ? 'targetable' : ''} ${name === activePlayerName ? 'active-player' : ''}`;
       el.dataset.slot = slotId;
       el.innerHTML = name
-        ? `<span class="slot-pos">${slot.label}</span><strong>${shirtName(player)}</strong><small>${player.position || ''}</small>`
-        : `<span class="slot-pos">${slot.label}</span><strong>${activePlayerName ? 'Place here' : 'Tap position'}</strong><small>${slotLabel(slotId)}</small>`;
+        ? `<span class="slot-pos">${slot[0]}</span><span class="shirt-icon">${player.no || ''}</span><strong>${safeName(player.name)}</strong><small>${player.position || ''}</small>`
+        : `<span class="slot-pos">${slot[0]}</span><span class="empty-shirt">+</span><strong>${activePlayerName ? 'Place here' : 'Tap position'}</strong><small>${slot[1]}</small>`;
       el.addEventListener('click', () => handleSlotTap(slotId));
       el.addEventListener('dragover', event => event.preventDefault());
       el.addEventListener('drop', event => {
@@ -459,7 +542,7 @@ function renderSquadList(squadList, groups, players, selected, selectPlayer, ass
       btn.className = 'player-button draggable-player';
       btn.draggable = true;
       btn.dataset.player = player.name;
-      btn.innerHTML = `<strong>${shirtName(player)}</strong><small>${player.position || ''}</small>`;
+      btn.innerHTML = `<span class="player-no">${player.no || ''}</span><span><strong>${safeName(player.name)}</strong><small>${player.position || ''}</small></span>`;
       const isSelected = selected.includes(player.name);
       btn.classList.toggle('selected', isSelected);
       btn.classList.toggle('active-player', activePlayerName === player.name);
@@ -475,13 +558,11 @@ function enableTouchSlide(button, playerName, assignPlayerToSlot) {
   let ghost = null;
   let startX = 0;
   let startY = 0;
-  let moved = false;
 
   button.addEventListener('pointerdown', event => {
     if (event.pointerType === 'mouse') return;
     startX = event.clientX;
     startY = event.clientY;
-    moved = false;
     button.setPointerCapture?.(event.pointerId);
   });
 
@@ -489,20 +570,23 @@ function enableTouchSlide(button, playerName, assignPlayerToSlot) {
     if (event.pointerType === 'mouse') return;
     const dx = Math.abs(event.clientX - startX);
     const dy = Math.abs(event.clientY - startY);
-    if (!ghost && (dx > 12 || dy > 12)) {
-      moved = true;
-      ghost = button.cloneNode(true);
+    if (!ghost && (dx > 16 || dy > 16)) {
+      ghost = document.createElement('div');
       ghost.className = 'drag-ghost';
+      ghost.textContent = button.querySelector('strong')?.textContent || playerName;
       document.body.appendChild(ghost);
     }
     if (ghost) {
       ghost.style.left = `${event.clientX}px`;
       ghost.style.top = `${event.clientY}px`;
+      document.querySelectorAll('.xi-slot').forEach(slot => slot.classList.remove('hover-target'));
+      document.elementFromPoint(event.clientX, event.clientY)?.closest?.('.xi-slot')?.classList.add('hover-target');
     }
   });
 
   button.addEventListener('pointerup', event => {
     if (event.pointerType === 'mouse') return;
+    document.querySelectorAll('.xi-slot').forEach(slot => slot.classList.remove('hover-target'));
     if (ghost) {
       ghost.remove();
       ghost = null;
@@ -512,10 +596,12 @@ function enableTouchSlide(button, playerName, assignPlayerToSlot) {
         event.stopPropagation();
         assignPlayerToSlot(playerName, target.dataset.slot);
       }
-    } else if (moved) {
-      event.preventDefault();
     }
   });
+}
+
+function safeName(name = '') {
+  return String(name).replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 function groupFromPosition(position = '') {
@@ -525,32 +611,39 @@ function groupFromPosition(position = '') {
   return 'Midfielders';
 }
 
-function slotLabel(slotId) {
-  const labels = { gk: 'Goalkeeper only', lb: 'Left-back', cb1: 'Centre-back', cb2: 'Centre-back', rb: 'Right-back', cm1: 'Midfield', am: 'Attacking midfield', cm2: 'Midfield', lw: 'Left wing', st: 'Striker', rw: 'Right wing' };
-  return labels[slotId] || 'Position';
-}
-
 function shirtName(player) {
   return `${player.no ? player.no + '. ' : ''}${player.name}`;
 }
 
-function positionShort(position = '') {
-  if (position.includes('Goalkeeper')) return 'GK';
-  if (position.includes('back') || position.includes('Back') || position.includes('Centre-back') || position.includes('Full-back')) return 'DEF';
-  if (position.includes('midfielder') || position.includes('Midfielder')) return 'MID';
-  if (position.includes('winger') || position.includes('Forward') || position.includes('Centre-forward')) return 'FWD';
-  return 'MID';
+function playerLine(player = {}) {
+  const position = (player.position || '').toLowerCase();
+  if (position.includes('goalkeeper')) return 'GK';
+  if (position.includes('back') || position.includes('defender')) return 'DEF';
+  if (position.includes('midfielder')) return 'MID';
+  return 'FWD';
 }
 
 function formatXiByLine(assignments, playerByName) {
-  const namesFor = ids => ids.map(id => assignments[id]).filter(Boolean).map(name => shirtName(playerByName(name))).join(', ');
-  return `GK: ${namesFor(['gk'])}; defence: ${namesFor(['lb', 'cb1', 'cb2', 'rb'])}; midfield: ${namesFor(['cm1', 'am', 'cm2'])}; attack: ${namesFor(['lw', 'st', 'rw'])}`;
+  const line = (label, ids) => {
+    const players = ids.map(id => assignments[id]).filter(Boolean).map(name => shirtName(playerByName(name))).join(', ');
+    return players ? `${label}: ${players}` : '';
+  };
+  return [
+    line('GK', ['gk']),
+    line('Defence', ['lb', 'lwb', 'cb1', 'cb2', 'cb3', 'rb', 'rwb']),
+    line('Midfield', ['lm', 'dm1', 'cm1', 'am', 'cm2', 'dm2', 'rm']),
+    line('Attack', ['lw', 'st', 'st1', 'st2', 'rw'])
+  ].filter(Boolean).join('; ');
 }
 
-function updateXiShare(selected) {
+function updateXiShare(selected, assignments = null, playerByName = null) {
   const url = encodeURIComponent(window.location.href);
-  const getPlayer = name => (config.players || []).find(player => player.name === name) || { name, position: '' };
-  const text = selected.length ? `My England XI: ${selected.map(name => playerLabel(getPlayer(name))).join(', ')}.` : 'Choose your England XI on Three Lions Countdown.';
+  let text = 'Choose your England XI on Three Lions Countdown.';
+  if (selected.length) {
+    text = assignments && playerByName
+      ? `My England XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.`
+      : `My England XI: ${selected.join(', ')}.`;
+  }
   const encoded = encodeURIComponent(text);
   const fb = document.getElementById('xiFacebook');
   const wa = document.getElementById('xiWhatsapp');
