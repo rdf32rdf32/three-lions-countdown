@@ -59,6 +59,11 @@ select,input{width:100%;border:1px solid var(--line);border-radius:14px;padding:
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:24px 0 0;padding-top:18px;border-top:2px solid var(--red);color:var(--muted);font-size:14px}.sig{font-family:Georgia,serif;font-style:italic;color:var(--navy)}.disclaimer{width:100%;font-size:13px;color:var(--muted);margin-top:8px}
 @media(max-width:900px){.hero,.grid,.cards{grid-template-columns:1fr}.nav{display:none}.lineups{grid-template-columns:1fr}.sticky-inner{font-size:14px}.squad-list{grid-template-columns:1fr}.cookie-inner{grid-template-columns:1fr}}
 @media(max-width:560px){.wrap{padding:12px}h1{font-size:24px}h1 span{font-size:12px;letter-spacing:5px}.logo{width:50px;height:50px}h2{font-size:31px}.countdown{grid-template-columns:repeat(2,1fr)}.num{font-size:37px}.actions,.predict-grid,.mood{grid-template-columns:1fr}.cards{gap:12px}.sticky-inner{padding:9px 12px}.sticky strong{display:none}.graphic{min-height:auto}.cookie{left:10px;right:10px;bottom:10px}}
+
+.live-frame{width:100%;min-height:520px;border:0;border-radius:18px;background:var(--card)}
+.live-placeholder{display:grid;gap:10px;background:var(--soft);border:1px dashed var(--line);border-radius:16px;padding:16px}
+.code-pill{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(127,151,180,.12);border:1px solid var(--line);border-radius:10px;padding:8px;color:var(--text);overflow:auto;font-size:13px}
+
 </style>
 </head>
 <body>
@@ -66,7 +71,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 <div class="wrap">
 <header>
   <div class="brand"><div class="logo" aria-label="Original fan crest"><svg viewBox="0 0 100 100"><rect x="12" y="8" width="76" height="84" rx="12" fill="none" stroke="currentColor" stroke-width="6"/><text x="50" y="36" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">3</text><text x="50" y="64" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">L</text><path d="M24 78h52" stroke="#e31b23" stroke-width="6" stroke-linecap="round"/></svg></div><div><h1>ENGLAND 🏴<span>Three Lions Fan Edition</span></h1></div></div>
-  <div class="nav"><a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#facts">Facts</a><a class="btn secondary" href="#prediction">Predict</a><button class="btn ghost" onclick="toggleDark()">Dark mode</button><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a></div>
+  <div class="nav"><a class="btn secondary" href="#live">Live</a><a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#facts">Facts</a><a class="btn secondary" href="#prediction">Predict</a><button class="btn ghost" onclick="toggleDark()">Dark mode</button><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a></div>
 </header>
 
 <section class="hero">
@@ -92,6 +97,27 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
     <div class="countdown"><div class="timebox"><div class="num" id="days">00</div><div class="label">days</div></div><div class="timebox"><div class="num" id="hours">00</div><div class="label">hours</div></div><div class="timebox"><div class="num" id="minutes">00</div><div class="label">mins</div></div><div class="timebox"><div class="num" id="seconds">00</div><div class="label">secs</div></div></div>
     <p class="sub" id="kickoffText">Kick-off: 23:00 Brussels / 22:00 UK, 11 July</p><div class="updated" id="updatedLine">Last updated: 6 July 2026</div>
     <div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a><button class="btn secondary" onclick="copyLink()">Copy link</button></div>
+  </div>
+</section>
+
+
+<section class="grid" id="live">
+  <div class="panel">
+    <h3>Live Match Centre</h3>
+    <p class="small">Ready for a live football widget. Once you add your widget URL in <b>config.js</b>, this area will show live fixtures, scores or match details automatically.</p>
+    <div id="liveWidgetBox" class="live-placeholder">
+      <b>Live widget not connected yet</b>
+      <span class="small">Create a football widget with a provider such as Sportmonks or API-Football, then paste the widget URL into <b>config.js</b>.</span>
+      <div class="code-pill">LIVE_WIDGET_URL = "paste-widget-url-here"</div>
+      <a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">Use BBC England for now</a>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>How live data works</h3>
+    <p class="small">This GitHub Pages site is static, so it should not contain a secret API key. A widget is safer because the provider handles the live data and updates.</p>
+    <div class="fact"><b>Best simple route</b><span>Widget iframe</span></div>
+    <div class="fact"><b>API key safety</b><span>Do not expose keys</span></div>
+    <div class="fact"><b>Fallback</b><span>BBC England link</span></div>
   </div>
 </section>
 
@@ -122,6 +148,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 
 <div class="cookie" id="cookieBox"><div class="cookie-inner"><div><h3>Cookie notice</h3><p>This site does not use tracking cookies. It only saves basic preferences such as dark mode and whether you dismissed this notice.</p></div><button class="primary" onclick="acceptCookies()">Accept</button></div></div>
 
+<script src="config.js"></script>
 <script>
 const fixtures=[{title:"Norway v England",round:"Quarter-final",sub:"Countdown, predictions, squad and match facts",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Kick-off: 23:00 Brussels / 22:00 UK, 11 July",opponent:"Norway"},{title:"England semi-final slot",round:"If England progress",sub:"Semi-final countdown",kickoff:"2026-07-15T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 15 July",opponent:"TBD"},{title:"England final slot",round:"If England progress",sub:"Final countdown",kickoff:"2026-07-19T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 19 July",opponent:"TBD"}];
 const squad=[["Jordan Pickford","GK"],["Dean Henderson","GK"],["James Trafford","GK"],["Marc Guehi","DEF"],["Ezri Konsa","DEF"],["Jarell Quansah","DEF"],["John Stones","DEF"],["Reece James","DEF"],["Myles Lewis-Skelly","DEF"],["Tino Livramento","DEF"],["Djed Spence","DEF"],["Dan Burn","DEF"],["Jude Bellingham","MID"],["Declan Rice","MID"],["Kobbie Mainoo","MID"],["Jordan Henderson","MID"],["Elliot Anderson","MID"],["Morgan Rogers","MID"],["Harry Kane","FWD"],["Bukayo Saka","FWD"],["Anthony Gordon","FWD"],["Eberechi Eze","FWD"],["Noni Madueke","FWD"],["Marcus Rashford","FWD"],["Ivan Toney","FWD"],["Ollie Watkins","FWD"]];
@@ -145,7 +172,29 @@ function shareMood(){window.open("https://wa.me/?text="+encodeURIComponent(`My E
 async function copyLink(){try{await navigator.clipboard.writeText(pageUrl);miniCount.textContent="Link copied"}catch(e){prompt("Copy this link:",pageUrl)}}
 function toggleDark(){const dark=document.documentElement.getAttribute("data-theme")==="dark";document.documentElement.setAttribute("data-theme",dark?"light":"dark");localStorage.setItem("theme",dark?"light":"dark")}
 function acceptCookies(){localStorage.setItem("cookiesOK","yes");cookieBox.style.display="none"}
-document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light");if(localStorage.getItem("cookiesOK")!=="yes") cookieBox.style.display="block";if("serviceWorker"in navigator)navigator.serviceWorker.register("./service-worker.js").catch(()=>{});renderSquad();updateCountdown();setInterval(updateCountdown,1000);makePrediction();renderPitch([]);
+document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")||"light");if(localStorage.getItem("cookiesOK")!=="yes") cookieBox.style.display="block";if("serviceWorker"in navigator)navigator.serviceWorker.register("./service-worker.js").catch(()=>{});renderSquad();updateCountdown();setInterval(updateCountdown,1000);makePrediction();
+function initLiveWidget(){
+  const box = document.getElementById("liveWidgetBox");
+  if(!box) return;
+  const url = (window.LIVE_WIDGET_URL || "").trim();
+  if(url && url.startsWith("https://")){
+    box.className = "";
+    box.innerHTML = `<iframe class="live-frame" src="${url}" title="Live football match centre" loading="lazy"></iframe>`;
+  }
+}
+initLiveWidget();
+renderPitch([]);
+function initLiveWidget(){
+  const box = document.getElementById("liveWidgetBox");
+  if(!box) return;
+  const url = (window.LIVE_WIDGET_URL || "").trim();
+  if(url && url.startsWith("https://")){
+    box.className = "";
+    box.innerHTML = `<iframe class="live-frame" src="${url}" title="Live football match centre" loading="lazy"></iframe>`;
+  }
+}
+initLiveWidget();
+
 </script>
 </body>
 </html>
