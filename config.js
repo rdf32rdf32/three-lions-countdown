@@ -37,57 +37,61 @@ window.SITE_CONFIG = {
     "England have worn red in some of their most famous victories."
   ],
   quizzes: [
-    {
-      question: "Who captained England in the 1966 World Cup final?",
-      answers: ["Bobby Moore", "Bobby Charlton", "Geoff Hurst", "Gordon Banks"],
-      correct: 0
-    },
-    {
-      question: "Who is England men’s all-time top goalscorer?",
-      answers: ["Wayne Rooney", "Harry Kane", "Gary Lineker", "Alan Shearer"],
-      correct: 1
-    },
-    {
-      question: "Which country did England beat 5–1 in Munich in 2001?",
-      answers: ["Italy", "Germany", "France", "Spain"],
-      correct: 1
-    },
-    {
-      question: "Who scored a hat-trick in the 1966 World Cup final?",
-      answers: ["Martin Peters", "Geoff Hurst", "Roger Hunt", "Jimmy Greaves"],
-      correct: 1
-    }
+    { question: "Who captained England in the 1966 World Cup final?", answers: ["Bobby Moore", "Bobby Charlton", "Geoff Hurst", "Gordon Banks"], correct: 0 },
+    { question: "Who is England men’s all-time top goalscorer?", answers: ["Wayne Rooney", "Harry Kane", "Gary Lineker", "Alan Shearer"], correct: 1 },
+    { question: "Which country did England beat 5–1 in Munich in 2001?", answers: ["Italy", "Germany", "France", "Spain"], correct: 1 },
+    { question: "Who scored a hat-trick in the 1966 World Cup final?", answers: ["Martin Peters", "Geoff Hurst", "Roger Hunt", "Jimmy Greaves"], correct: 1 },
+    { question: "Which goalkeeper has the most England men’s caps?", answers: ["David Seaman", "Jordan Pickford", "Peter Shilton", "Gordon Banks"], correct: 2 },
+    { question: "Which stadium hosted England’s 1966 World Cup final win?", answers: ["Old Trafford", "Wembley", "Goodison Park", "Hampden Park"], correct: 1 },
+    { question: "Which England player wore number 9 in the 2026 World Cup squad?", answers: ["Ollie Watkins", "Ivan Toney", "Harry Kane", "Bukayo Saka"], correct: 2 },
+    { question: "Which England player wore number 7 in the 2026 World Cup squad?", answers: ["Bukayo Saka", "Jude Bellingham", "Marcus Rashford", "Anthony Gordon"], correct: 0 },
+    { question: "Which England player wore number 10 in the 2026 World Cup squad?", answers: ["Phil Foden", "Jude Bellingham", "Eberechi Eze", "Morgan Rogers"], correct: 1 },
+    { question: "Which country did England beat in the 2026 Round of 16?", answers: ["Norway", "Mexico", "DR Congo", "Ghana"], correct: 1 },
+    { question: "Who did England face in the 2026 quarter-final?", answers: ["Brazil", "Norway", "France", "Morocco"], correct: 1 },
+    { question: "Which city hosts England’s 2026 quarter-final against Norway?", answers: ["Atlanta", "Miami Gardens", "New York/New Jersey", "Dallas"], correct: 1 },
+    { question: "Which trophy did England win in 1966?", answers: ["European Championship", "World Cup", "Nations League", "Confederations Cup"], correct: 1 },
+    { question: "Which England striker won the Golden Boot at the 1986 World Cup?", answers: ["Gary Lineker", "Alan Shearer", "Michael Owen", "Teddy Sheringham"], correct: 0 },
+    { question: "Which defender captained England in 1966?", answers: ["Jack Charlton", "Bobby Moore", "Ray Wilson", "Nobby Stiles"], correct: 1 },
+    { question: "Which England goalkeeper was famous for the 1966 save from Pelé in 1970?", answers: ["Gordon Banks", "Peter Shilton", "Ray Clemence", "David Seaman"], correct: 0 },
+    { question: "Which manager led England to the 2018 World Cup semi-final?", answers: ["Roy Hodgson", "Gareth Southgate", "Sven-Göran Eriksson", "Thomas Tuchel"], correct: 1 },
+    { question: "Which country knocked England out of the 2018 World Cup semi-final?", answers: ["France", "Croatia", "Belgium", "Italy"], correct: 1 },
+    { question: "Which England player scored a famous free-kick against Greece in 2001?", answers: ["David Beckham", "Paul Scholes", "Steven Gerrard", "Frank Lampard"], correct: 0 },
+    { question: "What is England’s traditional home shirt colour?", answers: ["Blue", "Red", "White", "Green"], correct: 2 },
+    { question: "What do the Three Lions refer to?", answers: ["Three managers", "The badge", "Three stadiums", "Three strikers"], correct: 1 },
+    { question: "Which England player scored against Argentina at the 1998 World Cup as a teenager?", answers: ["Michael Owen", "Wayne Rooney", "Steven Gerrard", "Joe Cole"], correct: 0 },
+    { question: "Which England player scored a penalty against Colombia in the 2018 shoot-out?", answers: ["Eric Dier", "Harry Maguire", "Jordan Pickford", "Raheem Sterling"], correct: 0 },
+    { question: "Which England goalkeeper saved from Carlos Bacca in the 2018 shoot-out?", answers: ["Joe Hart", "Jordan Pickford", "Jack Butland", "Nick Pope"], correct: 1 }
   ],
   players: [
-    { name: "Jordan Pickford", position: "Goalkeeper", group: "Goalkeepers", club: "Everton" },
-    { name: "Dean Henderson", position: "Goalkeeper", group: "Goalkeepers", club: "Crystal Palace" },
-    { name: "James Trafford", position: "Goalkeeper", group: "Goalkeepers", club: "Manchester City" },
+    { no: 1, name: "Jordan Pickford", position: "Goalkeeper", group: "Goalkeepers" },
+    { no: 13, name: "Dean Henderson", position: "Goalkeeper", group: "Goalkeepers" },
+    { no: 23, name: "James Trafford", position: "Goalkeeper", group: "Goalkeepers" },
 
-    { name: "Dan Burn", position: "Left-back / centre-back", group: "Defenders", club: "Newcastle United" },
-    { name: "Trevoh Chalobah", position: "Centre-back", group: "Defenders", club: "Chelsea" },
-    { name: "Marc Guéhi", position: "Centre-back", group: "Defenders", club: "Manchester City" },
-    { name: "Reece James", position: "Right-back", group: "Defenders", club: "Chelsea" },
-    { name: "Ezri Konsa", position: "Centre-back", group: "Defenders", club: "Aston Villa" },
-    { name: "Jarell Quansah", position: "Centre-back / right-back", group: "Defenders", club: "Bayer Leverkusen" },
-    { name: "Djed Spence", position: "Full-back", group: "Defenders", club: "Tottenham Hotspur" },
-    { name: "John Stones", position: "Centre-back", group: "Defenders", club: "Manchester City" },
+    { no: 2, name: "Ezri Konsa", position: "Defender", group: "Defenders" },
+    { no: 3, name: "Nico O'Reilly", position: "Left-back / midfielder", group: "Defenders" },
+    { no: 5, name: "John Stones", position: "Centre-back", group: "Defenders" },
+    { no: 6, name: "Marc Guéhi", position: "Centre-back", group: "Defenders" },
+    { no: 12, name: "Trevoh Chalobah", position: "Defender", group: "Defenders" },
+    { no: 15, name: "Dan Burn", position: "Defender", group: "Defenders" },
+    { no: 24, name: "Reece James", position: "Right-back", group: "Defenders" },
+    { no: 25, name: "Djed Spence", position: "Full-back", group: "Defenders" },
+    { no: 26, name: "Jarell Quansah", position: "Centre-back / right-back", group: "Defenders" },
 
-    { name: "Elliot Anderson", position: "Central midfielder", group: "Midfielders", club: "Nottingham Forest" },
-    { name: "Jude Bellingham", position: "Attacking midfielder", group: "Midfielders", club: "Real Madrid" },
-    { name: "Eberechi Eze", position: "Attacking midfielder / winger", group: "Midfielders", club: "Arsenal" },
-    { name: "Jordan Henderson", position: "Central midfielder", group: "Midfielders", club: "Brentford" },
-    { name: "Kobbie Mainoo", position: "Central midfielder", group: "Midfielders", club: "Manchester United" },
-    { name: "Nico O'Reilly", position: "Left-back / midfielder", group: "Midfielders", club: "Manchester City" },
-    { name: "Declan Rice", position: "Defensive midfielder", group: "Midfielders", club: "Arsenal" },
-    { name: "Morgan Rogers", position: "Attacking midfielder", group: "Midfielders", club: "Aston Villa" },
+    { no: 4, name: "Declan Rice", position: "Defensive midfielder", group: "Midfielders" },
+    { no: 8, name: "Elliot Anderson", position: "Central midfielder", group: "Midfielders" },
+    { no: 10, name: "Jude Bellingham", position: "Attacking midfielder", group: "Midfielders" },
+    { no: 14, name: "Jordan Henderson", position: "Central midfielder", group: "Midfielders" },
+    { no: 16, name: "Kobbie Mainoo", position: "Central midfielder", group: "Midfielders" },
+    { no: 17, name: "Morgan Rogers", position: "Attacking midfielder", group: "Midfielders" },
+    { no: 21, name: "Eberechi Eze", position: "Attacking midfielder / winger", group: "Midfielders" },
 
-    { name: "Anthony Gordon", position: "Left winger", group: "Forwards", club: "Barcelona" },
-    { name: "Harry Kane", position: "Centre-forward", group: "Forwards", club: "Bayern Munich" },
-    { name: "Noni Madueke", position: "Right winger", group: "Forwards", club: "Arsenal" },
-    { name: "Marcus Rashford", position: "Forward / left winger", group: "Forwards", club: "Barcelona, on loan from Manchester United" },
-    { name: "Bukayo Saka", position: "Right winger", group: "Forwards", club: "Arsenal" },
-    { name: "Ivan Toney", position: "Centre-forward", group: "Forwards", club: "Al-Ahli" },
-    { name: "Ollie Watkins", position: "Centre-forward", group: "Forwards", club: "Aston Villa" }
+    { no: 7, name: "Bukayo Saka", position: "Right winger", group: "Forwards" },
+    { no: 9, name: "Harry Kane", position: "Centre-forward", group: "Forwards" },
+    { no: 11, name: "Marcus Rashford", position: "Forward / left winger", group: "Forwards" },
+    { no: 18, name: "Anthony Gordon", position: "Left winger", group: "Forwards" },
+    { no: 19, name: "Ollie Watkins", position: "Centre-forward", group: "Forwards" },
+    { no: 20, name: "Noni Madueke", position: "Right winger", group: "Forwards" },
+    { no: 22, name: "Ivan Toney", position: "Centre-forward", group: "Forwards" }
   ],
   firstScorers: ["Harry Kane", "Bukayo Saka", "Jude Bellingham", "Marcus Rashford", "Anthony Gordon", "Noni Madueke", "Ollie Watkins", "Ivan Toney", "Eberechi Eze", "Morgan Rogers", "Declan Rice", "Own goal"]
 

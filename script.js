@@ -72,23 +72,73 @@ function loadFacts() {
 }
 
 function loadQuiz() {
-  const quizzes = config.quizzes || [];
-  const quiz = quizzes[new Date().getDate() % quizzes.length];
-  const q = document.getElementById('quizQuestion');
-  const answers = document.getElementById('quizAnswers');
+  const quizzes = shuffle([...(config.quizzes || [])]);
+  const questions = quizzes.slice(0, 3);
+  const container = document.getElementById('quizQuestions');
   const result = document.getElementById('quizResult');
-  if (!quiz) return;
-  q.textContent = quiz.question;
-  answers.innerHTML = '';
-  quiz.answers.forEach((answer, index) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.textContent = answer;
-    btn.addEventListener('click', () => {
-      result.textContent = index === quiz.correct ? 'Correct. Three Lions knowledge confirmed.' : `Not quite. The answer is ${quiz.answers[quiz.correct]}.`;
+  const refresh = document.getElementById('newQuizSet');
+  if (!container || !questions.length) return;
+
+  const answersState = new Array(questions.length).fill(null);
+
+  const renderScore = () => {
+    const answered = answersState.filter(item => item !== null).length;
+    const score = answersState.filter(Boolean).length;
+    if (answered < questions.length) {
+      result.textContent = `${answered}/3 answered. Current score: ${score}/3.`;
+      return;
+    }
+    const messages = {
+      3: 'Perfect. 3/3. You are an England expert.',
+      2: 'Great effort. 2/3.',
+      1: 'Not bad. 1/3.',
+      0: '0/3. Time to brush up on your England knowledge.'
+    };
+    result.textContent = messages[score];
+  };
+
+  container.innerHTML = '';
+  questions.forEach((quiz, questionIndex) => {
+    const card = document.createElement('article');
+    card.className = 'quiz-mini-card';
+    const title = document.createElement('h3');
+    title.textContent = `${questionIndex + 1}. ${quiz.question}`;
+    const answers = document.createElement('div');
+    answers.className = 'quiz-answers';
+
+    quiz.answers.forEach((answer, answerIndex) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = answer;
+      btn.addEventListener('click', () => {
+        if (answersState[questionIndex] !== null) return;
+        const correct = answerIndex === quiz.correct;
+        answersState[questionIndex] = correct;
+        [...answers.children].forEach((child, idx) => {
+          child.disabled = true;
+          if (idx === quiz.correct) child.classList.add('correct');
+          if (idx === answerIndex && !correct) child.classList.add('wrong');
+        });
+        renderScore();
+      });
+      answers.appendChild(btn);
     });
-    answers.appendChild(btn);
+
+    card.appendChild(title);
+    card.appendChild(answers);
+    container.appendChild(card);
   });
+
+  result.textContent = 'Answer all three to see your score.';
+  refresh?.addEventListener('click', () => loadQuiz(), { once: true });
+}
+
+function shuffle(items) {
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  return items;
 }
 
 function defineShareLinks() {
@@ -185,7 +235,7 @@ function playerName(player) {
 }
 
 function playerLabel(player) {
-  return typeof player === 'string' ? player : `${player.name} · ${player.position}`;
+  return typeof player === 'string' ? player : `${player.no ? player.no + '. ' : ''}${player.name} · ${player.position}`;
 }
 
 function initEnglandXi() {
@@ -210,7 +260,7 @@ function initEnglandXi() {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'player-button';
-        btn.innerHTML = `<strong>${name}</strong><small>${player.position || ''}${player.club ? ' · ' + player.club : ''}</small>`;
+        btn.innerHTML = `<strong>${player.no ? player.no + '. ' : ''}${name}</strong><small>${player.position || ''}</small>`;
         const isSelected = selected.includes(name);
         btn.classList.toggle('selected', isSelected);
         btn.disabled = selected.length >= 11 && !isSelected;
@@ -279,7 +329,7 @@ function renderPitch(selected) {
       line.forEach(player => {
         const chip = document.createElement('span');
         chip.className = 'xi-chip';
-        chip.textContent = `${player.name} (${positionShort(player.position)})`;
+        chip.textContent = `${player.no ? player.no + '. ' : ''}${player.name} (${positionShort(player.position)})`;
         row.appendChild(chip);
       });
     }

@@ -51,8 +51,7 @@
         <p class="match-meta" id="matchMeta"></p>
         <div class="hero-buttons">
           <a class="button primary" href="#venues">See venues</a>
-          <a class="button secondary" href="https://www.bbc.com/sport/football/teams/england" rel="noopener" target="_blank">BBC England page</a>
-          <a class="button secondary" href="https://www.flashscore.co.uk/team/england/j9N9ZNFA/" rel="noopener" target="_blank">Flashscore match centre</a>
+          <a class="button secondary" href="https://www.bbc.com/sport/football/teams/england" rel="noopener" target="_blank">Live coverage</a>
         </div>
       </section>
     </div>
@@ -167,13 +166,16 @@
 
     <section class="section quiz-section" id="quiz">
       <div class="section-heading">
-        <p class="eyebrow dark">Quiz of the day</p>
-        <h2>One question. No fuss.</h2>
+        <p class="eyebrow dark">England Challenge</p>
+        <h2>Three fresh quiz questions</h2>
+        <p>Three random England questions load each time the site opens. Try another set whenever you like.</p>
       </div>
-      <div class="quiz-card">
-        <h3 id="quizQuestion">Loading question…</h3>
-        <div id="quizAnswers" class="quiz-answers"></div>
-        <p id="quizResult" class="quiz-result" aria-live="polite"></p>
+      <div class="quiz-card quiz-challenge">
+        <div id="quizQuestions" class="quiz-question-list"></div>
+        <div class="quiz-actions">
+          <button class="button primary" id="newQuizSet" type="button">Try 3 new questions</button>
+          <p id="quizResult" class="quiz-result" aria-live="polite">Answer all three to see your score.</p>
+        </div>
       </div>
     </section>
 
@@ -182,7 +184,7 @@
       <div class="section-heading">
         <p class="eyebrow dark">Choose your England XI</p>
         <h2>Pick your starting team</h2>
-        <p>Select eleven players from England’s World Cup squad, grouped by position. Your XI is saved on your device only.</p>
+        <p>Select eleven players from England’s World Cup squad. Your XI is saved on your device only.</p>
       </div>
       <div class="xi-layout">
         <article class="pitch-card" aria-label="Selected England XI">
@@ -193,7 +195,6 @@
             <strong id="xiCounter">0/11 selected</strong>
             <button id="clearXi" type="button">Clear XI</button>
           </div>
-          <p class="squad-source">Squad list based on England Football and Flashscore squad/position listings. Tino Livramento is not selectable because he was withdrawn through injury.</p>
           <div class="squad-list" id="squadList"></div>
           <p id="xiResult" class="tool-result" aria-live="polite"></p>
           <div class="share-buttons compact">
@@ -205,18 +206,34 @@
       </div>
     </section>
 
+    <section class="section external-links" id="external-links">
+      <div class="section-heading">
+        <p class="eyebrow dark">External links</p>
+        <h2>Follow the match elsewhere</h2>
+        <p>Quick links open in a new tab. They are external pages, not embedded or scraped.</p>
+      </div>
+      <div class="external-link-grid">
+        <a class="external-link-card" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">
+          <strong>BBC England page</strong>
+          <span>News, live coverage and match updates</span>
+        </a>
+        <a class="external-link-card" href="https://www.flashscore.com/team/england/Wn7Pv0e7/" target="_blank" rel="noopener">
+          <strong>Flashscore England match centre</strong>
+          <span>Fixtures, scores and match stats</span>
+        </a>
+      </div>
+    </section>
+
     <section class="section share-panel" id="share">
       <div>
         <p class="eyebrow dark">Share</p>
         <h2>Send the countdown</h2>
-        <p>Facebook, WhatsApp, email or copy link. Live updates via BBC and Flashscore.</p>
+        <p>Facebook, WhatsApp, email or copy link.</p>
       </div>
       <div class="share-buttons">
         <a id="facebookShare" href="#" target="_blank" rel="noopener">Facebook</a>
         <a id="whatsappShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
         <a id="emailShare" href="#">Email</a>
-        <a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC</a>
-        <a href="https://www.flashscore.co.uk/team/england/j9N9ZNFA/" target="_blank" rel="noopener">Flashscore</a>
         <button id="copyLink" type="button">Copy link</button>
       </div>
     </section>

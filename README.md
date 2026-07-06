@@ -1,31 +1,26 @@
 # Three Lions Countdown
 
-A lightweight GitHub Pages England supporters' countdown site.
+A lightweight GitHub Pages fan site for England supporters.
 
-## Included
+## Files
 
-- Live countdown to England v Norway
-- New custom graphics and stadium-style hero
-- Venue cards for the quarter-final, possible semi-final, third-place play-off and final
-- Road to the Trophy progress timeline
-- Random England fact
-- Did You Know ticker
-- Quiz of the day
-- Restored fan improved score predictor
-- Restored Choose your England XI tool
-- Facebook, WhatsApp, email and copy-link sharing
-- Lightweight cookie notice
+- `index.html` — page structure
+- `styles.css` — custom graphics and layout
+- `config.js` — match details, facts, quiz questions and England squad data
+- `script.js` — countdown, predictor, quiz, sharing and England XI picker
 
-## How to publish on GitHub Pages
+## Latest updates
 
-1. Open your `three-lions-countdown` repository.
-2. Upload `index.html`, `styles.css`, `script.js`, `config.js` and `README.md`.
-3. Commit the changes.
-4. Visit: `https://rdf32rdf32.github.io/three-lions-countdown/`.
+- Live coverage button now points to the BBC England football team page.
+- Flashscore is included only as an external match-centre link.
+- England Challenge now loads three random quiz questions on each visit.
+- Added a “Try 3 new questions” button with instant scoring.
+- England XI picker uses the official 26-player World Cup squad list and shirt numbers.
+- Players are grouped by position.
+- Clubs have been removed from the picker to avoid transfer/club-data mistakes.
 
-## Edit match details
+## Upload to GitHub Pages
 
-Update `config.js` to change the match, venue, kick-off time, facts, quiz questions or player list.
+Upload all files in this folder to your repository root, then refresh:
 
-
-Latest update: predictor moved higher on the page; England XI picker now uses the official England World Cup squad with player positions and clubs.
+https://rdf32rdf32.github.io/three-lions-countdown/
