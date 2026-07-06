@@ -1,36 +1,24 @@
-England Match Centre - FINAL WITH VENUE
+Three Lions Countdown - fixed package
 
-Upload all files to:
-https://github.com/rdf32rdf32/three-lions-countdown
+Upload all six files to the root of your GitHub Pages repository:
 
-Replace existing files and commit changes.
+1. index.html
+2. style.css
+3. app.js
+4. quiz-data.js
+5. favicon.svg
+6. test.html
 
-Final venue update:
-- Hero section includes Hard Rock Stadium, Miami, Florida
-- Match Facts include FIFA World Cup 2026, venue and location
-- Road to the Final includes Hard Rock Stadium, Miami
+Important:
+- Do not rename app.js, style.css or quiz-data.js unless you also update index.html.
+- The Pick XI now has two controls:
+  * Desktop: drag player to shirt.
+  * Mobile/iPhone: tap player, then tap shirt.
+- The player list is deliberately outside the pitch and should remain visible.
+- The quiz bank is in quiz-data.js and currently contains 250 question entries.
+- test.html is only a helper page. You can delete it after checking everything works.
 
-Still confirmed removed:
-- no live widget
-- no config.js
-- no API section
-- no alarm
-- no penalty predictor
-- no stats panel
-
-Included:
-- polished premium design
-- original copyright-free fan graphic
-- sticky countdown
-- BBC England link
-- cookie notice
-- England XI picker with pitch summary
-- score prediction sharing
-- mood sharing
-- match facts
-- probable line-ups
-- tournament journey / Road to the Final
-- kick-off times
-- useful links
-- dark mode
-- unofficial fan site disclaimer
+Suggested upload method:
+- Delete the old files in your GitHub repository.
+- Upload every file in this package together.
+- Wait one or two minutes, then refresh the website with Ctrl+F5 or clear the phone browser cache.

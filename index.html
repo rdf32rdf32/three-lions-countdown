@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Three Lions Countdown | England v Norway</title>
-  <meta name="description" content="England supporter hub with countdown, quiz, Pick XI builder, road to the final and match links.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="England supporter hub with countdown, quiz, Pick XI builder, road to the final and match links." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page-glow"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="background-lights" aria-hidden="true"></div>
+
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="brand-mark">🦁</span><span>Three Lions Countdown</span></a>
+    <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="brand-badge">ENG</span><span>Three Lions Countdown</span></a>
     <nav aria-label="Main navigation">
       <a href="#quiz">Quiz</a>
       <a href="#pick-xi">Pick XI</a>
@@ -22,13 +22,13 @@
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero section-card">
+  <main id="main">
+    <section id="top" class="hero card">
       <div class="hero-copy">
         <p class="eyebrow">England v Norway</p>
-        <h1>Quarter-final countdown</h1>
-        <p class="hero-text">Build your XI, test your England knowledge and follow the road to the final.</p>
-        <div id="countdown" class="countdown" aria-live="polite">
+        <h1>Matchday fan hub</h1>
+        <p class="hero-text">Countdown, quiz, Pick XI builder and road to the final in one clean supporter page.</p>
+        <div class="countdown" aria-label="Countdown to kick-off" aria-live="polite">
           <div><strong id="days">--</strong><span>days</span></div>
           <div><strong id="hours">--</strong><span>hours</span></div>
           <div><strong id="minutes">--</strong><span>mins</span></div>
@@ -39,20 +39,23 @@
           <a class="button ghost" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England page</a>
         </div>
       </div>
-      <div class="hero-panel" aria-label="Match card">
-        <div class="crest">ENG</div>
-        <div class="versus">v</div>
-        <div class="crest norway">NOR</div>
+      <aside class="match-card" aria-label="Match details">
+        <div class="teams">
+          <div class="crest">ENG</div>
+          <div class="versus">v</div>
+          <div class="crest alt">NOR</div>
+        </div>
         <p><strong>Venue:</strong> Miami</p>
-        <p><strong>Kick-off:</strong> <span id="localKickoff">local time loading…</span></p>
-      </div>
+        <p><strong>Kick-off:</strong> <span id="localKickoff">loading local time…</span></p>
+        <p class="mini-note">Tip: the site works as static files on GitHub Pages.</p>
+      </aside>
     </section>
 
-    <section id="quiz" class="section-card quiz-card">
+    <section id="quiz" class="card">
       <div class="section-heading">
         <p class="eyebrow">Fresh each visit</p>
         <h2>England quiz</h2>
-        <p>Three questions drawn from a 250-question-ready bank. Add more questions in <code>app.js</code>.</p>
+        <p>Three random questions. The question bank is now in its own file and can hold 250+ questions cleanly.</p>
       </div>
       <div id="quizQuestions" class="quiz-grid"></div>
       <div class="quiz-footer">
@@ -61,15 +64,16 @@
       </div>
     </section>
 
-    <section id="pick-xi" class="section-card xi-card">
+    <section id="pick-xi" class="card xi-card">
       <div class="section-heading">
-        <p class="eyebrow">Desktop and mobile</p>
+        <p class="eyebrow">Works on phones and desktop</p>
         <h2>Pick your England XI</h2>
-        <p>Desktop: drag a player onto a shirt. Mobile: tap a player, then tap a shirt. Player names should remain visible at all times.</p>
+        <p><strong>Desktop:</strong> drag a player to a shirt. <strong>Mobile:</strong> tap a player, then tap a shirt. The player list is always visible.</p>
       </div>
+
       <div class="xi-toolbar">
         <label for="formationSelect">Formation</label>
-        <select id="formationSelect">
+        <select id="formationSelect" aria-label="Choose formation">
           <option value="433">4-3-3</option>
           <option value="4231">4-2-3-1</option>
           <option value="352">3-5-2</option>
@@ -77,39 +81,45 @@
         <button class="button secondary" id="saveXiBtn" type="button">Save XI</button>
         <button class="button secondary" id="resetXiBtn" type="button">Reset XI</button>
       </div>
+
       <div class="xi-layout">
-        <div class="pitch-wrap">
-          <div id="pitch" class="pitch" aria-label="Football pitch"></div>
+        <div class="pitch-panel">
+          <div id="pitch" class="pitch" aria-label="Football pitch with selectable positions"></div>
+          <p id="xiStatus" class="xi-status" aria-live="polite">Choose a player, then choose a shirt.</p>
         </div>
-        <aside class="squad-panel">
+
+        <aside class="squad-panel" aria-label="England player list">
           <div class="squad-head">
-            <h3>Player list</h3>
-            <span id="selectedHint">Tap or drag a player</span>
+            <div>
+              <h3>Player list</h3>
+              <span id="selectedHint">Tap or drag a player</span>
+            </div>
+            <button id="clearSelectedBtn" class="text-button" type="button">Clear selection</button>
           </div>
-          <div class="squad-filter" role="group" aria-label="Filter players by position">
+          <div class="squad-filter" role="group" aria-label="Filter players">
             <button class="chip active" data-filter="all" type="button">All</button>
             <button class="chip" data-filter="GK" type="button">GK</button>
             <button class="chip" data-filter="DEF" type="button">DEF</button>
             <button class="chip" data-filter="MID" type="button">MID</button>
             <button class="chip" data-filter="FWD" type="button">FWD</button>
           </div>
-          <div id="playerList" class="player-list" aria-live="polite"></div>
+          <div id="playerList" class="player-list"></div>
         </aside>
       </div>
     </section>
 
-    <section class="section-card predictor-card">
+    <section class="card predictor-card">
       <div class="section-heading">
-        <p class="eyebrow">Fun local poll</p>
+        <p class="eyebrow">Local fan feature</p>
         <h2>Fan confidence meter</h2>
-        <p>This runs in the visitor's browser, so no server is needed.</p>
+        <p>No server needed: this runs in the visitor's browser.</p>
       </div>
-      <label class="meter-label" for="confidenceRange">How confident are you?</label>
-      <input id="confidenceRange" type="range" min="0" max="100" value="72">
+      <label for="confidenceRange" class="meter-label">How confident are you?</label>
+      <input id="confidenceRange" type="range" min="0" max="100" value="72" />
       <div class="meter-output"><span id="confidenceValue">72</span>% England confidence</div>
     </section>
 
-    <section id="road" class="section-card road-card">
+    <section id="road" class="card road-card">
       <div class="section-heading">
         <p class="eyebrow">Tournament path</p>
         <h2>Road to the final</h2>
@@ -121,24 +131,24 @@
       </div>
     </section>
 
-    <section id="links" class="section-card links-card">
+    <section id="links" class="card links-card">
       <div class="section-heading">
         <p class="eyebrow">External links</p>
-        <h2>Match centre</h2>
+        <h2>Follow the match</h2>
       </div>
       <div class="link-grid">
         <a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England coverage</a>
-        <a href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore football</a>
-        <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA</a>
+        <a href="https://www.flashscore.com/football/england/" target="_blank" rel="noopener">Flashscore England</a>
       </div>
     </section>
   </main>
 
   <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie notice">
-    <p>This site uses local storage to remember your XI and quiz score. No tracking cookies.</p>
-    <button id="acceptCookies" class="button primary" type="button">OK</button>
+    <p>This fan page only uses local browser storage to remember your XI and quiz score. No tracking cookies.</p>
+    <button class="button primary" id="acceptCookiesBtn" type="button">OK</button>
   </div>
 
+  <script src="quiz-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
