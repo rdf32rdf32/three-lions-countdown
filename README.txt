@@ -1,25 +1,16 @@
-Three Lions Countdown — Version 1.0.98
+Three Lions Countdown - polished GitHub Pages version
 
 Upload all files in this folder to your GitHub Pages repository.
 
-Files:
-- index.html
-- style.css
-- app.js
-- config.js
-- quiz-data.js
-- content-data.js
-- favicon.svg
-- test.html
-- README.txt
+Main files:
+- index.html: homepage
+- style.css: design and responsive layout
+- app.js: countdown, quiz, predictor, random facts and UI
+- config.js: update next match details, route, highlights and links here
+- quiz-data.js: England men's World Cup quiz question bank
+- content-data.js: scorer list and rotating facts
+- favicon.svg: site icon
+- test.html: simple test page
+- privacy.html, cookies.html, contact.html: basic supporting pages
 
-Main improvements in this version:
-- More polished GitHub Pages design
-- Mobile-first layout
-- Sticky navigation and back-to-top button
-- Config-driven match details and highlights
-- Random England World Cup fact every page load, plus another-fact button
-- More robust quiz rendering
-- Better metadata and page title
-
-To update the next match or highlights, edit config.js only.
+To update the next match, edit config.js only.

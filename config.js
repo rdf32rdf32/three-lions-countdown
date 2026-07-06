@@ -1,5 +1,5 @@
 window.SITE_CONFIG = {
-  version: '1.0.98',
+  version: '1.0.99',
   lastUpdated: '6 July 2026',
   match: {
     competition: 'World Cup quarter-final',
