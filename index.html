@@ -59,6 +59,15 @@ select,input{width:100%;border:1px solid var(--line);border-radius:14px;padding:
 footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:24px 0 0;padding-top:18px;border-top:2px solid var(--red);color:var(--muted);font-size:14px}.sig{font-family:Georgia,serif;font-style:italic;color:var(--navy)}.disclaimer{width:100%;font-size:13px;color:var(--muted);margin-top:8px}
 @media(max-width:900px){.hero,.grid,.cards{grid-template-columns:1fr}.nav{display:none}.lineups{grid-template-columns:1fr}.sticky-inner{font-size:14px}.squad-list{grid-template-columns:1fr}.cookie-inner{grid-template-columns:1fr}}
 @media(max-width:560px){.wrap{padding:12px}h1{font-size:24px}h1 span{font-size:12px;letter-spacing:5px}.logo{width:50px;height:50px}h2{font-size:31px}.countdown{grid-template-columns:repeat(2,1fr)}.num{font-size:37px}.actions,.predict-grid,.mood{grid-template-columns:1fr}.cards{gap:12px}.sticky-inner{padding:9px 12px}.sticky strong{display:none}.graphic{min-height:auto}.cookie{left:10px;right:10px;bottom:10px}}
+
+.road-final{position:relative;display:grid;gap:12px;margin-top:10px}
+.road-stage{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:var(--soft);border:1px solid var(--line);border-radius:16px;padding:12px}
+.road-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:#dbe2ee;color:#08285a}
+.road-stage.done .road-icon{background:#19a974;color:#fff}
+.road-stage.current .road-icon{background:var(--red);color:#fff}
+.road-title{font-weight:900;color:var(--text)}
+.road-detail{color:var(--muted);font-size:14px;margin-top:3px}
+
 </style>
 </head>
 <body>
@@ -66,7 +75,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 <div class="wrap">
 <header>
   <div class="brand"><div class="logo" aria-label="Original fan crest"><svg viewBox="0 0 100 100"><rect x="12" y="8" width="76" height="84" rx="12" fill="none" stroke="currentColor" stroke-width="6"/><text x="50" y="36" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">3</text><text x="50" y="64" text-anchor="middle" font-size="24" font-family="Arial" font-weight="900">L</text><path d="M24 78h52" stroke="#e31b23" stroke-width="6" stroke-linecap="round"/></svg></div><div><h1>ENGLAND 🏴<span>Three Lions Fan Edition</span></h1></div></div>
-  <div class="nav"><a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#facts">Facts</a><a class="btn secondary" href="#prediction">Predict</a><button class="btn ghost" onclick="toggleDark()">Dark mode</button><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a></div>
+  <div class="nav"><a class="btn secondary" href="#xi">XI picker</a><a class="btn secondary" href="#facts">Facts</a><a class="btn secondary" href="#road-final">Road</a><a class="btn secondary" href="#prediction">Predict</a><button class="btn ghost" onclick="toggleDark()">Dark mode</button><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a></div>
 </header>
 
 <section class="hero">
@@ -106,7 +115,32 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 </section>
 
 <section class="cards">
-  <div class="panel"><h3>Tournament journey</h3><div class="timeline"><div class="step done"><span class="dot">✓</span><span>Round of 32: England 2–1 DR Congo</span></div><div class="step done"><span class="dot">✓</span><span>Round of 16: England 3–2 Mexico</span></div><div class="step current"><span class="dot">•</span><span>Quarter-final: Norway v England</span></div><div class="step"><span class="dot">○</span><span>Semi-final: if England progress</span></div><div class="step"><span class="dot">○</span><span>Final: if England progress</span></div></div></div>
+  <section class="panel" id="road-final">
+  <h3>Road to the Final</h3>
+  <p class="small">England’s route through the knockout stage, with the next match highlighted.</p>
+  <div class="road-final">
+    <div class="road-stage done">
+      <div class="road-icon">✓</div>
+      <div><div class="road-title">Round of 32</div><div class="road-detail">England 2–1 DR Congo</div></div>
+    </div>
+    <div class="road-stage done">
+      <div class="road-icon">✓</div>
+      <div><div class="road-title">Round of 16</div><div class="road-detail">England 3–2 Mexico</div></div>
+    </div>
+    <div class="road-stage current">
+      <div class="road-icon">•</div>
+      <div><div class="road-title">Quarter-final</div><div class="road-detail">Norway v England · 11 July · 23:00 Brussels / 22:00 UK</div></div>
+    </div>
+    <div class="road-stage">
+      <div class="road-icon">○</div>
+      <div><div class="road-title">Semi-final</div><div class="road-detail">If England progress · 15 July</div></div>
+    </div>
+    <div class="road-stage">
+      <div class="road-icon">🏆</div>
+      <div><div class="road-title">Final</div><div class="road-detail">If England progress · 19 July</div></div>
+    </div>
+  </div>
+</section>
   <div class="panel"><h3>Kick-off times</h3><div class="fact"><b>London</b><span>22:00</span></div><div class="fact"><b>Brussels</b><span>23:00</span></div><div class="fact"><b>New York</b><span>17:00</span></div><div class="fact"><b>Sydney</b><span>07:00 next day</span></div></div>
   <div class="panel news"><h3>Useful links</h3><a target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a><a target="_blank" rel="noopener" href="https://www.englandfootball.com/england/mens-senior-team/squad">England squad page</a><a target="_blank" rel="noopener" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026">FIFA World Cup</a></div>
 </section>
