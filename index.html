@@ -3,267 +3,142 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Three Lions Countdown</title>
-  <meta name="description" content="England World Cup countdown, road to the trophy, venues, facts and quiz.">
+  <title>Three Lions Countdown | England v Norway</title>
+  <meta name="description" content="England supporter hub with countdown, quiz, Pick XI builder, road to the final and match links.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="hero" id="top">
-    <div class="hero-art" aria-hidden="true">
-      <div class="light light-left"></div>
-      <div class="light light-right"></div>
-      <svg class="lion-watermark" viewBox="0 0 400 420" role="img" aria-label="Decorative lion graphic">
-        <path d="M229 31c-31 18-55 42-72 73-29 7-54 22-73 45 34-9 61-4 83 15-43 8-74 31-95 69 35-19 70-24 105-13-31 20-49 48-54 83 30-24 61-36 94-35-18 21-25 46-22 75 22-25 48-38 79-39 16 0 33 3 50 10-8-30-24-53-49-69 35-5 64 7 88 36-2-41-19-74-50-99 23-1 43 6 60 20-14-39-38-66-73-80 12-26 15-56 9-91-20 15-35 33-46 56-10-23-21-42-34-57zM199 159c18-7 37-7 56 0-8 15-18 26-30 34-12-8-21-19-26-34z"/>
-      </svg>
-      <div class="pitch"></div>
-      <div class="cross cross-one"></div>
-      <div class="cross cross-two"></div>
-    </div>
-
-    <nav class="topbar" aria-label="Site navigation">
-      <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="crest">3L</span><span>Three Lions Countdown</span></a>
-      <div class="nav-actions">
-        <a href="#quiz">Quiz</a>
-        <a href="#predictor">Predictor</a>
-        <a href="#england-xi">Your XI</a>
-        <a href="#road">Road</a>
-        <a href="#venues">Venues</a>
-        <a href="#facts">Facts</a>
-      </div>
+  <div class="page-glow"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="brand-mark">🦁</span><span>Three Lions Countdown</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#quiz">Quiz</a>
+      <a href="#pick-xi">Pick XI</a>
+      <a href="#road">Road</a>
+      <a href="#links">Links</a>
     </nav>
-
-    <div class="hero-content">
-      <p class="eyebrow" id="modeLabel">England World Cup Fan Hub</p>
-      <h1>Norway v England</h1>
-      <p class="lead" id="heroLead">Quarter-final countdown, venues, facts and a clean road to the trophy.</p>
-
-      <section class="countdown-card" aria-label="Countdown to next England match">
-        <div class="match-label">Next match</div>
-        <div class="countdown" id="countdown">
-          <div><strong id="days">00</strong><span>days</span></div>
-          <div><strong id="hours">00</strong><span>hours</span></div>
-          <div><strong id="minutes">00</strong><span>minutes</span></div>
-          <div><strong id="seconds">00</strong><span>seconds</span></div>
-        </div>
-        <p class="match-meta" id="matchMeta"></p>
-        <div class="hero-buttons">
-          <a class="button primary" href="#quiz">Play the quiz</a>
-          <a class="button secondary" href="#predictor">Make prediction</a>
-          <a class="button secondary" href="https://www.bbc.com/sport/football/teams/england" rel="noopener" target="_blank">Live coverage</a>
-        </div>
-      </section>
-    </div>
   </header>
 
-  <main id="main">
-    <section class="section quiz-section" id="quiz">
-      <div class="section-heading">
-        <p class="eyebrow dark">England Challenge</p>
-        <h2>Three fresh quiz questions</h2>
-        <p>Three random England questions load each time the site opens. Try another set whenever you like.</p>
-      </div>
-      <div class="quiz-card quiz-challenge">
-        <div id="quizQuestions" class="quiz-question-list"></div>
-        <div class="quiz-actions">
-          <button class="button primary" id="newQuizSet" type="button">Try 3 new questions</button>
-          <p id="quizResult" class="quiz-result" aria-live="polite">Answer all three to see your score.</p>
+  <main id="top">
+    <section class="hero section-card">
+      <div class="hero-copy">
+        <p class="eyebrow">England v Norway</p>
+        <h1>Quarter-final countdown</h1>
+        <p class="hero-text">Build your XI, test your England knowledge and follow the road to the final.</p>
+        <div id="countdown" class="countdown" aria-live="polite">
+          <div><strong id="days">--</strong><span>days</span></div>
+          <div><strong id="hours">--</strong><span>hours</span></div>
+          <div><strong id="minutes">--</strong><span>mins</span></div>
+          <div><strong id="seconds">--</strong><span>secs</span></div>
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="#pick-xi">Build your XI</a>
+          <a class="button ghost" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England page</a>
         </div>
       </div>
+      <div class="hero-panel" aria-label="Match card">
+        <div class="crest">ENG</div>
+        <div class="versus">v</div>
+        <div class="crest norway">NOR</div>
+        <p><strong>Venue:</strong> Miami</p>
+        <p><strong>Kick-off:</strong> <span id="localKickoff">local time loading…</span></p>
+      </div>
     </section>
 
-
-
-    <section class="section fan-tools feature-tool" id="predictor">
+    <section id="quiz" class="section-card quiz-card">
       <div class="section-heading">
-        <p class="eyebrow dark">Fan predictor</p>
-        <h2>Predict Norway v England</h2>
-        <p>Pick the score, choose the first England scorer and add a short matchday message. Saved on your device only.</p>
+        <p class="eyebrow">Fresh each visit</p>
+        <h2>England quiz</h2>
+        <p>Three questions drawn from a 250-question-ready bank. Add more questions in <code>app.js</code>.</p>
       </div>
-      <div class="tool-grid predictor-grid">
-        <article class="predictor-card predictor-main">
-          <div class="score-row">
-            <label><span>Norway</span><input id="homeScore" type="number" min="0" max="15" value="1"></label>
-            <strong>v</strong>
-            <label><span>England</span><input id="awayScore" type="number" min="0" max="15" value="2"></label>
-          </div>
-          <label class="full-label">First England scorer
-            <select id="firstScorer"></select>
-          </label>
-          <label class="full-label">Matchday message
-            <textarea id="predictionMessage" maxlength="90" rows="3" placeholder="Come on England!"></textarea>
-          </label>
-          <button class="button primary" id="savePrediction" type="button">Create prediction</button>
-          <p id="predictionResult" class="tool-result" aria-live="polite"></p>
-        </article>
-        <article class="predictor-card mini-graphic prediction-preview">
-          <div class="ball-orbit" aria-hidden="true"><span></span></div>
-          <h3>Your share card</h3>
-          <p id="predictionPreview">Norway 1–2 England. First England scorer: Harry Kane. Come on England!</p>
-          <div class="share-buttons compact">
-            <a id="predictionFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
-            <a id="predictionWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
-            <button id="copyPrediction" type="button">Copy</button>
-          </div>
-        </article>
+      <div id="quizQuestions" class="quiz-grid"></div>
+      <div class="quiz-footer">
+        <strong id="quizScore">Score: 0/0</strong>
+        <button class="button secondary" id="newQuizBtn" type="button">Try 3 new questions</button>
       </div>
     </section>
 
-    <section class="section cards-overlap" id="facts">
-      <article class="info-card accent-red">
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 14h40v8H12zM16 22h32v28H16zM24 30h16M24 38h16"/></svg>
-        <h2>Random England fact</h2>
-        <p id="randomFact">Loading fact…</p>
-      </article>
-      <article class="info-card accent-gold">
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6l7 17h18L43 35l5 19-16-10-16 10 5-19L7 23h18z"/></svg>
-        <h2>Did you know?</h2>
-        <p id="didYouKnow">Loading…</p>
-      </article>
-      <article class="info-card accent-blue">
-        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M18 10h28v10c0 11-6 18-14 22-8-4-14-11-14-22zM14 54h36M25 42v12M39 42v12"/></svg>
-        <h2>Road focus</h2>
-        <p>Quarter-final in Miami. Win it, and England’s semi-final route goes to Atlanta.</p>
-      </article>
-    </section>
-
-    <section class="section" id="road">
+    <section id="pick-xi" class="section-card xi-card">
       <div class="section-heading">
-        <p class="eyebrow dark">Tournament path</p>
-        <h2>Road to the trophy</h2>
+        <p class="eyebrow">Desktop and mobile</p>
+        <h2>Pick your England XI</h2>
+        <p>Desktop: drag a player onto a shirt. Mobile: tap a player, then tap a shirt. Player names should remain visible at all times.</p>
       </div>
-      <div class="roadmap" aria-label="England tournament progress">
-        <article class="road-step complete"><span>✓</span><h3>Group stage</h3><small>Completed</small></article>
-        <article class="road-step complete"><span>✓</span><h3>Round of 32</h3><small>Completed</small></article>
-        <article class="road-step complete"><span>✓</span><h3>Round of 16</h3><small>Mexico 2–3 England</small></article>
-        <article class="road-step active"><span>4</span><h3>Quarter-final</h3><small>Norway v England · Miami</small></article>
-        <article class="road-step"><span>5</span><h3>Semi-final</h3><small>Potential match · Atlanta</small></article>
-        <article class="road-step trophy"><span>🏆</span><h3>Final</h3><small>New York/New Jersey</small></article>
-      </div>
-    </section>
-
-    <section class="section" id="venues">
-      <div class="section-heading">
-        <p class="eyebrow dark">Venue guide</p>
-        <h2>Every possible England venue</h2>
-        <p>Quarter-final, possible semi-final, possible third-place play-off and final.</p>
-      </div>
-      <div class="venue-grid">
-        <article class="venue-card current">
-          <div class="stadium-art miami" aria-hidden="true"></div>
-          <p class="stage">Quarter-final · Match 99</p>
-          <h3>Miami Stadium</h3>
-          <p>Hard Rock Stadium, Miami Gardens</p>
-          <p><strong>Norway v England</strong><br>Saturday 11 July · 22:00 UK / 23:00 Brussels</p>
-        </article>
-        <article class="venue-card">
-          <div class="stadium-art atlanta" aria-hidden="true"></div>
-          <p class="stage">Possible semi-final · Match 102</p>
-          <h3>Atlanta Stadium</h3>
-          <p>Mercedes-Benz Stadium, Atlanta</p>
-          <p><strong>Winner Match 99 v Winner Match 100</strong><br>Wednesday 15 July · 20:00 UK / 21:00 Brussels</p>
-        </article>
-        <article class="venue-card">
-          <div class="stadium-art metlife" aria-hidden="true"></div>
-          <p class="stage">Final · Match 104</p>
-          <h3>New York New Jersey Stadium</h3>
-          <p>MetLife Stadium, East Rutherford</p>
-          <p><strong>World Cup Final</strong><br>Sunday 19 July · 20:00 UK / 21:00 Brussels</p>
-        </article>
-        <article class="venue-card slim">
-          <div class="stadium-art hardrock" aria-hidden="true"></div>
-          <p class="stage">Third-place play-off · Match 103</p>
-          <h3>Miami Stadium</h3>
-          <p>For the losing semi-finalists.</p>
-          <p>Saturday 18 July · 22:00 UK / 23:00 Brussels</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section xi-section" id="england-xi">
-      <div class="section-heading">
-        <p class="eyebrow dark">Choose your England XI</p>
-        <h2>Pick your starting team</h2>
-        <p>Tap a player, then tap a position on the pitch. Desktop users can also drag and drop. Your XI is saved on your device only.</p>
-      </div>
-      <div class="xi-controls" aria-label="Formation controls">
-        <label>Formation
-          <select id="formationSelect">
-            <option value="433">4-3-3</option>
-            <option value="4231">4-2-3-1</option>
-            <option value="352">3-5-2</option>
-            <option value="442">4-4-2</option>
-          </select>
-        </label>
-        <button id="quickPickXi" type="button">Pick a balanced XI</button>
+      <div class="xi-toolbar">
+        <label for="formationSelect">Formation</label>
+        <select id="formationSelect">
+          <option value="433">4-3-3</option>
+          <option value="4231">4-2-3-1</option>
+          <option value="352">3-5-2</option>
+        </select>
+        <button class="button secondary" id="saveXiBtn" type="button">Save XI</button>
+        <button class="button secondary" id="resetXiBtn" type="button">Reset XI</button>
       </div>
       <div class="xi-layout">
-        <article class="pitch-card" aria-label="Selected England XI">
-          <div class="mini-pitch formation-pitch" id="xiPitch"></div>
-          <p class="pitch-help">Phone friendly: tap a player, then tap a pitch position. Tap a selected player again to move or remove him.</p>
-        </article>
-        <article class="squad-card">
-          <div class="squad-top">
-            <strong id="xiCounter">0/11 selected</strong>
-            <button id="clearXi" type="button">Clear XI</button>
+        <div class="pitch-wrap">
+          <div id="pitch" class="pitch" aria-label="Football pitch"></div>
+        </div>
+        <aside class="squad-panel">
+          <div class="squad-head">
+            <h3>Player list</h3>
+            <span id="selectedHint">Tap or drag a player</span>
           </div>
-          <div class="squad-list" id="squadList"></div>
-          <p id="xiResult" class="tool-result" aria-live="polite"></p>
-          <div class="share-buttons compact">
-            <a id="xiFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
-            <a id="xiWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
-            <button id="copyXi" type="button">Copy XI</button>
+          <div class="squad-filter" role="group" aria-label="Filter players by position">
+            <button class="chip active" data-filter="all" type="button">All</button>
+            <button class="chip" data-filter="GK" type="button">GK</button>
+            <button class="chip" data-filter="DEF" type="button">DEF</button>
+            <button class="chip" data-filter="MID" type="button">MID</button>
+            <button class="chip" data-filter="FWD" type="button">FWD</button>
           </div>
-        </article>
+          <div id="playerList" class="player-list" aria-live="polite"></div>
+        </aside>
       </div>
     </section>
 
-    <section class="section external-links" id="external-links">
+    <section class="section-card predictor-card">
       <div class="section-heading">
-        <p class="eyebrow dark">External links</p>
-        <h2>Follow the match elsewhere</h2>
-        <p>Quick links open in a new tab. They are external pages, not embedded or scraped.</p>
+        <p class="eyebrow">Fun local poll</p>
+        <h2>Fan confidence meter</h2>
+        <p>This runs in the visitor's browser, so no server is needed.</p>
       </div>
-      <div class="external-link-grid">
-        <a class="external-link-card" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">
-          <strong>BBC England page</strong>
-          <span>News, live coverage and match updates</span>
-        </a>
-        <a class="external-link-card" href="https://www.flashscore.com/team/england/Wn7Pv0e7/" target="_blank" rel="noopener">
-          <strong>Flashscore England match centre</strong>
-          <span>Fixtures, scores and match stats</span>
-        </a>
+      <label class="meter-label" for="confidenceRange">How confident are you?</label>
+      <input id="confidenceRange" type="range" min="0" max="100" value="72">
+      <div class="meter-output"><span id="confidenceValue">72</span>% England confidence</div>
+    </section>
+
+    <section id="road" class="section-card road-card">
+      <div class="section-heading">
+        <p class="eyebrow">Tournament path</p>
+        <h2>Road to the final</h2>
+      </div>
+      <div class="road-map">
+        <div><strong>Quarter-final</strong><span>England v Norway</span><small>Miami</small></div>
+        <div><strong>Semi-final</strong><span>Winner advances</span><small>Venue TBC</small></div>
+        <div><strong>Final</strong><span>One more step</span><small>Venue TBC</small></div>
       </div>
     </section>
 
-    <section class="section share-panel" id="share">
-      <div>
-        <p class="eyebrow dark">Share</p>
-        <h2>Send the countdown</h2>
-        <p>Facebook, WhatsApp, email or copy link.</p>
+    <section id="links" class="section-card links-card">
+      <div class="section-heading">
+        <p class="eyebrow">External links</p>
+        <h2>Match centre</h2>
       </div>
-      <div class="share-buttons">
-        <a id="facebookShare" href="#" target="_blank" rel="noopener">Facebook</a>
-        <a id="whatsappShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
-        <a id="emailShare" href="#">Email</a>
-        <button id="copyLink" type="button">Copy link</button>
+      <div class="link-grid">
+        <a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England coverage</a>
+        <a href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore football</a>
+        <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA</a>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <span>Fan-made England countdown. No official affiliation.</span>
-    <a href="#top">Back to top</a>
-  </footer>
-
-  <div class="cookie" id="cookieNotice" role="dialog" aria-label="Cookie notice">
-    <p>This site only uses local storage to remember this notice.</p>
-    <button id="acceptCookies" type="button">OK</button>
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie notice">
+    <p>This site uses local storage to remember your XI and quiz score. No tracking cookies.</p>
+    <button id="acceptCookies" class="button primary" type="button">OK</button>
   </div>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
