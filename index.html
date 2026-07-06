@@ -68,6 +68,9 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 .road-title{font-weight:900;color:var(--text)}
 .road-detail{color:var(--muted);font-size:14px;margin-top:3px}
 
+
+.venue-line{font-weight:800;line-height:1.45;margin-top:-4px;margin-bottom:12px}
+
 </style>
 </head>
 <body>
@@ -98,6 +101,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
     <div class="eyebrow" id="roundLabel">Quarter-final</div>
     <h2 id="matchTitle">Norway v England</h2>
     <p class="sub" id="matchSub">Countdown, predictions, squad and match facts</p>
+    <p class="sub venue-line">📍 Hard Rock Stadium<br>Miami, Florida, USA</p>
     <div class="countdown"><div class="timebox"><div class="num" id="days">00</div><div class="label">days</div></div><div class="timebox"><div class="num" id="hours">00</div><div class="label">hours</div></div><div class="timebox"><div class="num" id="minutes">00</div><div class="label">mins</div></div><div class="timebox"><div class="num" id="seconds">00</div><div class="label">secs</div></div></div>
     <p class="sub" id="kickoffText">Kick-off: 23:00 Brussels / 22:00 UK, 11 July</p><div class="updated" id="updatedLine">Last updated: 6 July 2026</div>
     <div class="actions"><a class="btn primary" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">BBC England</a><button class="btn secondary" onclick="copyLink()">Copy link</button></div>
@@ -106,7 +110,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 
 <section class="grid">
   <div class="panel" id="prediction"><h3>Prediction maker</h3><p class="small">Make a score prediction and share it on WhatsApp.</p><div class="predict-grid"><input id="engScore" type="number" min="0" value="2" aria-label="England score"><input id="oppScore" type="number" min="0" value="1" aria-label="Opponent score"></div><select id="winnerChoice"><option>England win</option><option>Norway win</option><option>Draw after 90 minutes</option><option>England after extra time</option></select><div class="actions"><button class="primary" onclick="makePrediction()">Create</button><button class="secondary" onclick="sharePrediction()">Share</button></div><div id="predictionText" class="box output">My prediction: England 2–1 Norway. England win.</div></div>
-  <div class="panel" id="facts"><h3>Match facts</h3><div class="fact"><b>Fixture</b><span id="factFixture">Norway v England</span></div><div class="fact"><b>Stage</b><span>World Cup quarter-final</span></div><div class="fact"><b>Kick-off</b><span>23:00 Brussels / 22:00 UK</span></div><div class="fact"><b>Coverage</b><span>BBC England page</span></div><div class="fact"><b>Status</b><span>Fan site, no fake live data</span></div></div>
+  <div class="panel" id="facts"><h3>Match facts</h3><div class="fact"><b>Fixture</b><span id="factFixture">Norway v England</span></div><div class="fact"><b>Competition</b><span>FIFA World Cup 2026</span></div><div class="fact"><b>Stage</b><span>World Cup quarter-final</span></div><div class="fact"><b>Venue</b><span>Hard Rock Stadium</span></div><div class="fact"><b>Location</b><span>Miami, Florida, USA</span></div><div class="fact"><b>Kick-off</b><span>23:00 Brussels / 22:00 UK</span></div><div class="fact"><b>Coverage</b><span>BBC England page</span></div><div class="fact"><b>Status</b><span>Fan site, no fake live data</span></div></div>
 </section>
 
 <section class="grid" id="xi">
@@ -129,7 +133,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
     </div>
     <div class="road-stage current">
       <div class="road-icon">•</div>
-      <div><div class="road-title">Quarter-final</div><div class="road-detail">Norway v England · 11 July · 23:00 Brussels / 22:00 UK</div></div>
+      <div><div class="road-title">Quarter-final</div><div class="road-detail">Norway v England · Hard Rock Stadium, Miami · 11 July · 23:00 Brussels / 22:00 UK</div></div>
     </div>
     <div class="road-stage">
       <div class="road-icon">○</div>
@@ -157,7 +161,7 @@ footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin
 <div class="cookie" id="cookieBox"><div class="cookie-inner"><div><h3>Cookie notice</h3><p>This site does not use tracking cookies. It only saves basic preferences such as dark mode and whether you dismissed this notice.</p></div><button class="primary" onclick="acceptCookies()">Accept</button></div></div>
 
 <script>
-const fixtures=[{title:"Norway v England",round:"Quarter-final",sub:"Countdown, predictions, squad and match facts",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Kick-off: 23:00 Brussels / 22:00 UK, 11 July",opponent:"Norway"},{title:"England semi-final slot",round:"If England progress",sub:"Semi-final countdown",kickoff:"2026-07-15T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 15 July",opponent:"TBD"},{title:"England final slot",round:"If England progress",sub:"Final countdown",kickoff:"2026-07-19T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 19 July",opponent:"TBD"}];
+const fixtures=[{title:"Norway v England",round:"Quarter-final",sub:"Countdown, predictions, squad and match facts",kickoff:"2026-07-11T23:00:00+02:00",kickoffText:"Kick-off: 23:00 Brussels / 22:00 UK, 11 July",opponent:"Norway",venue:"Hard Rock Stadium, Miami"},{title:"England semi-final slot",round:"If England progress",sub:"Semi-final countdown",kickoff:"2026-07-15T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 15 July",opponent:"TBD"},{title:"England final slot",round:"If England progress",sub:"Final countdown",kickoff:"2026-07-19T21:00:00+02:00",kickoffText:"Possible kick-off: 21:00 Brussels, 19 July",opponent:"TBD"}];
 const squad=[["Jordan Pickford","GK"],["Dean Henderson","GK"],["James Trafford","GK"],["Marc Guehi","DEF"],["Ezri Konsa","DEF"],["Jarell Quansah","DEF"],["John Stones","DEF"],["Reece James","DEF"],["Myles Lewis-Skelly","DEF"],["Tino Livramento","DEF"],["Djed Spence","DEF"],["Dan Burn","DEF"],["Jude Bellingham","MID"],["Declan Rice","MID"],["Kobbie Mainoo","MID"],["Jordan Henderson","MID"],["Elliot Anderson","MID"],["Morgan Rogers","MID"],["Harry Kane","FWD"],["Bukayo Saka","FWD"],["Anthony Gordon","FWD"],["Eberechi Eze","FWD"],["Noni Madueke","FWD"],["Marcus Rashford","FWD"],["Ivan Toney","FWD"],["Ollie Watkins","FWD"]];
 const pageUrl=window.location.origin+window.location.pathname;document.getElementById("whatsapp").href="https://wa.me/?text="+encodeURIComponent("England Match Centre: "+pageUrl);
 let fixture=fixtures.find(f=>new Date(f.kickoff)>new Date())||fixtures[fixtures.length-1],kickOff=new Date(fixture.kickoff),mood="Confident";
