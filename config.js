@@ -1,5 +1,5 @@
 window.SITE_CONFIG = {
-  version: '1.0.99',
+  version: '1.1.0',
   lastUpdated: '6 July 2026',
   match: {
     competition: 'World Cup quarter-final',
@@ -21,6 +21,12 @@ window.SITE_CONFIG = {
       subtitle: 'Highlights from 6 July 2026.',
       youtubeEmbed: 'https://www.youtube.com/embed/dg4-V0LTaN0?si=3pcZ11-_SsA5wwm7'
     },
+    teamNews: [
+      { status: 'green', icon: '🟢', title: 'Kane fit and available', text: 'England captain expected to lead the line.' },
+      { status: 'green', icon: '🟢', title: 'Bellingham expected to start', text: 'Midfield energy and control remain central to the plan.' },
+      { status: 'amber', icon: '🟡', title: 'Saka fitness being monitored', text: 'Final call closer to kick-off.' },
+      { status: 'red', icon: '🔴', title: 'Guehi suspended', text: 'Defensive reshuffle likely for Norway.' }
+    ],
     links: {
       bbc: 'https://www.bbc.com/sport/football/teams/england',
       flashscore: 'https://www.flashscore.com/football/',

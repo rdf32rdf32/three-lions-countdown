@@ -26,7 +26,7 @@ function init(){
   applyConfig();
   fillScorers();
   tick(); setInterval(tick, 1000);
-  renderFact(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
+  renderFact(); renderTeamNews(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
@@ -50,6 +50,17 @@ function applyConfig(){
   if($('videoWrap') && h.youtubeEmbed){ $('videoWrap').innerHTML = `<iframe src="${esc(h.youtubeEmbed)}" title="${esc(h.title || 'England highlights')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`; }
   if(m.links){ if($('bbcLink')) $('bbcLink').href=m.links.bbc || $('bbcLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
   if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'} · Last updated ${cfg().lastUpdated || 'recently'}`;
+}
+function renderTeamNews(){
+  const list = $('teamNewsList');
+  if(!list) return;
+  const items = Array.isArray(match().teamNews) && match().teamNews.length ? match().teamNews : [
+    { status:'green', icon:'🟢', title:'Kane fit and available', text:'England captain expected to lead the line.' },
+    { status:'green', icon:'🟢', title:'Bellingham expected to start', text:'Midfield energy and control remain central to the plan.' },
+    { status:'amber', icon:'🟡', title:'Saka fitness being monitored', text:'Final call closer to kick-off.' },
+    { status:'red', icon:'🔴', title:'Guehi suspended', text:'Defensive reshuffle likely for Norway.' }
+  ];
+  list.innerHTML = items.map(item => `<article class="news-item ${esc(item.status || 'green')}"><span class="news-icon">${esc(item.icon || '🟢')}</span><div><b>${esc(item.title)}</b><p>${esc(item.text || '')}</p></div></article>`).join('');
 }
 function tick(){
   let diff = Math.max(0, matchDate() - new Date());
