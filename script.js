@@ -19,6 +19,8 @@ defineShareLinks();
 loadFacts();
 loadQuiz();
 handleCookie();
+initPredictor();
+initEnglandXi();
 
 function startCountdown() {
   const diff = target - Date.now();
@@ -112,4 +114,147 @@ function handleCookie() {
     localStorage.setItem('tlcCookieOK', 'yes');
     cookieNotice?.remove();
   });
+}
+
+
+function initPredictor() {
+  const scorer = document.getElementById('firstScorer');
+  if (!scorer) return;
+  (config.firstScorers || []).forEach(name => {
+    const option = document.createElement('option');
+    option.value = name;
+    option.textContent = name;
+    scorer.appendChild(option);
+  });
+  const saved = JSON.parse(localStorage.getItem('tlcPrediction') || 'null');
+  if (saved) {
+    document.getElementById('homeScore').value = saved.home;
+    document.getElementById('awayScore').value = saved.away;
+    scorer.value = saved.scorer;
+    renderPrediction(saved);
+  } else {
+    updatePredictionShare('Norway 1–2 England. First England scorer: Harry Kane.');
+  }
+  document.getElementById('savePrediction')?.addEventListener('click', () => {
+    const prediction = {
+      home: clampScore(document.getElementById('homeScore').value),
+      away: clampScore(document.getElementById('awayScore').value),
+      scorer: scorer.value || 'Harry Kane'
+    };
+    localStorage.setItem('tlcPrediction', JSON.stringify(prediction));
+    renderPrediction(prediction);
+  });
+  document.getElementById('copyPrediction')?.addEventListener('click', async () => {
+    const text = document.getElementById('predictionResult').textContent || 'My England prediction is ready.';
+    try {
+      await navigator.clipboard.writeText(`${text} ${window.location.href}`);
+      document.getElementById('copyPrediction').textContent = 'Copied';
+    } catch {
+      document.getElementById('copyPrediction').textContent = 'Copy failed';
+    }
+  });
+}
+
+function clampScore(value) {
+  const number = Number.parseInt(value, 10);
+  if (Number.isNaN(number)) return 0;
+  return Math.max(0, Math.min(15, number));
+}
+
+function renderPrediction(prediction) {
+  const text = `My prediction: Norway ${prediction.home}–${prediction.away} England. First England scorer: ${prediction.scorer}.`;
+  document.getElementById('predictionResult').textContent = text;
+  updatePredictionShare(text);
+}
+
+function updatePredictionShare(text) {
+  const url = encodeURIComponent(window.location.href);
+  const encoded = encodeURIComponent(text);
+  const fb = document.getElementById('predictionFacebook');
+  const wa = document.getElementById('predictionWhatsapp');
+  if (fb) fb.href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encoded}`;
+  if (wa) wa.href = `https://wa.me/?text=${encoded}%20${url}`;
+}
+
+function initEnglandXi() {
+  const squadList = document.getElementById('squadList');
+  if (!squadList) return;
+  const saved = JSON.parse(localStorage.getItem('tlcEnglandXi') || '[]');
+  let selected = Array.isArray(saved) ? saved.slice(0, 11) : [];
+  const players = config.players || [];
+
+  const render = () => {
+    squadList.innerHTML = '';
+    players.forEach(player => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = player;
+      const isSelected = selected.includes(player);
+      btn.className = isSelected ? 'selected' : '';
+      btn.disabled = selected.length >= 11 && !isSelected;
+      btn.addEventListener('click', () => {
+        if (selected.includes(player)) selected = selected.filter(name => name !== player);
+        else if (selected.length < 11) selected.push(player);
+        localStorage.setItem('tlcEnglandXi', JSON.stringify(selected));
+        render();
+      });
+      squadList.appendChild(btn);
+    });
+    document.getElementById('xiCounter').textContent = `${selected.length}/11 selected`;
+    document.getElementById('xiResult').textContent = selected.length === 11 ? 'Your England XI is ready to share.' : 'Pick eleven players to complete your XI.';
+    renderPitch(selected);
+    updateXiShare(selected);
+  };
+
+  document.getElementById('clearXi')?.addEventListener('click', () => {
+    selected = [];
+    localStorage.removeItem('tlcEnglandXi');
+    render();
+  });
+  document.getElementById('copyXi')?.addEventListener('click', async () => {
+    const text = selected.length ? `My England XI: ${selected.join(', ')}.` : 'I am choosing my England XI.';
+    try {
+      await navigator.clipboard.writeText(`${text} ${window.location.href}`);
+      document.getElementById('copyXi').textContent = 'Copied';
+    } catch {
+      document.getElementById('copyXi').textContent = 'Copy failed';
+    }
+  });
+  render();
+}
+
+function renderPitch(selected) {
+  const pitch = document.getElementById('xiPitch');
+  if (!pitch) return;
+  const lines = [selected.slice(0, 1), selected.slice(1, 5), selected.slice(5, 8), selected.slice(8, 11)];
+  const labels = ['GK', 'Defence', 'Midfield', 'Attack'];
+  pitch.innerHTML = '';
+  lines.forEach((line, idx) => {
+    const row = document.createElement('div');
+    row.className = 'xi-line';
+    if (!line.length) {
+      const empty = document.createElement('span');
+      empty.className = 'xi-chip xi-empty';
+      empty.textContent = labels[idx];
+      row.appendChild(empty);
+    } else {
+      line.forEach(player => {
+        const chip = document.createElement('span');
+        chip.className = 'xi-chip';
+        chip.textContent = player;
+        row.appendChild(chip);
+      });
+    }
+    pitch.appendChild(row);
+  });
+}
+
+function updateXiShare(selected) {
+  const url = encodeURIComponent(window.location.href);
+  const text = selected.length ? `My England XI: ${selected.join(', ')}.` : 'Choose your England XI on Three Lions Countdown.';
+  const encoded = encodeURIComponent(text);
+  const fb = document.getElementById('xiFacebook');
+  const wa = document.getElementById('xiWhatsapp');
+  if (fb) fb.href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encoded}`;
+  if (wa) wa.href = `https://wa.me/?text=${encoded}%20${url}`;
 }

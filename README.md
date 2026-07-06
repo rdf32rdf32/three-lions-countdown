@@ -1,27 +1,29 @@
 # Three Lions Countdown
 
-A lightweight GitHub Pages fan site for England supporters.
+A lightweight GitHub Pages England supporters' countdown site.
 
 ## Included
 
-- Live countdown to Norway v England
-- Premium custom CSS/SVG graphics
-- Road to the trophy
-- Venue cards for quarter-final, possible semi-final, third-place play-off and final
+- Live countdown to England v Norway
+- New custom graphics and stadium-style hero
+- Venue cards for the quarter-final, possible semi-final, third-place play-off and final
+- Road to the Trophy progress timeline
 - Random England fact
-- Did You Know rotating ticker
+- Did You Know ticker
 - Quiz of the day
+- Restored fan score predictor
+- Restored Choose your England XI tool
 - Facebook, WhatsApp, email and copy-link sharing
-- Cookie/local-storage notice
+- Lightweight cookie notice
+- No X sharing
 
 ## How to publish on GitHub Pages
 
-1. Upload all files in this folder to your repository.
-2. In GitHub, go to **Settings → Pages**.
-3. Choose the `main` branch and `/root` folder.
-4. Save.
-5. Your site will be available at your GitHub Pages address.
+1. Open your `three-lions-countdown` repository.
+2. Upload `index.html`, `styles.css`, `script.js`, `config.js` and `README.md`.
+3. Commit the changes.
+4. Visit: `https://rdf32rdf32.github.io/three-lions-countdown/`.
 
-## Edit the match
+## Edit match details
 
-Open `config.js` and change the match details or kick-off time.
+Update `config.js` to change the match, venue, kick-off time, facts, quiz questions or player list.

@@ -57,5 +57,10 @@ window.SITE_CONFIG = {
       answers: ["Martin Peters", "Geoff Hurst", "Roger Hunt", "Jimmy Greaves"],
       correct: 1
     }
-  ]
+  ],
+  players: [
+    "Jordan Pickford", "Aaron Ramsdale", "Kyle Walker", "John Stones", "Marc Guehi", "Ezri Konsa", "Luke Shaw", "Kieran Trippier", "Declan Rice", "Jude Bellingham", "Phil Foden", "Bukayo Saka", "Cole Palmer", "Kobbie Mainoo", "Conor Gallagher", "Trent Alexander-Arnold", "Harry Kane", "Ollie Watkins", "Ivan Toney", "Anthony Gordon", "Eberechi Eze", "Jarrod Bowen"
+  ],
+  firstScorers: ["Harry Kane", "Bukayo Saka", "Jude Bellingham", "Phil Foden", "Cole Palmer", "Ollie Watkins", "Declan Rice", "Own goal"]
+
 };

@@ -30,6 +30,8 @@
         <a href="#venues">Venues</a>
         <a href="#facts">Facts</a>
         <a href="#quiz">Quiz</a>
+        <a href="#predictor">Predictor</a>
+        <a href="#england-xi">Your XI</a>
       </div>
     </nav>
 
@@ -136,6 +138,65 @@
         <h3 id="quizQuestion">Loading question…</h3>
         <div id="quizAnswers" class="quiz-answers"></div>
         <p id="quizResult" class="quiz-result" aria-live="polite"></p>
+      </div>
+    </section>
+
+
+    <section class="section fan-tools" id="predictor">
+      <div class="section-heading">
+        <p class="eyebrow dark">Fan predictor</p>
+        <h2>Predict England’s score</h2>
+        <p>Make a simple prediction and share it. Saved on your device only.</p>
+      </div>
+      <div class="tool-grid">
+        <article class="predictor-card">
+          <div class="score-row">
+            <label><span>Norway</span><input id="homeScore" type="number" min="0" max="15" value="1"></label>
+            <strong>v</strong>
+            <label><span>England</span><input id="awayScore" type="number" min="0" max="15" value="2"></label>
+          </div>
+          <label class="full-label">First England scorer
+            <select id="firstScorer"></select>
+          </label>
+          <button class="button primary" id="savePrediction" type="button">Save prediction</button>
+          <p id="predictionResult" class="tool-result" aria-live="polite"></p>
+        </article>
+        <article class="predictor-card mini-graphic">
+          <div class="ball-orbit" aria-hidden="true"><span></span></div>
+          <h3>Your call</h3>
+          <p>Pick the score, choose a first scorer, then share your matchday prediction.</p>
+          <div class="share-buttons compact">
+            <a id="predictionFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a id="predictionWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <button id="copyPrediction" type="button">Copy</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section xi-section" id="england-xi">
+      <div class="section-heading">
+        <p class="eyebrow dark">Choose your England XI</p>
+        <h2>Pick your starting team</h2>
+        <p>Select eleven players. Your XI is saved on your device only.</p>
+      </div>
+      <div class="xi-layout">
+        <article class="pitch-card" aria-label="Selected England XI">
+          <div class="mini-pitch" id="xiPitch"></div>
+        </article>
+        <article class="squad-card">
+          <div class="squad-top">
+            <strong id="xiCounter">0/11 selected</strong>
+            <button id="clearXi" type="button">Clear XI</button>
+          </div>
+          <div class="squad-list" id="squadList"></div>
+          <p id="xiResult" class="tool-result" aria-live="polite"></p>
+          <div class="share-buttons compact">
+            <a id="xiFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a id="xiWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <button id="copyXi" type="button">Copy XI</button>
+          </div>
+        </article>
       </div>
     </section>
 
