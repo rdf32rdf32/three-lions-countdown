@@ -24,3 +24,6 @@ To test the XI builder only, visit:
 https://rdf32rdf32.github.io/three-lions-countdown/test.html
 
 If GitHub Pages appears unchanged, hard refresh the page or open it in a private/incognito window.
+
+
+Version 4 note: Match Predictor and Pick XI Builder are now fully separate. Match Predictor saves score/first-scorer picks under engMatchPrediction; Pick XI saves line-up picks under engXI.

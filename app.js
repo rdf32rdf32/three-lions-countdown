@@ -37,13 +37,10 @@
 
 
 
-  const predictorBase = {
-    hampton: 82, bronze: 78, greenwood: 76, bright: 72, carter: 70,
-    stanway: 84, walsh: 86, toone: 68, hemp: 88, russo: 83, james: 74,
-    mead: 65, kelly: 58, charles: 55, 'le-tissier': 52, park: 50,
-    clinton: 45, earps: 40, morgan: 36, roebuck: 30, coombs: 25,
-    daly: 42, 'beever-jones': 35
-  };
+  const scoreOptions = [
+    '1-0 England', '2-0 England', '2-1 England', '3-1 England',
+    '1-1 draw', '0-0 draw', '1-2 Norway', '0-1 Norway'
+  ];
 
   const formations = {
     '433': [
@@ -86,25 +83,55 @@
   function usedPlayerIds() { return new Set(Object.values(xi).filter(Boolean)); }
 
 
-  function renderPredictor() {
-    const host = $('predictorList');
-    if (!host) return;
-    const used = usedPlayerIds();
-    const rows = squad.map(player => {
-      const boost = used.has(player.id) ? 7 : 0;
-      const base = predictorBase[player.id] ?? 30;
-      return { ...player, chance: Math.min(96, base + boost), picked: used.has(player.id) };
-    }).sort((a, b) => b.chance - a.chance).slice(0, 15);
-    host.innerHTML = '';
-    rows.forEach((player, index) => {
-      const row = document.createElement('div');
-      row.className = 'predictor-row' + (player.picked ? ' picked' : '');
-      row.innerHTML = `<span class="predictor-rank">${index + 1}</span><span class="predictor-name"><strong>${player.name}</strong><small>${player.pos} • ${player.club}</small></span><span class="predictor-bar"><i style="width:${player.chance}%"></i></span><strong class="predictor-percent">${player.chance}%</strong>`;
-      host.appendChild(row);
+  function renderMatchPredictor() {
+    const scoreHost = $('scoreButtons');
+    const scorerSelect = $('firstScorerSelect');
+    if (!scoreHost || !scorerSelect) return;
+
+    const saved = storage.get('engMatchPrediction', { score: '', scorer: '' });
+
+    scoreHost.innerHTML = '';
+    scoreOptions.forEach(score => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'score-button' + (saved.score === score ? ' active' : '');
+      btn.textContent = score;
+      btn.addEventListener('click', () => {
+        const current = storage.get('engMatchPrediction', { score: '', scorer: scorerSelect.value || '' });
+        current.score = score;
+        storage.set('engMatchPrediction', current);
+        renderMatchPredictor();
+        updatePredictionStatus();
+      });
+      scoreHost.appendChild(btn);
     });
-    const picked = Object.values(xi).filter(Boolean).length;
-    const pickedText = $('predictorPicked');
-    if (pickedText) pickedText.textContent = `${picked}/11 selected`;
+
+    const scorers = squad.filter(p => p.pos === 'FWD' || p.pos === 'MID');
+    scorerSelect.innerHTML = '<option value="">Select first scorer…</option><option value="none">No England scorer</option>';
+    scorers.forEach(player => {
+      const option = document.createElement('option');
+      option.value = player.id;
+      option.textContent = `${player.name} (${player.pos})`;
+      scorerSelect.appendChild(option);
+    });
+    scorerSelect.value = saved.scorer || '';
+    updatePredictionStatus();
+  }
+
+  function updatePredictionStatus() {
+    const status = $('predictionStatus');
+    const saved = storage.get('engMatchPrediction', { score: '', scorer: '' });
+    if (!status) return;
+    const scorerName = saved.scorer === 'none' ? 'No England scorer' : (playerById(saved.scorer)?.name || 'no scorer selected');
+    if (saved.score && saved.scorer) {
+      status.textContent = `Saved: ${saved.score}; first England scorer: ${scorerName}.`;
+    } else if (saved.score) {
+      status.textContent = `Score picked: ${saved.score}. Now choose England’s first scorer.`;
+    } else if (saved.scorer) {
+      status.textContent = `First scorer picked: ${scorerName}. Now choose the score.`;
+    } else {
+      status.textContent = 'Make your match prediction.';
+    }
   }
 
   function renderPitch() {
@@ -176,14 +203,14 @@
     selectedPlayerId = null;
     $('selectedHint').textContent = 'Tap or drag a player';
     $('xiStatus').textContent = `${p.name} added to your XI.`;
-    renderPitch(); renderPlayers(); renderPredictor();
+    renderPitch(); renderPlayers();
   }
 
   function resetXI() {
     xi = {}; selectedPlayerId = null;
     storage.set('engXI', xi);
     $('xiStatus').textContent = 'XI reset. Choose a player, then choose a shirt.';
-    renderPitch(); renderPlayers(); renderPredictor();
+    renderPitch(); renderPlayers();
   }
 
   function initQuiz() {
@@ -228,7 +255,7 @@
       formation = e.target.value; xi = {}; selectedPlayerId = null;
       storage.set('engFormation', formation); storage.set('engXI', xi);
       $('xiStatus').textContent = 'Formation changed. Pick your XI again.';
-      renderPitch(); renderPlayers(); renderPredictor();
+      renderPitch(); renderPlayers();
     });
     $('saveXiBtn').addEventListener('click', () => { storage.set('engXI', xi); storage.set('engFormation', formation); $('xiStatus').textContent = 'XI saved on this device.'; });
     $('resetXiBtn').addEventListener('click', resetXI);
@@ -238,15 +265,32 @@
       chip.classList.add('active'); currentFilter = chip.dataset.filter; renderPlayers();
     }));
     $('newQuizBtn').addEventListener('click', initQuiz);
-    const predictorResetBtn = $('predictorResetBtn');
-    if (predictorResetBtn) predictorResetBtn.addEventListener('click', renderPredictor);
+    const scorerSelect = $('firstScorerSelect');
+    if (scorerSelect) scorerSelect.addEventListener('change', () => {
+      const current = storage.get('engMatchPrediction', { score: '', scorer: '' });
+      current.scorer = scorerSelect.value;
+      storage.set('engMatchPrediction', current);
+      updatePredictionStatus();
+    });
+    const savePredictionBtn = $('savePredictionBtn');
+    if (savePredictionBtn) savePredictionBtn.addEventListener('click', () => {
+      const current = storage.get('engMatchPrediction', { score: '', scorer: '' });
+      current.scorer = scorerSelect ? scorerSelect.value : current.scorer;
+      storage.set('engMatchPrediction', current);
+      updatePredictionStatus();
+    });
+    const resetPredictionBtn = $('resetPredictionBtn');
+    if (resetPredictionBtn) resetPredictionBtn.addEventListener('click', () => {
+      storage.set('engMatchPrediction', { score: '', scorer: '' });
+      renderMatchPredictor();
+    });
     if (!storage.get('cookiesOK', false)) $('cookieBanner').classList.add('show');
     $('acceptCookiesBtn').addEventListener('click', () => { storage.set('cookiesOK', true); $('cookieBanner').classList.remove('show'); });
   }
 
   function boot() {
     countdown(); setInterval(countdown, 1000);
-    initControls(); renderPitch(); renderPlayers(); renderPredictor(); initQuiz();
+    initControls(); renderPitch(); renderPlayers(); renderMatchPredictor(); initQuiz();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();

@@ -28,7 +28,7 @@
       <div class="hero-copy">
         <p class="eyebrow">England v Norway</p>
         <h1>Matchday fan hub</h1>
-        <p class="hero-text">Countdown, quiz, Pick XI builder and road to the final in one clean supporter page.</p>
+        <p class="hero-text">Countdown, match predictor, quiz, Pick XI builder and road to the final in one clean supporter page.</p>
         <div class="countdown" aria-label="Countdown to kick-off" aria-live="polite">
           <div><strong id="days">--</strong><span>days</span></div>
           <div><strong id="hours">--</strong><span>hours</span></div>
@@ -65,19 +65,29 @@
       </div>
     </section>
 
-    <section id="predictor" class="card predictor-card">
+    <section id="predictor" class="card predictor-card match-predictor-card">
       <div class="section-heading">
-        <p class="eyebrow">Selection predictor</p>
-        <h2>England XI predictor</h2>
-        <p>Projected starter chances. Pick players in your XI and the predictor reacts instantly on this device.</p>
+        <p class="eyebrow">Match predictor</p>
+        <h2>Predict the score</h2>
+        <p>This is separate from the Pick XI builder. Choose the correct score and England’s first scorer.</p>
       </div>
-      <div class="predictor-layout">
-        <div id="predictorList" class="predictor-list" aria-live="polite"></div>
-        <aside class="predictor-summary">
-          <strong id="predictorPicked">0/11 selected</strong>
-          <span>Build your XI below to nudge the predicted chances.</span>
-          <button class="button secondary" id="predictorResetBtn" type="button">Reset predictor view</button>
-        </aside>
+
+      <div class="match-predictor-layout">
+        <div class="score-panel">
+          <h3>Correct score</h3>
+          <div id="scoreButtons" class="score-grid" aria-label="Choose correct score"></div>
+        </div>
+
+        <div class="scorer-panel">
+          <h3>First England scorer</h3>
+          <label class="select-label" for="firstScorerSelect">Choose a player</label>
+          <select id="firstScorerSelect"></select>
+          <div class="predictor-actions">
+            <button class="button primary" id="savePredictionBtn" type="button">Save prediction</button>
+            <button class="button secondary" id="resetPredictionBtn" type="button">Reset</button>
+          </div>
+          <p id="predictionStatus" class="prediction-status" aria-live="polite">Make your match prediction.</p>
+        </div>
       </div>
     </section>
 
