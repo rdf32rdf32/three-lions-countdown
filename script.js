@@ -258,6 +258,7 @@ function initEnglandXi() {
   if (!squadList || !pitch) return;
 
   let assignments = loadXiAssignments();
+  let activePlayerName = '';
   const players = config.players || [];
   const groups = ['Goalkeepers', 'Defenders', 'Midfielders', 'Forwards'];
 
@@ -278,11 +279,15 @@ function initEnglandXi() {
   const assignPlayerToSlot = (name, slotId) => {
     if (!name || !slotId || !formationSlots.some(slot => slot.id === slotId)) return;
     const player = playerByName(name);
-    if (!canUseSlot(player, slotId)) return;
+    if (!canUseSlot(player, slotId)) {
+      const result = document.getElementById('xiResult');
+      if (result) result.textContent = slotId === 'gk' ? 'Only a goalkeeper can go in goal.' : 'Goalkeepers can only be placed in goal.';
+      return;
+    }
     const previousSlot = findPlayerSlot(name);
-    if (previousSlot === slotId) return;
     if (previousSlot) assignments[previousSlot] = '';
     assignments[slotId] = name;
+    activePlayerName = '';
     save();
     render();
   };
@@ -293,25 +298,48 @@ function initEnglandXi() {
     render();
   };
 
-  const toggleByTap = player => {
+  const selectPlayer = player => {
     const existing = findPlayerSlot(player.name);
-    if (existing) removeFromSlot(existing);
-    else {
-      const slotId = firstFreeSlotFor(player);
-      if (slotId) assignPlayerToSlot(player.name, slotId);
+    if (existing) {
+      activePlayerName = player.name;
+      const result = document.getElementById('xiResult');
+      if (result) result.textContent = `${player.name} selected. Tap a new position to move him, or tap his current position to remove him.`;
+    } else {
+      activePlayerName = activePlayerName === player.name ? '' : player.name;
+    }
+    render();
+  };
+
+  const handleSlotTap = slotId => {
+    const currentName = assignments[slotId];
+    if (activePlayerName) {
+      if (currentName === activePlayerName) {
+        removeFromSlot(slotId);
+      } else {
+        assignPlayerToSlot(activePlayerName, slotId);
+      }
+    } else if (currentName) {
+      activePlayerName = currentName;
+      render();
     }
   };
 
   const render = () => {
-    renderPitchSlots(pitch, assignments, assignPlayerToSlot, removeFromSlot, playerByName);
-    renderSquadList(squadList, groups, players, selectedNames(), toggleByTap, assignPlayerToSlot);
+    renderPitchSlots(pitch, assignments, assignPlayerToSlot, handleSlotTap, playerByName, activePlayerName);
+    renderSquadList(squadList, groups, players, selectedNames(), selectPlayer, assignPlayerToSlot, activePlayerName);
     document.getElementById('xiCounter').textContent = `${selectedNames().length}/11 selected`;
-    document.getElementById('xiResult').textContent = selectedNames().length === 11 ? 'Your England XI is ready to share.' : 'Slide or tap players into the formation.';
+    const result = document.getElementById('xiResult');
+    if (result) {
+      if (selectedNames().length === 11) result.textContent = 'Your England XI is ready to share.';
+      else if (activePlayerName) result.textContent = `${activePlayerName} selected. Tap a position on the pitch.`;
+      else result.textContent = 'Tap a player, then tap a position. Desktop users can also drag and drop.';
+    }
     updateXiShare(selectedNames());
   };
 
   document.getElementById('clearXi')?.addEventListener('click', () => {
     assignments = emptyAssignments();
+    activePlayerName = '';
     localStorage.removeItem('tlcEnglandXiSlots');
     localStorage.removeItem('tlcEnglandXi');
     render();
@@ -378,7 +406,7 @@ function canUseSlot(player, slotId) {
   return true;
 }
 
-function renderPitchSlots(pitch, assignments, assignPlayerToSlot, removeFromSlot, playerByName) {
+function renderPitchSlots(pitch, assignments, assignPlayerToSlot, handleSlotTap, playerByName, activePlayerName) {
   pitch.innerHTML = '';
   const lines = [
     ['lw', 'st', 'rw'],
@@ -395,12 +423,12 @@ function renderPitchSlots(pitch, assignments, assignPlayerToSlot, removeFromSlot
       const player = name ? playerByName(name) : null;
       const el = document.createElement('button');
       el.type = 'button';
-      el.className = `xi-slot ${name ? 'filled' : 'empty'}`;
+      el.className = `xi-slot ${name ? 'filled' : 'empty'} ${activePlayerName && (!name || name === activePlayerName) ? 'targetable' : ''} ${name === activePlayerName ? 'active-player' : ''}`;
       el.dataset.slot = slotId;
       el.innerHTML = name
         ? `<span class="slot-pos">${slot.label}</span><strong>${shirtName(player)}</strong><small>${player.position || ''}</small>`
-        : `<span class="slot-pos">${slot.label}</span><strong>Drop player</strong><small>${slotLabel(slotId)}</small>`;
-      el.addEventListener('click', () => { if (name) removeFromSlot(slotId); });
+        : `<span class="slot-pos">${slot.label}</span><strong>${activePlayerName ? 'Place here' : 'Tap position'}</strong><small>${slotLabel(slotId)}</small>`;
+      el.addEventListener('click', () => handleSlotTap(slotId));
       el.addEventListener('dragover', event => event.preventDefault());
       el.addEventListener('drop', event => {
         event.preventDefault();
@@ -416,7 +444,7 @@ function renderPitchSlots(pitch, assignments, assignPlayerToSlot, removeFromSlot
   });
 }
 
-function renderSquadList(squadList, groups, players, selected, toggleByTap, assignPlayerToSlot) {
+function renderSquadList(squadList, groups, players, selected, selectPlayer, assignPlayerToSlot, activePlayerName) {
   squadList.innerHTML = '';
   groups.forEach(group => {
     const groupPlayers = players.filter(player => (player.group || groupFromPosition(player.position)) === group);
@@ -434,7 +462,8 @@ function renderSquadList(squadList, groups, players, selected, toggleByTap, assi
       btn.innerHTML = `<strong>${shirtName(player)}</strong><small>${player.position || ''}</small>`;
       const isSelected = selected.includes(player.name);
       btn.classList.toggle('selected', isSelected);
-      btn.addEventListener('click', () => toggleByTap(player));
+      btn.classList.toggle('active-player', activePlayerName === player.name);
+      btn.addEventListener('click', () => selectPlayer(player));
       btn.addEventListener('dragstart', event => event.dataTransfer.setData('text/plain', player.name));
       enableTouchSlide(btn, player.name, assignPlayerToSlot);
       squadList.appendChild(btn);
