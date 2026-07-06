@@ -37,7 +37,7 @@
 
     <div class="hero-content">
       <p class="eyebrow" id="modeLabel">England World Cup Fan Hub</p>
-      <h1>England v Norway</h1>
+      <h1>Norway v England</h1>
       <p class="lead" id="heroLead">Quarter-final countdown, venues, facts and a clean road to the trophy.</p>
 
       <section class="countdown-card" aria-label="Countdown to next England match">
@@ -51,13 +51,49 @@
         <p class="match-meta" id="matchMeta"></p>
         <div class="hero-buttons">
           <a class="button primary" href="#venues">See venues</a>
-          <a class="button secondary" href="https://www.bbc.com/sport/football/live/cze9x72rgwlt" rel="noopener" target="_blank">Live coverage</a>
+          <a class="button secondary" href="https://www.bbc.com/sport/football/teams/england" rel="noopener" target="_blank">BBC England page</a>
+          <a class="button secondary" href="https://www.flashscore.co.uk/team/england/j9N9ZNFA/" rel="noopener" target="_blank">Flashscore match centre</a>
         </div>
       </section>
     </div>
   </header>
 
   <main id="main">
+    <section class="section fan-tools feature-tool" id="predictor">
+      <div class="section-heading">
+        <p class="eyebrow dark">Fan predictor</p>
+        <h2>Predict Norway v England</h2>
+        <p>Pick the score, choose the first England scorer and add a short matchday message. Saved on your device only.</p>
+      </div>
+      <div class="tool-grid predictor-grid">
+        <article class="predictor-card predictor-main">
+          <div class="score-row">
+            <label><span>Norway</span><input id="homeScore" type="number" min="0" max="15" value="1"></label>
+            <strong>v</strong>
+            <label><span>England</span><input id="awayScore" type="number" min="0" max="15" value="2"></label>
+          </div>
+          <label class="full-label">First England scorer
+            <select id="firstScorer"></select>
+          </label>
+          <label class="full-label">Matchday message
+            <textarea id="predictionMessage" maxlength="90" rows="3" placeholder="Come on England!"></textarea>
+          </label>
+          <button class="button primary" id="savePrediction" type="button">Create prediction</button>
+          <p id="predictionResult" class="tool-result" aria-live="polite"></p>
+        </article>
+        <article class="predictor-card mini-graphic prediction-preview">
+          <div class="ball-orbit" aria-hidden="true"><span></span></div>
+          <h3>Your share card</h3>
+          <p id="predictionPreview">Norway 1–2 England. First England scorer: Harry Kane. Come on England!</p>
+          <div class="share-buttons compact">
+            <a id="predictionFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a id="predictionWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <button id="copyPrediction" type="button">Copy</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section cards-overlap" id="facts">
       <article class="info-card accent-red">
         <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 14h40v8H12zM16 22h32v28H16zM24 30h16M24 38h16"/></svg>
@@ -142,43 +178,11 @@
     </section>
 
 
-    <section class="section fan-tools" id="predictor">
-      <div class="section-heading">
-        <p class="eyebrow dark">Fan predictor</p>
-        <h2>Predict England’s score</h2>
-        <p>Make a simple prediction and share it. Saved on your device only.</p>
-      </div>
-      <div class="tool-grid">
-        <article class="predictor-card">
-          <div class="score-row">
-            <label><span>Norway</span><input id="homeScore" type="number" min="0" max="15" value="1"></label>
-            <strong>v</strong>
-            <label><span>England</span><input id="awayScore" type="number" min="0" max="15" value="2"></label>
-          </div>
-          <label class="full-label">First England scorer
-            <select id="firstScorer"></select>
-          </label>
-          <button class="button primary" id="savePrediction" type="button">Save prediction</button>
-          <p id="predictionResult" class="tool-result" aria-live="polite"></p>
-        </article>
-        <article class="predictor-card mini-graphic">
-          <div class="ball-orbit" aria-hidden="true"><span></span></div>
-          <h3>Your call</h3>
-          <p>Pick the score, choose a first scorer, then share your matchday prediction.</p>
-          <div class="share-buttons compact">
-            <a id="predictionFacebook" href="#" target="_blank" rel="noopener">Facebook</a>
-            <a id="predictionWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
-            <button id="copyPrediction" type="button">Copy</button>
-          </div>
-        </article>
-      </div>
-    </section>
-
     <section class="section xi-section" id="england-xi">
       <div class="section-heading">
         <p class="eyebrow dark">Choose your England XI</p>
         <h2>Pick your starting team</h2>
-        <p>Select eleven players. Your XI is saved on your device only.</p>
+        <p>Select eleven players from England’s World Cup squad, grouped by position. Your XI is saved on your device only.</p>
       </div>
       <div class="xi-layout">
         <article class="pitch-card" aria-label="Selected England XI">
@@ -189,6 +193,7 @@
             <strong id="xiCounter">0/11 selected</strong>
             <button id="clearXi" type="button">Clear XI</button>
           </div>
+          <p class="squad-source">Squad list based on England Football and Flashscore squad/position listings. Tino Livramento is not selectable because he was withdrawn through injury.</p>
           <div class="squad-list" id="squadList"></div>
           <p id="xiResult" class="tool-result" aria-live="polite"></p>
           <div class="share-buttons compact">
@@ -204,12 +209,14 @@
       <div>
         <p class="eyebrow dark">Share</p>
         <h2>Send the countdown</h2>
-        <p>Facebook, WhatsApp, email or copy link. No X.</p>
+        <p>Facebook, WhatsApp, email or copy link. Live updates via BBC and Flashscore.</p>
       </div>
       <div class="share-buttons">
         <a id="facebookShare" href="#" target="_blank" rel="noopener">Facebook</a>
         <a id="whatsappShare" href="#" target="_blank" rel="noopener">WhatsApp</a>
         <a id="emailShare" href="#">Email</a>
+        <a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC</a>
+        <a href="https://www.flashscore.co.uk/team/england/j9N9ZNFA/" target="_blank" rel="noopener">Flashscore</a>
         <button id="copyLink" type="button">Copy link</button>
       </div>
     </section>

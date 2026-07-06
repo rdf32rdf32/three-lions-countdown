@@ -57,13 +57,13 @@ function loadFacts() {
   const randomFact = document.getElementById('randomFact');
   const ticker = document.getElementById('didYouKnow');
   randomFact.textContent = facts[Math.floor(Math.random() * facts.length)] || 'England fact loading soon.';
-  let index = new Date().getDate() % didYouKnow.length;
+  let index = didYouKnow.length ? new Date().getDate() % didYouKnow.length : 0;
   const setTicker = () => {
     ticker.style.opacity = 0;
     setTimeout(() => {
       ticker.textContent = didYouKnow[index] || 'More England facts coming soon.';
       ticker.style.opacity = 1;
-      index = (index + 1) % didYouKnow.length;
+      index = didYouKnow.length ? (index + 1) % didYouKnow.length : 0;
     }, 250);
   };
   ticker.style.transition = 'opacity .25s ease';
@@ -116,7 +116,6 @@ function handleCookie() {
   });
 }
 
-
 function initPredictor() {
   const scorer = document.getElementById('firstScorer');
   if (!scorer) return;
@@ -131,21 +130,23 @@ function initPredictor() {
     document.getElementById('homeScore').value = saved.home;
     document.getElementById('awayScore').value = saved.away;
     scorer.value = saved.scorer;
+    document.getElementById('predictionMessage').value = saved.message || '';
     renderPrediction(saved);
   } else {
-    updatePredictionShare('Norway 1–2 England. First England scorer: Harry Kane.');
+    updatePredictionShare('My prediction: Norway 1–2 England. First England scorer: Harry Kane. Come on England!');
   }
   document.getElementById('savePrediction')?.addEventListener('click', () => {
     const prediction = {
       home: clampScore(document.getElementById('homeScore').value),
       away: clampScore(document.getElementById('awayScore').value),
-      scorer: scorer.value || 'Harry Kane'
+      scorer: scorer.value || 'Harry Kane',
+      message: (document.getElementById('predictionMessage').value || 'Come on England!').trim().slice(0, 90)
     };
     localStorage.setItem('tlcPrediction', JSON.stringify(prediction));
     renderPrediction(prediction);
   });
   document.getElementById('copyPrediction')?.addEventListener('click', async () => {
-    const text = document.getElementById('predictionResult').textContent || 'My England prediction is ready.';
+    const text = document.getElementById('predictionResult').textContent || document.getElementById('predictionPreview').textContent || 'My England prediction is ready.';
     try {
       await navigator.clipboard.writeText(`${text} ${window.location.href}`);
       document.getElementById('copyPrediction').textContent = 'Copied';
@@ -162,8 +163,11 @@ function clampScore(value) {
 }
 
 function renderPrediction(prediction) {
-  const text = `My prediction: Norway ${prediction.home}–${prediction.away} England. First England scorer: ${prediction.scorer}.`;
+  const message = prediction.message ? ` ${prediction.message}` : '';
+  const text = `My prediction: Norway ${prediction.home}–${prediction.away} England. First England scorer: ${prediction.scorer}.${message}`;
   document.getElementById('predictionResult').textContent = text;
+  const preview = document.getElementById('predictionPreview');
+  if (preview) preview.textContent = text.replace('My prediction: ', '');
   updatePredictionShare(text);
 }
 
@@ -176,29 +180,48 @@ function updatePredictionShare(text) {
   if (wa) wa.href = `https://wa.me/?text=${encoded}%20${url}`;
 }
 
+function playerName(player) {
+  return typeof player === 'string' ? player : player.name;
+}
+
+function playerLabel(player) {
+  return typeof player === 'string' ? player : `${player.name} · ${player.position}`;
+}
+
 function initEnglandXi() {
   const squadList = document.getElementById('squadList');
   if (!squadList) return;
   const saved = JSON.parse(localStorage.getItem('tlcEnglandXi') || '[]');
-  let selected = Array.isArray(saved) ? saved.slice(0, 11) : [];
+  let selected = Array.isArray(saved) ? saved.map(item => typeof item === 'string' ? item : item.name).filter(Boolean).slice(0, 11) : [];
   const players = config.players || [];
+  const groups = ['Goalkeepers', 'Defenders', 'Midfielders', 'Forwards'];
 
   const render = () => {
     squadList.innerHTML = '';
-    players.forEach(player => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = player;
-      const isSelected = selected.includes(player);
-      btn.className = isSelected ? 'selected' : '';
-      btn.disabled = selected.length >= 11 && !isSelected;
-      btn.addEventListener('click', () => {
-        if (selected.includes(player)) selected = selected.filter(name => name !== player);
-        else if (selected.length < 11) selected.push(player);
-        localStorage.setItem('tlcEnglandXi', JSON.stringify(selected));
-        render();
+    groups.forEach(group => {
+      const groupPlayers = players.filter(player => (player.group || groupFromPosition(player.position)) === group);
+      if (!groupPlayers.length) return;
+      const heading = document.createElement('div');
+      heading.className = 'squad-group-heading';
+      heading.textContent = group;
+      squadList.appendChild(heading);
+      groupPlayers.forEach(player => {
+        const name = playerName(player);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'player-button';
+        btn.innerHTML = `<strong>${name}</strong><small>${player.position || ''}${player.club ? ' · ' + player.club : ''}</small>`;
+        const isSelected = selected.includes(name);
+        btn.classList.toggle('selected', isSelected);
+        btn.disabled = selected.length >= 11 && !isSelected;
+        btn.addEventListener('click', () => {
+          if (selected.includes(name)) selected = selected.filter(existing => existing !== name);
+          else if (selected.length < 11) selected.push(name);
+          localStorage.setItem('tlcEnglandXi', JSON.stringify(selected));
+          render();
+        });
+        squadList.appendChild(btn);
       });
-      squadList.appendChild(btn);
     });
     document.getElementById('xiCounter').textContent = `${selected.length}/11 selected`;
     document.getElementById('xiResult').textContent = selected.length === 11 ? 'Your England XI is ready to share.' : 'Pick eleven players to complete your XI.';
@@ -223,11 +246,26 @@ function initEnglandXi() {
   render();
 }
 
+function groupFromPosition(position = '') {
+  if (position.includes('Goalkeeper')) return 'Goalkeepers';
+  if (position.includes('Defender')) return 'Defenders';
+  if (position.includes('Midfielder')) return 'Midfielders';
+  if (position.includes('Centre-forward') || position.includes('Forward') || position.includes('winger') || position.includes('Winger')) return 'Forwards';
+  return 'Midfielders';
+}
+
 function renderPitch(selected) {
   const pitch = document.getElementById('xiPitch');
   if (!pitch) return;
-  const lines = [selected.slice(0, 1), selected.slice(1, 5), selected.slice(5, 8), selected.slice(8, 11)];
-  const labels = ['GK', 'Defence', 'Midfield', 'Attack'];
+  const getPlayer = name => (config.players || []).find(player => player.name === name) || { name, position: '' };
+  const buckets = {
+    Goalkeepers: selected.map(getPlayer).filter(player => player.group === 'Goalkeepers'),
+    Defenders: selected.map(getPlayer).filter(player => player.group === 'Defenders'),
+    Midfielders: selected.map(getPlayer).filter(player => player.group === 'Midfielders'),
+    Forwards: selected.map(getPlayer).filter(player => player.group === 'Forwards')
+  };
+  const lines = [buckets.Forwards, buckets.Midfielders, buckets.Defenders, buckets.Goalkeepers];
+  const labels = ['Forwards', 'Midfielders', 'Defenders', 'Goalkeeper'];
   pitch.innerHTML = '';
   lines.forEach((line, idx) => {
     const row = document.createElement('div');
@@ -241,7 +279,7 @@ function renderPitch(selected) {
       line.forEach(player => {
         const chip = document.createElement('span');
         chip.className = 'xi-chip';
-        chip.textContent = player;
+        chip.textContent = `${player.name} (${positionShort(player.position)})`;
         row.appendChild(chip);
       });
     }
@@ -249,9 +287,18 @@ function renderPitch(selected) {
   });
 }
 
+function positionShort(position = '') {
+  if (position.includes('Goalkeeper')) return 'GK';
+  if (position.includes('back') || position.includes('Back') || position.includes('Centre-back') || position.includes('Full-back')) return 'DEF';
+  if (position.includes('midfielder') || position.includes('Midfielder')) return 'MID';
+  if (position.includes('winger') || position.includes('Forward') || position.includes('Centre-forward')) return 'FWD';
+  return 'MID';
+}
+
 function updateXiShare(selected) {
   const url = encodeURIComponent(window.location.href);
-  const text = selected.length ? `My England XI: ${selected.join(', ')}.` : 'Choose your England XI on Three Lions Countdown.';
+  const getPlayer = name => (config.players || []).find(player => player.name === name) || { name, position: '' };
+  const text = selected.length ? `My England XI: ${selected.map(name => playerLabel(getPlayer(name))).join(', ')}.` : 'Choose your England XI on Three Lions Countdown.';
   const encoded = encodeURIComponent(text);
   const fb = document.getElementById('xiFacebook');
   const wa = document.getElementById('xiWhatsapp');

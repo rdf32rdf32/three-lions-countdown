@@ -59,8 +59,36 @@ window.SITE_CONFIG = {
     }
   ],
   players: [
-    "Jordan Pickford", "Aaron Ramsdale", "Kyle Walker", "John Stones", "Marc Guehi", "Ezri Konsa", "Luke Shaw", "Kieran Trippier", "Declan Rice", "Jude Bellingham", "Phil Foden", "Bukayo Saka", "Cole Palmer", "Kobbie Mainoo", "Conor Gallagher", "Trent Alexander-Arnold", "Harry Kane", "Ollie Watkins", "Ivan Toney", "Anthony Gordon", "Eberechi Eze", "Jarrod Bowen"
+    { name: "Jordan Pickford", position: "Goalkeeper", group: "Goalkeepers", club: "Everton" },
+    { name: "Dean Henderson", position: "Goalkeeper", group: "Goalkeepers", club: "Crystal Palace" },
+    { name: "James Trafford", position: "Goalkeeper", group: "Goalkeepers", club: "Manchester City" },
+
+    { name: "Dan Burn", position: "Left-back / centre-back", group: "Defenders", club: "Newcastle United" },
+    { name: "Trevoh Chalobah", position: "Centre-back", group: "Defenders", club: "Chelsea" },
+    { name: "Marc Guéhi", position: "Centre-back", group: "Defenders", club: "Manchester City" },
+    { name: "Reece James", position: "Right-back", group: "Defenders", club: "Chelsea" },
+    { name: "Ezri Konsa", position: "Centre-back", group: "Defenders", club: "Aston Villa" },
+    { name: "Jarell Quansah", position: "Centre-back / right-back", group: "Defenders", club: "Bayer Leverkusen" },
+    { name: "Djed Spence", position: "Full-back", group: "Defenders", club: "Tottenham Hotspur" },
+    { name: "John Stones", position: "Centre-back", group: "Defenders", club: "Manchester City" },
+
+    { name: "Elliot Anderson", position: "Central midfielder", group: "Midfielders", club: "Nottingham Forest" },
+    { name: "Jude Bellingham", position: "Attacking midfielder", group: "Midfielders", club: "Real Madrid" },
+    { name: "Eberechi Eze", position: "Attacking midfielder / winger", group: "Midfielders", club: "Arsenal" },
+    { name: "Jordan Henderson", position: "Central midfielder", group: "Midfielders", club: "Brentford" },
+    { name: "Kobbie Mainoo", position: "Central midfielder", group: "Midfielders", club: "Manchester United" },
+    { name: "Nico O'Reilly", position: "Left-back / midfielder", group: "Midfielders", club: "Manchester City" },
+    { name: "Declan Rice", position: "Defensive midfielder", group: "Midfielders", club: "Arsenal" },
+    { name: "Morgan Rogers", position: "Attacking midfielder", group: "Midfielders", club: "Aston Villa" },
+
+    { name: "Anthony Gordon", position: "Left winger", group: "Forwards", club: "Barcelona" },
+    { name: "Harry Kane", position: "Centre-forward", group: "Forwards", club: "Bayern Munich" },
+    { name: "Noni Madueke", position: "Right winger", group: "Forwards", club: "Arsenal" },
+    { name: "Marcus Rashford", position: "Forward / left winger", group: "Forwards", club: "Barcelona, on loan from Manchester United" },
+    { name: "Bukayo Saka", position: "Right winger", group: "Forwards", club: "Arsenal" },
+    { name: "Ivan Toney", position: "Centre-forward", group: "Forwards", club: "Al-Ahli" },
+    { name: "Ollie Watkins", position: "Centre-forward", group: "Forwards", club: "Aston Villa" }
   ],
-  firstScorers: ["Harry Kane", "Bukayo Saka", "Jude Bellingham", "Phil Foden", "Cole Palmer", "Ollie Watkins", "Declan Rice", "Own goal"]
+  firstScorers: ["Harry Kane", "Bukayo Saka", "Jude Bellingham", "Marcus Rashford", "Anthony Gordon", "Noni Madueke", "Ollie Watkins", "Ivan Toney", "Eberechi Eze", "Morgan Rogers", "Declan Rice", "Own goal"]
 
 };

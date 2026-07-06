@@ -11,11 +11,10 @@ A lightweight GitHub Pages England supporters' countdown site.
 - Random England fact
 - Did You Know ticker
 - Quiz of the day
-- Restored fan score predictor
+- Restored fan improved score predictor
 - Restored Choose your England XI tool
 - Facebook, WhatsApp, email and copy-link sharing
 - Lightweight cookie notice
-- No X sharing
 
 ## How to publish on GitHub Pages
 
@@ -27,3 +26,6 @@ A lightweight GitHub Pages England supporters' countdown site.
 ## Edit match details
 
 Update `config.js` to change the match, venue, kick-off time, facts, quiz questions or player list.
+
+
+Latest update: predictor moved higher on the page; England XI picker now uses the official England World Cup squad with player positions and clubs.
