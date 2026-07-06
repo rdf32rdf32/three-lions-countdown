@@ -2,55 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Three Lions Countdown | England Men's World Cup Hub</title>
-  <meta name="description" content="England men's World Cup match centre with countdown, road to the final, quiz and score predictor." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Three Lions Countdown | England Men’s World Cup Match Centre</title>
+  <meta name="description" content="A fast England men’s World Cup match centre with countdown, road to the final, quiz, score predictor and official highlights." />
+  <meta name="theme-color" content="#07152f" />
+  <meta property="og:title" content="Three Lions Countdown" />
+  <meta property="og:description" content="England men’s World Cup countdown, road to the final, quiz, score predictor and highlights." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="loader" id="loader"><div><b>🦁 Three Lions Countdown</b><span>Loading matchday...</span></div></div>
-  <header class="hero">
-    <nav class="topbar"><div class="brand">🦁 Three Lions Countdown</div><div class="pill">England men's World Cup</div></nav>
-    <div class="hero-grid">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="loader" id="loader" aria-hidden="true"><div><b>🦁 Three Lions Countdown</b><span>Loading matchday...</span></div></div>
+
+  <header class="hero" id="top">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="#top">🦁 <span>Three Lions Countdown</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#road">Road</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#predictor">Predictor</a>
+        <a href="#highlights">Highlights</a>
+      </div>
+    </nav>
+    <div class="hero-grid reveal">
       <section class="hero-copy">
-        <p class="eyebrow">Quarter-final countdown</p>
-        <h1>England v Norway</h1>
+        <p class="eyebrow" id="heroStage">Quarter-final countdown</p>
+        <h1 id="heroMatch">England v Norway</h1>
         <p class="motto">Every match. Every goal. Every step to the World Cup Final.</p>
-        <p class="lead">A focused England men’s World Cup match centre with a tough quiz, route to the final and score predictor.</p>
-        <div class="meta-row"><span>⚽ Quarter-final</span><span>📅 11 July 2026</span><span>🏟️ Miami</span></div>
+        <p class="lead">A focused England men’s World Cup match centre with a tough quiz, route to the final, score predictor and latest highlights.</p>
+        <div class="meta-row" aria-label="Match information">
+          <span id="metaCompetition">⚽ Quarter-final</span>
+          <span id="metaDate">📅 11 July 2026</span>
+          <span id="metaVenue">🏟️ Miami</span>
+        </div>
       </section>
-      <aside class="countdown-card"><div class="countdown" id="countdown"><span>--</span><span>--</span><span>--</span><span>--</span></div><div class="labels"><b>days</b><b>hours</b><b>mins</b><b>secs</b></div><p id="kickoffLocal">Kick-off time loading...</p></aside>
+      <aside class="countdown-card" aria-label="Countdown to kick-off">
+        <div class="countdown" id="countdown"><span>--</span><span>--</span><span>--</span><span>--</span></div>
+        <div class="labels"><b>days</b><b>hours</b><b>mins</b><b>secs</b></div>
+        <p id="kickoffLocal">Kick-off time loading...</p>
+      </aside>
     </div>
   </header>
 
-  <main>
-    <section class="dashboard" aria-label="World Cup dashboard">
+  <main id="main">
+    <section class="dashboard reveal" aria-label="World Cup dashboard">
       <article><span>⏳</span><b>Countdown</b><p id="dashCountdown">Loading...</p></article>
-      <article><span>🏆</span><b>Next match</b><p>England v Norway</p></article>
-      <article><span>🛣️</span><b>Progress</b><p>Quarter-final stage</p></article>
+      <article><span>🏆</span><b>Next match</b><p id="dashMatch">England v Norway</p></article>
+      <article><span>🛣️</span><b>Progress</b><p id="dashProgress">Quarter-final stage</p></article>
     </section>
 
-    <section class="card road" id="road">
-      <div class="section-head"><p class="eyebrow">Tournament path</p><h2>England's Road to the Final</h2><p>Follow England’s men through the World Cup knockout route.</p></div>
-      <div class="journey">
-        <div class="done"><b>Group Stage</b><span>Completed</span></div>
-        <div class="done"><b>Round of 32</b><span>England 2-1 DR Congo</span></div>
-        <div class="done"><b>Round of 16</b><span>England 3-2 Mexico</span></div>
-        <div class="live"><b>Quarter-final</b><span>England v Norway</span><small>Miami | 11 July</small></div>
-        <div><b>Semi-final</b><span>Winner advances</span><small>Atlanta Stadium | 15 July</small></div>
-        <div><b>Final</b><span>World Cup Final</span><small>New York New Jersey Stadium / MetLife Stadium | 19 July</small></div>
-      </div>
+    <section class="card road reveal" id="road">
+      <div class="section-head"><p class="eyebrow">Tournament path</p><h2>England’s Road to the Final</h2><p>Follow England’s men through the World Cup knockout route.</p></div>
+      <div class="journey" id="journey"></div>
     </section>
 
-    <section class="card quiz" id="quiz">
+    <section class="card quiz reveal" id="quiz">
       <div class="section-head"><p class="eyebrow">World Cup quiz</p><h2>Three tough England questions</h2><p>Men’s World Cup only. Get all three right for a big congratulations.</p></div>
-      <div id="quizContainer" class="quiz-list"></div>
+      <div id="quizContainer" class="quiz-list" aria-live="polite"></div>
       <div class="button-row"><button id="checkQuiz">Check answers</button><button id="newQuiz" class="ghost">Try 3 new questions</button></div>
-      <div id="quizResult" class="result"></div>
+      <div id="quizResult" class="result" role="status"></div>
     </section>
 
-    <section class="card predictor" id="predictor">
+    <section class="card predictor reveal" id="predictor">
       <div class="section-head"><p class="eyebrow">Match prediction</p><h2>Score Predictor</h2><p>Pick any score and the first England goalscorer.</p></div>
       <div class="predictor-grid">
         <label>England goals<input id="engScore" type="number" min="0" max="20" value="2" inputmode="numeric"></label>
@@ -61,23 +78,23 @@
       <div class="summary" id="predictionSummary">Make your prediction above.</div>
     </section>
 
-    <section class="card facts"><div class="section-head"><p class="eyebrow">Did you know?</p><h2>England World Cup Fact</h2></div><p id="factText"></p></section>
+    <section class="card facts reveal" id="fact"><div class="section-head"><p class="eyebrow">Did you know?</p><h2>England World Cup Fact</h2></div><p id="factText"></p><button id="newFact" class="ghost small-btn">Show another fact</button></section>
 
-    <section class="card highlights" id="highlights">
-      <div class="section-head"><p class="eyebrow">Latest highlights</p><h2>England v Mexico 3-2</h2><p>Highlights from 6 July 2026.</p></div>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/dg4-V0LTaN0?si=3pcZ11-_SsA5wwm7" title="Highlights of England v Mexico 3-2, 6 July 2026" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
+    <section class="card highlights reveal" id="highlights">
+      <div class="section-head"><p class="eyebrow">Latest highlights</p><h2 id="highlightTitle">England v Mexico 3-2</h2><p id="highlightSubtitle">Highlights from 6 July 2026.</p></div>
+      <div class="video-wrap" id="videoWrap"></div>
     </section>
 
-    <section class="card links"><div class="section-head"><p class="eyebrow">Follow the match</p><h2>Useful links</h2></div><div class="cta-row"><a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC Sport England</a><a class="secondary" href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore</a><a class="secondary" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">FIFA World Cup</a></div></section>
+    <section class="card links reveal"><div class="section-head"><p class="eyebrow">Follow the match</p><h2>Useful links</h2></div><div class="cta-row"><a id="bbcLink" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC Sport England</a><a id="flashscoreLink" class="secondary" href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore</a><a id="fifaLink" class="secondary" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">FIFA World Cup</a></div></section>
   </main>
 
-  <footer><p>Unofficial England supporters' site. Built for GitHub Pages.</p></footer>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+  <footer><p>Unofficial England supporters’ site. Built for GitHub Pages. <span id="versionText">Version 1.0</span></p></footer>
   <div class="celebration" id="celebration"><div class="celebration-card"><div class="big">🏆</div><h2>CONGRATULATIONS!</h2><p>You got all 3 England men’s World Cup questions correct.</p><button id="closeCelebration">Brilliant</button></div></div>
   <div class="cookie" id="cookie"><span>This site uses local storage to remember your prediction and cookie choice.</span><button id="acceptCookie">OK</button></div>
+  <script src="config.js"></script>
   <script src="quiz-data.js"></script>
   <script src="content-data.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
