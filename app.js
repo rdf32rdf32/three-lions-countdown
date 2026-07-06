@@ -26,7 +26,7 @@ function init(){
   applyConfig();
   fillScorers();
   tick(); setInterval(tick, 1000);
-  renderFact(); initQuiz(); initPrediction(); initCookie(); initUI(); runSelfHeal();
+  renderFact(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
@@ -113,4 +113,53 @@ function initUI(){
 function runSelfHeal(){
   if(!$('quizContainer')?.children.length) initQuiz();
   if(!$('factText')?.textContent) renderFact();
+}
+
+
+function initPoll(){
+  const box = $('pollOptions'), results = $('pollResults');
+  if(!box || !results) return;
+  const choices = ['Quarter-final','Semi-final','Runner-up','World Cup winners'];
+  const fallback = {'Quarter-final':2,'Semi-final':5,'Runner-up':4,'World Cup winners':9};
+  let counts = safeStoreGet('eng_wc_poll_counts', fallback) || fallback;
+  choices.forEach(c => { if(typeof counts[c] !== 'number') counts[c] = fallback[c] || 0; });
+  const voted = safeStoreGet('eng_wc_poll_vote', null);
+  box.querySelectorAll('.poll-option').forEach(btn => {
+    btn.classList.toggle('selected', voted === btn.dataset.choice);
+    btn.addEventListener('click', () => {
+      const choice = btn.dataset.choice;
+      const previous = safeStoreGet('eng_wc_poll_vote', null);
+      if(previous && counts[previous] > 0) counts[previous] -= 1;
+      counts[choice] = (counts[choice] || 0) + 1;
+      safeStoreSet('eng_wc_poll_vote', choice);
+      safeStoreSet('eng_wc_poll_counts', counts);
+      box.querySelectorAll('.poll-option').forEach(b => b.classList.toggle('selected', b.dataset.choice === choice));
+      renderPoll(counts, choice);
+    });
+  });
+  renderPoll(counts, voted);
+}
+function renderPoll(counts, voted){
+  const results = $('pollResults'); if(!results) return;
+  const choices = ['Quarter-final','Semi-final','Runner-up','World Cup winners'];
+  const total = choices.reduce((sum,c)=>sum+(counts[c]||0),0) || 1;
+  results.innerHTML = choices.map(c => {
+    const pct = Math.round(((counts[c]||0) / total) * 100);
+    return `<div class="poll-row"><span>${esc(c)}</span><div class="poll-bar" aria-label="${esc(c)} ${pct}%"><div class="poll-fill" style="width:${pct}%"></div></div><span>${pct}%</span></div>`;
+  }).join('') + `<p class="poll-note">${voted ? 'Thanks for voting: '+esc(voted)+'.' : 'Make your pick to add your vote.'}</p>`;
+}
+function initConfidence(){
+  const slider = $('confidenceSlider'), value = $('confidenceValue'), label = $('confidenceLabel');
+  if(!slider || !value || !label) return;
+  const saved = safeStoreGet('eng_wc_confidence', 70);
+  slider.value = saved;
+  const update = () => {
+    const n = Number(slider.value || 0);
+    value.textContent = `${n}%`;
+    label.textContent = n >= 85 ? 'Belief is sky high' : n >= 65 ? 'Strong belief' : n >= 45 ? 'Cautiously optimistic' : n >= 25 ? 'Nervy' : 'Very worried';
+  };
+  slider.addEventListener('input', update);
+  $('saveConfidence')?.addEventListener('click', () => { safeStoreSet('eng_wc_confidence', Number(slider.value)); update(); $('saveConfidence').textContent='Saved'; setTimeout(()=>{$('saveConfidence').textContent='Save confidence';},1200); });
+  $('resetConfidence')?.addEventListener('click', () => { slider.value = 70; safeStoreSet('eng_wc_confidence', 70); update(); });
+  update();
 }

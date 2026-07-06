@@ -1,18 +1,21 @@
 # Three Lions Countdown
 
-Fan-made England World Cup countdown site for GitHub Pages.
+Unofficial England men’s World Cup fan site for GitHub Pages.
 
-## Included in this version
+## Features
 
-- Three-question England Challenge quiz, shown before the predictor
-- Improved fan predictor with score, first scorer and message
-- Choose your England XI using the official 26-player World Cup squad
-- Players shown with shirt numbers and positions
-- Mobile-friendly drag/slide XI picker with tap fallback
-- Road to the Trophy and venue cards
-- BBC England page and Flashscore match-centre external links
-- Custom CSS/SVG graphics and professional polish
+- Live countdown to England v Norway
+- England’s road to the final with venues
+- Random men’s World Cup quiz questions
+- Mobile-friendly quiz answers with proper wrapping
+- Big congratulations banner for a perfect 3/3 quiz score
+- Score predictor with saved and copied predictions
+- Fan poll: how far will England go?
+- England confidence slider for the Norway match
+- Rotating England World Cup facts
+- Latest highlights and useful links
+- Cookie notice, privacy, cookies and contact pages
 
-## Deploy on GitHub Pages
+## Uploading to GitHub Pages
 
-Upload `index.html`, `styles.css`, `script.js`, `config.js` and this README to the root of your `three-lions-countdown` repository.
+Upload all files and folders from this ZIP to the root of the repository. The `index.html` file should be visible at the top level.

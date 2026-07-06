@@ -26,6 +26,7 @@
       <div class="nav-links" id="navLinks">
         <a href="#road">Road</a>
         <a href="#quiz">Quiz</a>
+        <a href="#fan-poll">Poll</a>
         <a href="#predictor">Predictor</a>
         <a href="#highlights">Highlights</a>
       </div>
@@ -69,6 +70,26 @@
       <div id="quizResult" class="result" role="status"></div>
     </section>
 
+    <section class="card poll-card reveal" id="fan-poll">
+      <div class="section-head"><p class="eyebrow">Fan poll</p><h2>How far will England go?</h2><p>Vote once on this device and see the local fan mood. Lightweight, private and perfect for mobile.</p></div>
+      <div class="poll-options" id="pollOptions" role="group" aria-label="How far will England go poll">
+        <button type="button" class="poll-option" data-choice="Quarter-final">Quarter-final</button>
+        <button type="button" class="poll-option" data-choice="Semi-final">Semi-final</button>
+        <button type="button" class="poll-option" data-choice="Runner-up">Runner-up</button>
+        <button type="button" class="poll-option winner" data-choice="World Cup winners">World Cup winners 🏆</button>
+      </div>
+      <div class="poll-results" id="pollResults" aria-live="polite"></div>
+    </section>
+
+    <section class="card confidence-card reveal" id="confidence">
+      <div class="section-head"><p class="eyebrow">Confidence meter</p><h2>How confident are you England will beat Norway?</h2><p>Slide it, save it and compare your matchday mood.</p></div>
+      <div class="confidence-wrap">
+        <input id="confidenceSlider" type="range" min="0" max="100" value="70" aria-label="England confidence percentage">
+        <div class="confidence-readout"><strong id="confidenceValue">70%</strong><span id="confidenceLabel">Strong belief</span></div>
+      </div>
+      <div class="button-row"><button id="saveConfidence" type="button">Save confidence</button><button id="resetConfidence" type="button" class="ghost">Reset</button></div>
+    </section>
+
     <section class="card predictor reveal" id="predictor">
       <div class="section-head"><p class="eyebrow">Match prediction</p><h2>Score Predictor</h2><p>Pick any score and the first England goalscorer.</p></div>
       <div class="predictor-grid">
@@ -91,7 +112,7 @@
   </main>
 
   <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
-  <footer><p>Unofficial England supporters’ site. Built for GitHub Pages. <span id="versionText">Version 1.0</span></p><p class="footer-links"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="contact.html">Contact</a></p></footer>
+  <footer><p>Built by England supporters, for England supporters. Unofficial England men’s World Cup fan site. <span id="versionText">Version 1.0</span></p><p class="footer-links"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="contact.html">Contact</a></p></footer>
   <div class="celebration" id="celebration"><div class="celebration-card"><div class="big">🏆</div><h2>CONGRATULATIONS!</h2><p>You got all 3 England men’s World Cup questions correct.</p><button id="closeCelebration">Brilliant</button></div></div>
   <div class="cookie" id="cookie"><span>This site uses local storage to remember your prediction and cookie choice.</span><button id="acceptCookie">OK</button></div>
   <script src="config.js"></script>
