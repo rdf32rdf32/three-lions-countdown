@@ -26,12 +26,12 @@
     <nav class="topbar" aria-label="Site navigation">
       <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="crest">3L</span><span>Three Lions Countdown</span></a>
       <div class="nav-actions">
-        <a href="#road">Road</a>
-        <a href="#venues">Venues</a>
-        <a href="#facts">Facts</a>
         <a href="#quiz">Quiz</a>
         <a href="#predictor">Predictor</a>
         <a href="#england-xi">Your XI</a>
+        <a href="#road">Road</a>
+        <a href="#venues">Venues</a>
+        <a href="#facts">Facts</a>
       </div>
     </nav>
 
@@ -50,7 +50,8 @@
         </div>
         <p class="match-meta" id="matchMeta"></p>
         <div class="hero-buttons">
-          <a class="button primary" href="#venues">See venues</a>
+          <a class="button primary" href="#quiz">Play the quiz</a>
+          <a class="button secondary" href="#predictor">Make prediction</a>
           <a class="button secondary" href="https://www.bbc.com/sport/football/teams/england" rel="noopener" target="_blank">Live coverage</a>
         </div>
       </section>
@@ -58,6 +59,23 @@
   </header>
 
   <main id="main">
+    <section class="section quiz-section" id="quiz">
+      <div class="section-heading">
+        <p class="eyebrow dark">England Challenge</p>
+        <h2>Three fresh quiz questions</h2>
+        <p>Three random England questions load each time the site opens. Try another set whenever you like.</p>
+      </div>
+      <div class="quiz-card quiz-challenge">
+        <div id="quizQuestions" class="quiz-question-list"></div>
+        <div class="quiz-actions">
+          <button class="button primary" id="newQuizSet" type="button">Try 3 new questions</button>
+          <p id="quizResult" class="quiz-result" aria-live="polite">Answer all three to see your score.</p>
+        </div>
+      </div>
+    </section>
+
+
+
     <section class="section fan-tools feature-tool" id="predictor">
       <div class="section-heading">
         <p class="eyebrow dark">Fan predictor</p>
@@ -164,31 +182,16 @@
       </div>
     </section>
 
-    <section class="section quiz-section" id="quiz">
-      <div class="section-heading">
-        <p class="eyebrow dark">England Challenge</p>
-        <h2>Three fresh quiz questions</h2>
-        <p>Three random England questions load each time the site opens. Try another set whenever you like.</p>
-      </div>
-      <div class="quiz-card quiz-challenge">
-        <div id="quizQuestions" class="quiz-question-list"></div>
-        <div class="quiz-actions">
-          <button class="button primary" id="newQuizSet" type="button">Try 3 new questions</button>
-          <p id="quizResult" class="quiz-result" aria-live="polite">Answer all three to see your score.</p>
-        </div>
-      </div>
-    </section>
-
-
     <section class="section xi-section" id="england-xi">
       <div class="section-heading">
         <p class="eyebrow dark">Choose your England XI</p>
         <h2>Pick your starting team</h2>
-        <p>Select eleven players from England’s World Cup squad. Your XI is saved on your device only.</p>
+        <p>Drag or tap players into their positions from England’s World Cup squad. Your XI is saved on your device only.</p>
       </div>
       <div class="xi-layout">
         <article class="pitch-card" aria-label="Selected England XI">
-          <div class="mini-pitch" id="xiPitch"></div>
+          <div class="mini-pitch formation-pitch" id="xiPitch"></div>
+          <p class="pitch-help">On phones, slide a player chip onto a position. Tap a filled position to remove it.</p>
         </article>
         <article class="squad-card">
           <div class="squad-top">
