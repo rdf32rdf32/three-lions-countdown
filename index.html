@@ -3,168 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Three Lions Countdown | England v Norway</title>
-  <meta name="description" content="England supporter hub with countdown, quiz, Pick XI builder, road to the final and match links." />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <title>Three Lions Countdown | England Men's World Cup Hub</title>
+  <meta name="description" content="England men's World Cup match centre with countdown, road to the final, quiz, score predictor, records, legends and host cities." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="background-lights" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Three Lions Countdown home"><span class="brand-badge">ENG</span><span>Three Lions Countdown</span></a>
-    <nav aria-label="Main navigation">
-      <a href="#quiz">Quiz</a>
-      <a href="#predictor">Predictor</a>
-      <a href="#pick-xi">Pick XI</a>
-      <a href="#road">Road</a>
-      <a href="#links">Links</a>
-    </nav>
+  <div class="loader" id="loader"><div><b>🦁 Three Lions Countdown</b><span>Loading matchday...</span></div></div>
+  <header class="hero">
+    <nav class="topbar"><div class="brand">🦁 Three Lions Countdown</div><div class="pill">England men's World Cup</div></nav>
+    <div class="hero-grid">
+      <section class="hero-copy">
+        <p class="eyebrow">Quarter-final countdown</p>
+        <h1>England v Norway</h1>
+        <p class="motto">Every match. Every goal. Every step to the World Cup Final.</p>
+        <p class="lead">A focused England men’s World Cup match centre with a tough quiz, route to the final, score predictor and tournament history.</p>
+        <div class="meta-row"><span>⚽ Quarter-final</span><span>📅 11 July 2026</span><span>🏟️ Miami</span></div>
+        <div class="cta-row"><a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England</a><a class="secondary" href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore</a><a class="secondary" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">FIFA</a></div>
+      </section>
+      <aside class="countdown-card"><div class="countdown" id="countdown"><span>--</span><span>--</span><span>--</span><span>--</span></div><div class="labels"><b>days</b><b>hours</b><b>mins</b><b>secs</b></div><p id="kickoffLocal">Kick-off time loading...</p></aside>
+    </div>
   </header>
 
-  <main id="main">
-    <section id="top" class="hero card">
-      <div class="hero-copy">
-        <p class="eyebrow">England v Norway</p>
-        <h1>Matchday fan hub</h1>
-        <p class="hero-text">Countdown, match predictor, quiz, Pick XI builder and road to the final in one clean supporter page.</p>
-        <div class="countdown" aria-label="Countdown to kick-off" aria-live="polite">
-          <div><strong id="days">--</strong><span>days</span></div>
-          <div><strong id="hours">--</strong><span>hours</span></div>
-          <div><strong id="minutes">--</strong><span>mins</span></div>
-          <div><strong id="seconds">--</strong><span>secs</span></div>
-        </div>
-        <div class="hero-actions">
-          <a class="button primary" href="#pick-xi">Build your XI</a>
-          <a class="button ghost" href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England page</a>
-        </div>
-      </div>
-      <aside class="match-card" aria-label="Match details">
-        <div class="teams">
-          <div class="crest">ENG</div>
-          <div class="versus">v</div>
-          <div class="crest alt">NOR</div>
-        </div>
-        <p><strong>Venue:</strong> Miami</p>
-        <p><strong>Kick-off:</strong> <span id="localKickoff">loading local time…</span></p>
-        <p class="mini-note">Tip: the site works as static files on GitHub Pages.</p>
-      </aside>
+  <main>
+    <section class="dashboard" aria-label="World Cup dashboard">
+      <article><span>⏳</span><b>Countdown</b><p id="dashCountdown">Loading...</p></article>
+      <article><span>🏆</span><b>Next match</b><p>England v Norway</p></article>
+      <article><span>🌤️</span><b>Weather</b><p>Check matchday forecast before kick-off.</p></article>
+      <article><span>🛣️</span><b>Progress</b><p>Quarter-final stage</p></article>
     </section>
 
-    <section id="quiz" class="card">
-      <div class="section-heading">
-        <p class="eyebrow">Fresh each visit</p>
-        <h2>England quiz</h2>
-        <p>Three tougher questions each time, pulled from a 250-question England football bank.</p>
-      </div>
-      <div id="quizQuestions" class="quiz-grid"></div>
-      <div class="quiz-footer">
-        <strong id="quizScore">Score: 0/0</strong>
-        <button class="button secondary" id="newQuizBtn" type="button">Try 3 new questions</button>
+    <section class="card road" id="road">
+      <div class="section-head"><p class="eyebrow">Tournament path</p><h2>England's Road to the Final</h2><p>Follow England’s men through the World Cup knockout route.</p></div>
+      <div class="journey">
+        <div class="done"><b>Group Stage</b><span>Completed</span></div>
+        <div class="done"><b>Round of 32</b><span>England 2-1 DR Congo</span></div>
+        <div class="done"><b>Round of 16</b><span>England 3-2 Mexico</span></div>
+        <div class="live"><b>Quarter-final</b><span>England v Norway</span><small>Miami | 11 July</small></div>
+        <div><b>Semi-final</b><span>Winner advances</span><small>Atlanta Stadium | 15 July</small></div>
+        <div><b>Final</b><span>World Cup Final</span><small>New York New Jersey Stadium / MetLife Stadium | 19 July</small></div>
       </div>
     </section>
 
-    <section id="predictor" class="card predictor-card match-predictor-card">
-      <div class="section-heading">
-        <p class="eyebrow">Match predictor</p>
-        <h2>Predict the score</h2>
-        <p>This is separate from the Pick XI builder. Choose the correct score and England’s first scorer.</p>
-      </div>
-
-      <div class="match-predictor-layout">
-        <div class="score-panel">
-          <h3>Correct score</h3>
-          <div id="scoreButtons" class="score-grid" aria-label="Choose correct score"></div>
-        </div>
-
-        <div class="scorer-panel">
-          <h3>First England scorer</h3>
-          <label class="select-label" for="firstScorerSelect">Choose a player</label>
-          <select id="firstScorerSelect"></select>
-          <div class="predictor-actions">
-            <button class="button primary" id="savePredictionBtn" type="button">Save prediction</button>
-            <button class="button secondary" id="resetPredictionBtn" type="button">Reset</button>
-          </div>
-          <p id="predictionStatus" class="prediction-status" aria-live="polite">Make your match prediction.</p>
-        </div>
-      </div>
+    <section class="card quiz" id="quiz">
+      <div class="section-head"><p class="eyebrow">World Cup quiz</p><h2>Three tough England questions</h2><p>Men’s World Cup only. Get all three right for a big congratulations.</p></div>
+      <div id="quizContainer" class="quiz-list"></div>
+      <div class="button-row"><button id="checkQuiz">Check answers</button><button id="newQuiz" class="ghost">Try 3 new questions</button></div>
+      <div id="quizResult" class="result"></div>
     </section>
 
-    <section id="pick-xi" class="card xi-card">
-      <div class="section-heading">
-        <p class="eyebrow">Works on phones and desktop</p>
-        <h2>Pick your England XI</h2>
-        <p><strong>Desktop:</strong> drag a player to a shirt. <strong>Mobile:</strong> tap a player, then tap a shirt. The player list is always visible.</p>
+    <section class="card predictor" id="predictor">
+      <div class="section-head"><p class="eyebrow">Match prediction</p><h2>Score Predictor</h2><p>Pick any score and the first England goalscorer.</p></div>
+      <div class="predictor-grid">
+        <label>England goals<input id="engScore" type="number" min="0" max="20" value="2" inputmode="numeric"></label>
+        <label>Norway goals<input id="norScore" type="number" min="0" max="20" value="1" inputmode="numeric"></label>
+        <label>First England scorer<select id="firstScorer"></select></label>
       </div>
-
-      <div class="xi-toolbar">
-        <label for="formationSelect">Formation</label>
-        <select id="formationSelect" aria-label="Choose formation">
-          <option value="433">4-3-3</option>
-          <option value="4231">4-2-3-1</option>
-          <option value="352">3-5-2</option>
-        </select>
-        <button class="button secondary" id="saveXiBtn" type="button">Save XI</button>
-        <button class="button secondary" id="resetXiBtn" type="button">Reset XI</button>
-      </div>
-
-      <div class="xi-layout">
-        <div class="pitch-panel">
-          <div id="pitch" class="pitch" aria-label="Football pitch with selectable positions"></div>
-          <p id="xiStatus" class="xi-status" aria-live="polite">Choose a player, then choose a shirt.</p>
-        </div>
-
-        <aside class="squad-panel" aria-label="England player list">
-          <div class="squad-head">
-            <div>
-              <h3>Player list</h3>
-              <span id="selectedHint">Tap or drag a player</span>
-            </div>
-            <button id="clearSelectedBtn" class="text-button" type="button">Clear selection</button>
-          </div>
-          <div class="squad-filter" role="group" aria-label="Filter players">
-            <button class="chip active" data-filter="all" type="button">All</button>
-            <button class="chip" data-filter="GK" type="button">GK</button>
-            <button class="chip" data-filter="DEF" type="button">DEF</button>
-            <button class="chip" data-filter="MID" type="button">MID</button>
-            <button class="chip" data-filter="FWD" type="button">FWD</button>
-          </div>
-          <div id="playerList" class="player-list"></div>
-        </aside>
-      </div>
+      <div class="button-row"><button id="savePrediction">Save prediction</button><button id="copyPrediction" class="ghost">Copy prediction</button></div>
+      <div class="summary" id="predictionSummary">Make your prediction above.</div>
     </section>
 
-    <section id="road" class="card road-card">
-      <div class="section-heading">
-        <p class="eyebrow">Tournament path</p>
-        <h2>Road to the final</h2>
-      </div>
-      <div class="road-map">
-        <div><strong>Quarter-final</strong><span>England v Norway</span><small>Miami</small></div>
-        <div><strong>Semi-final</strong><span>Winner advances</span><small>Venue TBC</small></div>
-        <div><strong>Final</strong><span>One more step</span><small>Venue TBC</small></div>
-      </div>
-    </section>
+    <section class="card on-this-day"><div class="section-head"><p class="eyebrow">Daily moment</p><h2>On This Day</h2></div><p id="onThisDay"></p></section>
 
-    <section id="links" class="card links-card">
-      <div class="section-heading">
-        <p class="eyebrow">External links</p>
-        <h2>Follow the match</h2>
-      </div>
-      <div class="link-grid">
-        <a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC England coverage</a>
-        <a href="https://www.flashscore.com/football/england/" target="_blank" rel="noopener">Flashscore England</a>
-      </div>
-    </section>
+    <section class="card legend"><div class="section-head"><p class="eyebrow">England greats</p><h2>World Cup Legend</h2></div><div id="legendCard" class="legend-card"></div></section>
+
+    <section class="card records"><div class="section-head"><p class="eyebrow">Tournament records</p><h2>England World Cup Records</h2></div><div id="recordsGrid" class="records-grid"></div></section>
+
+    <section class="card facts"><div class="section-head"><p class="eyebrow">Did you know?</p><h2>England World Cup Fact</h2></div><p id="factText"></p></section>
+
+    <section class="card hosts"><div class="section-head"><p class="eyebrow">2026 venues</p><h2>World Cup Host Cities</h2></div><div id="hostGrid" class="host-grid"></div></section>
+
+    <section class="card timeline"><div class="section-head"><p class="eyebrow">History</p><h2>England at the World Cup</h2></div><div id="timeline" class="timeline-list"></div></section>
+
+    <section class="card links"><div class="section-head"><p class="eyebrow">Follow the match</p><h2>Useful links</h2></div><div class="cta-row"><a href="https://www.bbc.com/sport/football/teams/england" target="_blank" rel="noopener">BBC Sport England</a><a class="secondary" href="https://www.flashscore.com/football/" target="_blank" rel="noopener">Flashscore</a><a class="secondary" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">FIFA World Cup</a></div></section>
   </main>
 
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie notice">
-    <p>This fan page only uses local browser storage to remember your XI and quiz score. No tracking cookies.</p>
-    <button class="button primary" id="acceptCookiesBtn" type="button">OK</button>
-  </div>
-
+  <footer><p>Unofficial England supporters' site. Built for GitHub Pages.</p></footer>
+  <div class="celebration" id="celebration"><div class="celebration-card"><div class="big">🏆</div><h2>CONGRATULATIONS!</h2><p>You got all 3 England men’s World Cup questions correct.</p><button id="closeCelebration">Brilliant</button></div></div>
+  <div class="cookie" id="cookie"><span>This site uses local storage to remember your prediction and cookie choice.</span><button id="acceptCookie">OK</button></div>
   <script src="quiz-data.js"></script>
+  <script src="content-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
