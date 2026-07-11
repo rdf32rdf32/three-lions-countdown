@@ -27,7 +27,7 @@ function init(){
   applyConfig();
   fillScorers();
   tick(); setInterval(tick, 1000);
-  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); renderFixtures(); renderBBCHeadlines(); loadWeather(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
+  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); renderFixtures(); loadWeather(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
@@ -53,7 +53,7 @@ function applyConfig(){
   if($('highlightTitle')) $('highlightTitle').textContent = h.title || 'Latest match highlights';
   if($('highlightSubtitle')) $('highlightSubtitle').textContent = h.subtitle || '';
   if($('videoWrap') && h.youtubeEmbed){ $('videoWrap').innerHTML = `<iframe src="${esc(h.youtubeEmbed)}" title="${esc(h.title || 'England highlights')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`; }
-  if(m.links){ if($('bbcLink')) $('bbcLink').href=m.links.bbc || $('bbcLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
+  if(m.links){ if($('englandLink')) $('englandLink').href=m.links.england || $('englandLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
   const ls=m.lineupStatus==='confirmed'?'Confirmed XI':'Predicted XI'; if($('lineupBadge')){ $('lineupBadge').textContent=ls; $('lineupBadge').className='lineup-badge '+(m.lineupStatus==='confirmed'?'confirmed':'predicted'); } if($('lineupUpdated')) $('lineupUpdated').textContent=m.lineupUpdated||'Check official team channels close to kick-off.';
   if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'}`;
 }
@@ -227,11 +227,6 @@ function renderFixtures(){
   const fixtures=Array.isArray(match().nextFixtures)?match().nextFixtures:[];
   box.innerHTML=fixtures.length?fixtures.map(f=>`<article class="fixture-item"><div><b>${esc(f.opponent)}</b><span>${esc(f.competition)}</span></div><div><strong>${esc(f.date)}</strong><span>${esc(f.venue)}</span>${f.conditional?'<small>Subject to England progressing</small>':''}</div></article>`).join(''):'<p>Future fixtures will appear here when confirmed.</p>';
 }
-function renderBBCHeadlines(){
-  const box=$('bbcHeadlines'); if(!box)return;
-  const items=Array.isArray(match().bbcHeadlines)?match().bbcHeadlines:[];
-  box.innerHTML=items.map(x=>`<a target="_blank" rel="noopener" href="${esc(x.url)}"><span>BBC Sport</span><b>${esc(x.title)}</b><em>Open article hub ↗</em></a>`).join('');
-}
 async function loadWeather(){
   const box=$('weatherPanel'), w=match().weather; if(!box||!w)return;
   const ko=matchDate();
@@ -242,5 +237,5 @@ async function loadWeather(){
     const d=await res.json(), x=d.daily||{}, code=(x.weather_code||[])[0];
     const labels={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Rain',63:'Moderate rain',65:'Heavy rain',80:'Rain showers',95:'Thunderstorms'};
     box.innerHTML=`<div class="weather-main"><strong>${esc(labels[code]||'Forecast available')}</strong><span>${Math.round((x.temperature_2m_max||[])[0])}°C high</span></div><div class="weather-stats"><span>Low <b>${Math.round((x.temperature_2m_min||[])[0])}°C</b></span><span>Rain <b>${Math.round((x.precipitation_probability_max||[])[0])}%</b></span><span>Wind <b>${Math.round((x.wind_speed_10m_max||[])[0])} km/h</b></span></div><small>Forecast for ${esc(w.label||match().venue||'the stadium')}. Weather can change.</small>`;
-  }catch(e){box.innerHTML='<p>Live weather is temporarily unavailable.</p><a class="button-link" target="_blank" rel="noopener" href="https://www.bbc.com/weather">Check BBC Weather</a>';}
+  }catch(e){box.innerHTML='<p>Live weather is temporarily unavailable.</p><a class="button-link" target="_blank" rel="noopener" href="https://www.metoffice.gov.uk/weather/world/miami">Check weather</a>';}
 }

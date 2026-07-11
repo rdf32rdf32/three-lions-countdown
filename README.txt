@@ -5,3 +5,5 @@ Complete GitHub-ready site. Upload every file and folder in this directory to th
 Adds attributed quotes, three-fact player spotlights, a silent full-screen celebration, predicted/confirmed XI states, automatic match status, richer prediction cards, Road to Glory emphasis, quiz streak/best score, accessibility upgrades and removal of obsolete duplicate files.
 
 Loader fix: restored missing interface initialisation functions and added a loader failsafe.
+
+Version 1.6: BBC news panel removed, Useful Links moved to the end, and tournament route map redesigned.

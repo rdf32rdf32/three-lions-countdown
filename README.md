@@ -19,3 +19,5 @@ Unofficial England men’s World Cup fan site for GitHub Pages.
 ## Uploading to GitHub Pages
 
 Upload all files and folders from this ZIP to the root of the repository. The `index.html` file should be visible at the top level.
+
+Version 1.6: BBC news panel removed, Useful Links moved to the end, and tournament route map redesigned.
