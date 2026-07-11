@@ -9,7 +9,8 @@ const FALLBACK_QUIZ = [
   {question:'Who scored twice for England in the 1966 World Cup semi-final?', options:['Bobby Charlton','Geoff Hurst','Roger Hunt','Martin Peters'], answer:0, difficulty:'Legend', explanation:'Bobby Charlton scored both goals in England’s 2-1 win over Portugal.'}
 ];
 const FALLBACK_CONTENT = {
-  scorers: ['Harry Kane','Bukayo Saka','Jude Bellingham','Phil Foden','Cole Palmer','Marcus Rashford','Ollie Watkins','Declan Rice','John Stones','Own goal','No England scorer'],
+  scorers: ['Harry Kane','Bukayo Saka','Jude Bellingham','Declan Rice','John Stones'],
+  squad: [], quotes:['Believe until the final whistle.'], recentForm:['W','W','W','D','W'],
   facts: ['England won the 1966 men’s World Cup at Wembley after extra time against West Germany.','Geoff Hurst remains the only player to score a hat-trick in a men’s World Cup final.','Gary Lineker won the Golden Boot at the 1986 men’s World Cup in Mexico.','England’s first men’s World Cup appearance came in Brazil in 1950.','England’s first World Cup penalty shoot-out win came against Colombia in 2018.']
 };
 function cfg(){ return window.SITE_CONFIG || {}; }
@@ -26,10 +27,12 @@ function init(){
   applyConfig();
   fillScorers();
   tick(); setInterval(tick, 1000);
-  renderFact(); renderTeamNews(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
+  renderFact(); renderTeamNews(); renderMatchdayExtras(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
+  $('newQuote')?.addEventListener('click', renderQuote);
+  $('winConfetti')?.addEventListener('click', confetti);
   $('closeCelebration')?.addEventListener('click', () => $('celebration')?.classList.remove('show'));
   setTimeout(() => $('loader')?.classList.add('hide'), 450);
 }
@@ -72,7 +75,7 @@ function tick(){
   if($('dashCountdown')) $('dashCountdown').textContent = `${d} days ${h}h ${m}m`;
   if($('kickoffLocal')) $('kickoffLocal').textContent = 'Kick-off in your local time: ' + matchDate().toLocaleString([], { dateStyle:'full', timeStyle:'short' });
 }
-function fillScorers(){ const sel=$('firstScorer'); if(!sel) return; sel.innerHTML=''; (getContent().scorers || FALLBACK_CONTENT.scorers).forEach(x => sel.add(new Option(x,x))); }
+function fillScorers(){ const scorers=getContent().scorers || FALLBACK_CONTENT.scorers; const sel=$('firstScorer'); if(sel){ sel.innerHTML=''; scorers.forEach(x => sel.add(new Option(x,x))); } const potm=$('playerOfMatch'); if(potm){ potm.innerHTML=''; (getContent().squad||[]).map(p=>p.name).forEach(n=>potm.add(new Option(n,n))); } }
 function renderFact(){
   const facts = (getContent().facts && getContent().facts.length ? getContent().facts : FALLBACK_CONTENT.facts).filter(Boolean);
   if(!facts.length || !$('factText')) return;
@@ -82,14 +85,14 @@ function renderFact(){
 }
 function initPrediction(){
   let saved=safeStoreGet('eng_wc_prediction', null);
-  if(saved){ if($('engScore')) $('engScore').value=saved.eng; if($('norScore')) $('norScore').value=saved.nor; if($('firstScorer')) $('firstScorer').value=saved.scorer; }
-  ['engScore','norScore','firstScorer'].forEach(id => $(id)?.addEventListener('input', () => updatePrediction()));
+  if(saved){ if($('engScore')) $('engScore').value=saved.eng; if($('norScore')) $('norScore').value=saved.nor; if($('firstScorer')) $('firstScorer').value=saved.scorer; if($('playerOfMatch')) $('playerOfMatch').value=saved.potm||$('playerOfMatch').value; if($('engCorners')) $('engCorners').value=saved.corners??6; if($('cleanSheet')) $('cleanSheet').value=saved.cleanSheet||'No'; }
+  ['engScore','norScore','firstScorer','playerOfMatch','engCorners','cleanSheet'].forEach(id => $(id)?.addEventListener('input', () => updatePrediction()));
   $('savePrediction')?.addEventListener('click', () => { safeStoreSet('eng_wc_prediction', getPrediction()); updatePrediction('Saved. '); });
-  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: England ${d.eng}-${d.nor} Norway. First England scorer: ${d.scorer}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
+  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: England ${d.eng}-${d.nor} Norway. First England scorer: ${d.scorer}. Player of the match: ${d.potm}. England corners: ${d.corners}. Clean sheet: ${d.cleanSheet}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
   updatePrediction();
 }
-function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)), nor:Math.max(0,Number($('norScore')?.value||0)), scorer:$('firstScorer')?.value||'No England scorer'}; }
-function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').textContent=`${prefix}You predicted: England ${d.eng}-${d.nor} Norway | First England scorer: ${d.scorer}.`; }
+function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)), nor:Math.max(0,Number($('norScore')?.value||0)), scorer:$('firstScorer')?.value||'', potm:$('playerOfMatch')?.value||'', corners:Math.max(0,Number($('engCorners')?.value||0)), cleanSheet:$('cleanSheet')?.value||'No'}; }
+function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').textContent=`${prefix}You predicted: England ${d.eng}-${d.nor} Norway | First scorer: ${d.scorer} | Player of the match: ${d.potm} | England corners: ${d.corners} | Clean sheet: ${d.cleanSheet}.`; }
 function validQuestion(q){ return q && q.question && Array.isArray(q.options) && q.options.length>=2 && Number.isInteger(q.answer) && q.answer>=0 && q.answer<q.options.length; }
 function initQuiz(){
   const source=getQuiz().filter(validQuestion);
@@ -174,3 +177,13 @@ function initConfidence(){
   $('resetConfidence')?.addEventListener('click', () => { slider.value = 70; safeStoreSet('eng_wc_confidence', 70); update(); });
   update();
 }
+
+function renderMatchdayExtras(){
+  const content=getContent();
+  const squad=Array.isArray(content.squad)?content.squad:[];
+  if(squad.length){ const p=squad[Math.floor(Math.random()*squad.length)]; if($('spotlightName')) $('spotlightName').textContent=p.name; if($('spotlightInfo')) $('spotlightInfo').textContent=`${p.position} · ${p.club}`; if($('spotlightInitials')) $('spotlightInitials').textContent=p.name.split(/\s+/).map(v=>v[0]).slice(0,2).join('').toUpperCase(); }
+  const form=Array.isArray(content.recentForm)?content.recentForm:[];
+  if($('recentForm')) $('recentForm').innerHTML=form.map(r=>`<span class="form-badge ${r.toLowerCase()}">${esc(r)}</span>`).join('');
+  renderQuote();
+}
+function renderQuote(){ const q=getContent().quotes||[]; if(q.length&&$('matchQuote')) $('matchQuote').textContent='“'+q[Math.floor(Math.random()*q.length)]+'”'; }

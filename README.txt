@@ -9,3 +9,15 @@ This package keeps the full latest site file set and adds:
 - Footer credit and copyright retained
 
 To edit team news, open config.js and update the teamNews list.
+
+
+VERSION 1.3 CHANGES
+- First goalscorer restricted to the official 26-player England World Cup squad (outfield players only)
+- Removed public config.js editing instruction
+- Player spotlight
+- Recent England form
+- UK, Belgium and Miami kick-off times
+- Player of the Match, corners and clean-sheet predictor fields
+- Rotating matchday quotes
+- England-win confetti button
+- Preserved every original page, graphic and script

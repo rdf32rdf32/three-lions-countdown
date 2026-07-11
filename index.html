@@ -28,6 +28,7 @@
         <a href="#team-news">Team News</a>
         <a href="#quiz">Quiz</a>
         <a href="#fan-poll">Poll</a>
+        <a href="#spotlight">Players</a>
         <a href="#predictor">Predictor</a>
         <a href="#highlights">Highlights</a>
       </div>
@@ -59,13 +60,29 @@
       <article><span>🛣️</span><b>Progress</b><p id="dashProgress">Quarter-final stage</p></article>
     </section>
 
+    <section class="matchday-extras reveal" id="spotlight" aria-label="Matchday extras">
+      <article class="mini-card spotlight-card">
+        <p class="eyebrow">⭐ Player spotlight</p>
+        <div class="spotlight-player"><div class="player-initials" id="spotlightInitials">HK</div><div><h2 id="spotlightName">Harry Kane</h2><p id="spotlightInfo">Captain and centre-forward.</p></div></div>
+      </article>
+      <article class="mini-card">
+        <p class="eyebrow">📈 Recent form</p><h2>England’s last five</h2>
+        <div class="form-row" id="recentForm" aria-label="England recent form"></div>
+        <p class="small-note">Most recent match shown first.</p>
+      </article>
+      <article class="mini-card">
+        <p class="eyebrow">🕒 Kick-off times</p><h2>Match time</h2>
+        <div class="time-list"><span><b>United Kingdom</b>22:00</span><span><b>Belgium</b>23:00</span><span><b>Miami</b>17:00</span></div>
+      </article>
+    </section>
+
     <section class="card road reveal" id="road">
       <div class="section-head"><p class="eyebrow">Tournament path</p><h2>England’s Road to the Final</h2><p>Follow England’s men through the World Cup knockout route.</p></div>
       <div class="journey" id="journey"></div>
     </section>
 
     <section class="card team-news reveal" id="team-news">
-      <div class="section-head"><p class="eyebrow">Latest England Team News</p><h2>Team News</h2><p>Quick matchday notes for England supporters. Update the list in <code>config.js</code> when news changes.</p></div>
+      <div class="section-head"><p class="eyebrow">Latest England Team News</p><h2>Team News</h2><p>Quick matchday notes for England supporters.</p></div>
       <div class="news-grid" id="teamNewsList" aria-live="polite"></div>
       <p class="news-disclaimer">Unofficial fan notes. Check the BBC and official team channels for confirmed line-ups.</p>
     </section>
@@ -103,12 +120,20 @@
         <label>England goals<input id="engScore" type="number" min="0" max="20" value="2" inputmode="numeric"></label>
         <label>Norway goals<input id="norScore" type="number" min="0" max="20" value="1" inputmode="numeric"></label>
         <label>First England scorer<select id="firstScorer"></select></label>
+        <label>Player of the match<select id="playerOfMatch"></select></label>
+        <label>England corners<input id="engCorners" type="number" min="0" max="30" value="6" inputmode="numeric"></label>
+        <label>England clean sheet<select id="cleanSheet"><option value="Yes">Yes</option><option value="No">No</option></select></label>
       </div>
       <div class="button-row"><button id="savePrediction">Save prediction</button><button id="copyPrediction" class="ghost">Copy prediction</button></div>
       <div class="summary" id="predictionSummary">Make your prediction above.</div>
     </section>
 
     <section class="card facts reveal" id="fact"><div class="section-head"><p class="eyebrow">Did you know?</p><h2>England World Cup Fact</h2></div><p id="factText"></p><button id="newFact" class="ghost small-btn">Show another fact</button></section>
+
+    <section class="two-card-row reveal" aria-label="Fan extras">
+      <article class="mini-card quote-card"><p class="eyebrow">💬 Matchday quote</p><blockquote id="matchQuote">Believe until the final whistle.</blockquote><button id="newQuote" class="ghost small-btn">Another quote</button></article>
+      <article class="mini-card celebration-mode"><p class="eyebrow">🎉 Celebration mode</p><h2>England win?</h2><p>Launch a burst of Three Lions confetti.</p><button id="winConfetti">Celebrate an England win</button></article>
+    </section>
 
     <section class="card highlights reveal" id="highlights">
       <div class="section-head"><p class="eyebrow">Latest highlights</p><h2 id="highlightTitle">England v Mexico 3-2</h2><p id="highlightSubtitle">Highlights from 6 July 2026.</p></div>
