@@ -53,7 +53,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main"><section id="matchStatusBanner" class="match-status-banner" aria-live="polite"><b id="matchStatusText">Match day</b><span id="matchStatusDetail">England v Norway</span></section>
     <section class="dashboard reveal" aria-label="World Cup dashboard">
       <article><span>⏳</span><b>Countdown</b><p id="dashCountdown">Loading...</p></article>
       <article><span>🏆</span><b>Next match</b><p id="dashMatch">England v Norway</p></article>
@@ -63,7 +63,7 @@
     <section class="matchday-extras reveal" id="spotlight" aria-label="Matchday extras">
       <article class="mini-card spotlight-card">
         <p class="eyebrow">⭐ Player spotlight</p>
-        <div class="spotlight-player"><div class="player-initials" id="spotlightInitials">HK</div><div><h2 id="spotlightName">Harry Kane</h2><p id="spotlightInfo">Captain and centre-forward.</p></div></div>
+        <div class="spotlight-player"><div class="player-initials" id="spotlightInitials">HK</div><div class="spotlight-copy"><h2 id="spotlightName">Harry Kane</h2><p id="spotlightInfo">Captain and centre-forward.</p><ul id="spotlightFacts" class="spotlight-facts"></ul><button id="nextSpotlight" class="ghost small-btn">Show another player</button></div></div>
       </article>
       <article class="mini-card">
         <p class="eyebrow">📈 Recent form</p><h2>England’s last five</h2>
@@ -82,7 +82,7 @@
     </section>
 
     <section class="card team-news reveal" id="team-news">
-      <div class="section-head"><p class="eyebrow">Latest England Team News</p><h2>Team News</h2><p>Quick matchday notes for England supporters.</p></div>
+      <div class="section-head"><p class="eyebrow">Latest England Team News</p><h2>Team News <span id="lineupBadge" class="lineup-badge predicted">Predicted XI</span></h2><p id="lineupUpdated">Quick matchday notes for England supporters.</p></div>
       <div class="news-grid" id="teamNewsList" aria-live="polite"></div>
       <p class="news-disclaimer">Unofficial fan notes. Check the BBC and official team channels for confirmed line-ups.</p>
     </section>
@@ -91,7 +91,7 @@
       <div class="section-head"><p class="eyebrow">World Cup quiz</p><h2>Three tough England questions</h2><p>Men’s World Cup only. Get all three right for a big congratulations.</p></div>
       <div id="quizContainer" class="quiz-list" aria-live="polite"></div>
       <div class="button-row"><button id="checkQuiz">Check answers</button><button id="newQuiz" class="ghost">Try 3 new questions</button></div>
-      <div id="quizResult" class="result" role="status"></div>
+      <div class="quiz-stats"><span>Current streak: <b id="quizStreak">0</b></span><span>Best score: <b id="quizBest">0/3</b></span></div><div id="quizResult" class="result" role="status"></div>
     </section>
 
     <section class="card poll-card reveal" id="fan-poll">
@@ -125,14 +125,14 @@
         <label>England clean sheet<select id="cleanSheet"><option value="Yes">Yes</option><option value="No">No</option></select></label>
       </div>
       <div class="button-row"><button id="savePrediction">Save prediction</button><button id="copyPrediction" class="ghost">Copy prediction</button></div>
-      <div class="summary" id="predictionSummary">Make your prediction above.</div>
+      <div class="summary prediction-card" id="predictionSummary" aria-live="polite">Make your prediction above.</div>
     </section>
 
     <section class="card facts reveal" id="fact"><div class="section-head"><p class="eyebrow">Did you know?</p><h2>England World Cup Fact</h2></div><p id="factText"></p><button id="newFact" class="ghost small-btn">Show another fact</button></section>
 
     <section class="two-card-row reveal" aria-label="Fan extras">
-      <article class="mini-card quote-card"><p class="eyebrow">💬 Matchday quote</p><blockquote id="matchQuote">Believe until the final whistle.</blockquote><button id="newQuote" class="ghost small-btn">Another quote</button></article>
-      <article class="mini-card celebration-mode"><p class="eyebrow">🎉 Celebration mode</p><h2>England win?</h2><p>Launch a burst of Three Lions confetti.</p><button id="winConfetti">Celebrate an England win</button></article>
+      <article class="mini-card quote-card"><p class="eyebrow">💬 Matchday quote</p><blockquote id="matchQuote">“Football is nothing without fans.”</blockquote><p id="quoteAttribution" class="quote-attribution">— Matt Busby</p><button id="newQuote" class="ghost small-btn">Another quote</button></article>
+      <article class="mini-card celebration-mode"><p class="eyebrow">🎉 Celebration mode</p><h2>England win?</h2><p>Launch a full-screen silent stadium celebration.</p><button id="winConfetti">Celebrate an England win</button></article>
     </section>
 
     <section class="card highlights reveal" id="highlights">
@@ -145,7 +145,7 @@
 
   <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
   <footer><p>Built by Richard Freedman for the fans, including muppets. Unofficial England men’s World Cup fan site. <span id="versionText">Version 1.0</span></p><p class="copyright">© 2026 Richard Freedman. All rights reserved.</p><p class="footer-links"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="contact.html">Contact</a></p></footer>
-  <div class="celebration" id="celebration"><div class="celebration-card"><div class="big">🏆</div><h2>CONGRATULATIONS!</h2><p>You got all 3 England men’s World Cup questions correct.</p><button id="closeCelebration">Brilliant</button></div></div>
+  <div class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebrationTitle"><div class="stadium-lights"></div><div class="flag flag-left">🏴</div><div class="flag flag-right">🏴</div><div class="fireworks" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="celebration-card"><div class="crest-burst">🦁</div><div class="big trophy-rise">🏆</div><h2 id="celebrationTitle">ENGLAND WIN!</h2><p>Three Lions roar on.</p><div class="sparkle-row">✦ ✧ ✦ ✧ ✦</div><button id="closeCelebration">Close celebration</button></div></div>
   <div class="cookie" id="cookie"><span>This site uses local storage to remember your prediction and cookie choice.</span><button id="acceptCookie">OK</button></div>
   <script src="config.js"></script>
   <script src="quiz-data.js"></script>

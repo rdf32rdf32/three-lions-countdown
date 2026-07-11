@@ -1,5 +1,5 @@
 window.SITE_CONFIG = {
-  version: '1.3.0',
+  version: '1.4.0',
   lastUpdated: '11 July 2026',
   match: {
     competition: 'World Cup quarter-final',
@@ -8,6 +8,9 @@ window.SITE_CONFIG = {
     dateISO: '2026-07-11T23:00:00+02:00',
     venue: 'Miami',
     stage: 'Quarter-final',
+    lineupStatus: 'predicted',
+    lineupUpdated: 'Predicted line-up. Check official channels close to kick-off.',
+    finalStatus: '',
     route: [
       { label: 'Group Stage', detail: 'Completed', status: 'done' },
       { label: 'Round of 32', detail: 'England 2-1 DR Congo', status: 'done' },
