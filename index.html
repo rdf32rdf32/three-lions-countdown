@@ -144,6 +144,39 @@
   </main>
 
   <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+    <section class="feature-grid reveal" id="live-info" aria-label="Live match information">
+      <article class="mini-card weather-card">
+        <p class="eyebrow">🌤 Stadium weather</p>
+        <h2 id="weatherTitle">Miami match weather</h2>
+        <div id="weatherPanel" class="weather-panel" aria-live="polite"><p>Loading match-day weather…</p></div>
+      </article>
+      <article class="mini-card fixtures-card">
+        <p class="eyebrow">📅 Next England fixtures</p>
+        <div id="nextFixtures" class="fixtures-list"></div>
+      </article>
+    </section>
+
+    <section class="feature-grid reveal" aria-label="News and tournament map">
+      <article class="mini-card bbc-card">
+        <p class="eyebrow">📰 Latest BBC England news</p>
+        <div id="bbcHeadlines" class="headline-list"></div>
+        <a class="button-link" target="_blank" rel="noopener" href="https://www.bbc.com/sport/football/teams/england">Open BBC England</a>
+      </article>
+      <article class="mini-card map-card" id="tournament-map">
+        <p class="eyebrow">📍 Tournament map</p>
+        <h2>England's route across North America</h2>
+        <svg class="tournament-map" viewBox="0 0 760 360" role="img" aria-label="Stylised tournament map showing England's current match in Miami and possible route to Atlanta and New York New Jersey">
+          <path class="map-land" d="M72 79l117-46 116 33 64 70 86-12 86 38 87 63-35 68-113 27-138-19-112 27-97-48-49-91z"/>
+          <path class="route-line" d="M410 270 Q470 215 520 210 T650 145"/>
+          <g class="map-stop current"><circle cx="410" cy="270" r="13"/><text x="410" y="304">Miami</text></g>
+          <g class="map-stop"><circle cx="520" cy="210" r="11"/><text x="520" y="242">Atlanta</text></g>
+          <g class="map-stop"><circle cx="650" cy="145" r="11"/><text x="650" y="177">New York/New Jersey</text></g>
+          <text class="map-label" x="42" y="338">Current match → possible semi-final → final</text>
+        </svg>
+      </article>
+    </section>
+
   <footer><p>Built by Richard Freedman for the fans, including muppets. Unofficial England men’s World Cup fan site. <span id="versionText">Version 1.0</span></p><p class="copyright">© 2026 Richard Freedman. All rights reserved.</p><p class="footer-links"><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="contact.html">Contact</a></p></footer>
   <div class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebrationTitle"><div class="stadium-lights"></div><div class="flag flag-left">🏴</div><div class="flag flag-right">🏴</div><div class="fireworks" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="celebration-card"><div class="crest-burst">🦁</div><div class="big trophy-rise">🏆</div><h2 id="celebrationTitle">ENGLAND WIN!</h2><p>Three Lions roar on.</p><div class="sparkle-row">✦ ✧ ✦ ✧ ✦</div><button id="closeCelebration">Close celebration</button></div></div>
   <div class="cookie" id="cookie"><span>This site uses local storage to remember your prediction and cookie choice.</span><button id="acceptCookie">OK</button></div>

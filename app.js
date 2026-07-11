@@ -27,7 +27,7 @@ function init(){
   applyConfig();
   fillScorers();
   tick(); setInterval(tick, 1000);
-  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
+  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); renderFixtures(); renderBBCHeadlines(); loadWeather(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
@@ -55,7 +55,7 @@ function applyConfig(){
   if($('videoWrap') && h.youtubeEmbed){ $('videoWrap').innerHTML = `<iframe src="${esc(h.youtubeEmbed)}" title="${esc(h.title || 'England highlights')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`; }
   if(m.links){ if($('bbcLink')) $('bbcLink').href=m.links.bbc || $('bbcLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
   const ls=m.lineupStatus==='confirmed'?'Confirmed XI':'Predicted XI'; if($('lineupBadge')){ $('lineupBadge').textContent=ls; $('lineupBadge').className='lineup-badge '+(m.lineupStatus==='confirmed'?'confirmed':'predicted'); } if($('lineupUpdated')) $('lineupUpdated').textContent=m.lineupUpdated||'Check official team channels close to kick-off.';
-  if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'} · Last updated ${cfg().lastUpdated || 'recently'}`;
+  if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'}`;
 }
 function renderTeamNews(){
   const list = $('teamNewsList');
@@ -218,5 +218,29 @@ function renderSpotlight(){
   const facts=map[p.name]||[`Current England ${p.position.toLowerCase()}.`,`Plays club football for ${p.club}.`,'Selected in the current England squad.'];
   if($('spotlightFacts')) $('spotlightFacts').innerHTML=facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('');
 }
-function renderQuote(){ const qs=getContent().quotes||[]; if(!qs.length)return; const q=qs[Math.floor(Math.random()*qs.length)]; const text=typeof q==='string'?q:q.text, by=typeof q==='string'?'Unknown':q.by; if($('matchQuote')) $('matchQuote').textContent='“'+text+'”'; if($('quoteAttribution')) $('quoteAttribution').textContent='— '+by; }
+function renderQuote(){ const qs=getContent().quotes||[]; if(!qs.length)return; const q=qs[Math.floor(Math.random()*qs.length)]; const text=q.text, by=q.by; if($('matchQuote')) $('matchQuote').textContent='“'+text+'”'; if($('quoteAttribution')) $('quoteAttribution').textContent='— '+by; }
 function renderMatchStatus(){ const m=match(), now=new Date(), ko=matchDate(), end=new Date(ko.getTime()+130*60000); let label='Countdown', detail='Kick-off approaching'; if(m.finalStatus){label='Full time';detail=m.finalStatus;} else if(now.toDateString()===ko.toDateString()&&now<ko){label='Match day';detail=`${m.home} v ${m.away}`;} else if(now>=ko&&now<end){label='Live now';detail=`${m.home} v ${m.away}`;} else if(now>=end){label='Full time';detail=`${m.home} v ${m.away}`;} if($('matchStatusText'))$('matchStatusText').textContent=label; if($('matchStatusDetail'))$('matchStatusDetail').textContent=detail; const b=$('matchStatusBanner'); if(b)b.dataset.status=label.toLowerCase().replace(/\s+/g,'-'); }
+
+
+function renderFixtures(){
+  const box=$('nextFixtures'); if(!box) return;
+  const fixtures=Array.isArray(match().nextFixtures)?match().nextFixtures:[];
+  box.innerHTML=fixtures.length?fixtures.map(f=>`<article class="fixture-item"><div><b>${esc(f.opponent)}</b><span>${esc(f.competition)}</span></div><div><strong>${esc(f.date)}</strong><span>${esc(f.venue)}</span>${f.conditional?'<small>Subject to England progressing</small>':''}</div></article>`).join(''):'<p>Future fixtures will appear here when confirmed.</p>';
+}
+function renderBBCHeadlines(){
+  const box=$('bbcHeadlines'); if(!box)return;
+  const items=Array.isArray(match().bbcHeadlines)?match().bbcHeadlines:[];
+  box.innerHTML=items.map(x=>`<a target="_blank" rel="noopener" href="${esc(x.url)}"><span>BBC Sport</span><b>${esc(x.title)}</b><em>Open article hub ↗</em></a>`).join('');
+}
+async function loadWeather(){
+  const box=$('weatherPanel'), w=match().weather; if(!box||!w)return;
+  const ko=matchDate();
+  const day=ko.toISOString().slice(0,10);
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(w.latitude)}&longitude=${encodeURIComponent(w.longitude)}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&temperature_unit=celsius&wind_speed_unit=kmh&timezone=auto&start_date=${day}&end_date=${day}`;
+    const res=await fetch(url,{cache:'no-store'}); if(!res.ok)throw new Error('weather');
+    const d=await res.json(), x=d.daily||{}, code=(x.weather_code||[])[0];
+    const labels={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Rain',63:'Moderate rain',65:'Heavy rain',80:'Rain showers',95:'Thunderstorms'};
+    box.innerHTML=`<div class="weather-main"><strong>${esc(labels[code]||'Forecast available')}</strong><span>${Math.round((x.temperature_2m_max||[])[0])}°C high</span></div><div class="weather-stats"><span>Low <b>${Math.round((x.temperature_2m_min||[])[0])}°C</b></span><span>Rain <b>${Math.round((x.precipitation_probability_max||[])[0])}%</b></span><span>Wind <b>${Math.round((x.wind_speed_10m_max||[])[0])} km/h</b></span></div><small>Forecast for ${esc(w.label||match().venue||'the stadium')}. Weather can change.</small>`;
+  }catch(e){box.innerHTML='<p>Live weather is temporarily unavailable.</p><a class="button-link" target="_blank" rel="noopener" href="https://www.bbc.com/weather">Check BBC Weather</a>';}
+}

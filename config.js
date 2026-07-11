@@ -1,6 +1,5 @@
 window.SITE_CONFIG = {
-  version: '1.4.0',
-  lastUpdated: '11 July 2026',
+  version: '1.5.0',
   match: {
     competition: 'World Cup quarter-final',
     home: 'England',
@@ -29,6 +28,16 @@ window.SITE_CONFIG = {
       { status: 'green', icon: '🟢', title: 'Bellingham expected to start', text: 'Midfield energy and control remain central to the plan.' },
       { status: 'amber', icon: '🟡', title: 'Saka fitness being monitored', text: 'Final call closer to kick-off.' },
       { status: 'red', icon: '🔴', title: 'Guehi suspended', text: 'Defensive reshuffle likely for Norway.' }
+    ],
+    weather: { latitude: 25.958, longitude: -80.239, label: 'Miami' },
+    nextFixtures: [
+      { opponent:'Argentina or Switzerland', date:'15 July 2026', venue:'Atlanta Stadium', competition:'World Cup semi-final', conditional:true },
+      { opponent:'Final opponent TBC', date:'19 July 2026', venue:'New York New Jersey Stadium', competition:'World Cup final', conditional:true }
+    ],
+    bbcHeadlines: [
+      { title:'Latest England team news, reports and reaction', url:'https://www.bbc.com/sport/football/teams/england' },
+      { title:'World Cup fixtures, results and coverage', url:'https://www.bbc.com/sport/football/world-cup' },
+      { title:'BBC football live coverage', url:'https://www.bbc.com/sport/football' }
     ],
     links: {
       bbc: 'https://www.bbc.com/sport/football/teams/england',

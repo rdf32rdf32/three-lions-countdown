@@ -29,7 +29,19 @@ window.ENGLAND_CONTENT = {
   ],
   scorers: ['Ezri Konsa',"Nico O'Reilly",'John Stones','Marc Guéhi','Trevoh Chalobah','Dan Burn','Reece James','Djed Spence','Jarell Quansah','Declan Rice','Elliot Anderson','Jude Bellingham','Jordan Henderson','Kobbie Mainoo','Morgan Rogers','Bukayo Saka','Harry Kane','Marcus Rashford','Anthony Gordon','Ollie Watkins','Noni Madueke','Eberechi Eze','Ivan Toney'],
   recentForm: ['W','W','W','D','W'],
-  quotes: ['Believe until the final whistle.','One team. One dream. Three Lions.','Play for the badge and sing for the shirt.','Every great run needs one more win.','Ninety minutes can create a lifetime of memories.'],
+  quotes: [
+    {text:'Football is nothing without fans.',by:'Sir Matt Busby'},
+    {text:'Some people think football is a matter of life and death. I assure you, it is much more serious than that.',by:'Bill Shankly'},
+    {text:'The more difficult the victory, the greater the happiness in winning.',by:'Pelé'},
+    {text:'You have to fight to reach your dream. You have to sacrifice and work hard for it.',by:'Lionel Messi'},
+    {text:'Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and love of what you are doing.',by:'Pelé'}
+  ],
+  spotlightFacts: {
+    'Harry Kane':['England captain and all-time leading men’s goalscorer.','Won the Golden Boot at the 2018 World Cup.','Known for finishing, passing range and leadership.'],
+    'Jude Bellingham':['Made his senior England debut as a teenager.','Plays as an attacking or central midfielder.','Known for ball carrying, pressing and late runs into the box.'],
+    'Bukayo Saka':['Scored twice against Iran at the 2022 World Cup.','Can play on either wing or as a wing-back.','Known for direct running, creativity and composure.'],
+    'Declan Rice':['A central midfielder valued for ball recovery and control.','Has captained club and country-level sides.','Known for carrying the ball through midfield and long-range shooting.']
+  },
   facts: [
     'England won the 1966 men’s World Cup at Wembley after extra time against West Germany.',
     'Geoff Hurst remains the only player to score a hat-trick in a men’s World Cup final.',
