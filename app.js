@@ -121,6 +121,34 @@ function checkQuiz(){
 function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; for(let i=0;i<120;i++){ const p=document.createElement('i'); p.className='confetti-piece'; p.textContent=['✦','★','◆','🦁','🏆'][i%5]; p.style.left=Math.random()*100+'vw'; p.style.animationDelay=(Math.random()*.8)+'s'; p.style.fontSize=(14+Math.random()*20)+'px'; document.body.appendChild(p); setTimeout(()=>p.remove(),4200); } }
 function launchCelebration(){ $('celebration')?.classList.add('show'); document.body.classList.add('celebrating'); confetti(); }
 function closeCelebration(){ $('celebration')?.classList.remove('show'); document.body.classList.remove('celebrating'); }
+
+function initCookie(){
+  try{
+    if(localStorage.getItem('cookie_ok')) $('cookie')?.classList.add('hide');
+    $('acceptCookie')?.addEventListener('click',()=>{
+      try{ localStorage.setItem('cookie_ok','yes'); }catch{}
+      $('cookie')?.classList.add('hide');
+    });
+  }catch{ $('cookie')?.classList.add('hide'); }
+}
+function initUI(){
+  $('menuToggle')?.addEventListener('click',()=>{
+    const nav=$('navLinks');
+    nav?.classList.toggle('open');
+    $('menuToggle')?.setAttribute('aria-expanded', nav?.classList.contains('open') ? 'true' : 'false');
+  });
+  document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>{
+    $('navLinks')?.classList.remove('open');
+    $('menuToggle')?.setAttribute('aria-expanded','false');
+  }));
+  $('backTop')?.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+  window.addEventListener('scroll',()=> $('backTop')?.classList.toggle('show', scrollY>500), {passive:true});
+  const obs = 'IntersectionObserver' in window ? new IntersectionObserver(entries=>entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+  }),{threshold:.08}) : null;
+  document.querySelectorAll('.reveal').forEach(el=> obs ? obs.observe(el) : el.classList.add('in'));
+}
+
 function runSelfHeal(){
   if(!$('quizContainer')?.children.length) initQuiz();
   if(!$('factText')?.textContent) renderFact();
