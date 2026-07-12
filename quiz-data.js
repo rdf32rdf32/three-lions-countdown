@@ -958,5 +958,125 @@ window.WORLD_CUP_QUIZ = [
     "answer": 0,
     "difficulty": "Medium",
     "explanation": "Gareth Southgate remained England manager in Qatar."
-  }
+  },
+{
+  "question": "Who scored both England goals in the 2026 World Cup quarter-final against Norway?",
+  "options": [
+    "Jude Bellingham",
+    "Harry Kane",
+    "Bukayo Saka",
+    "Declan Rice"
+  ],
+  "answer": 0,
+  "difficulty": "Current",
+  "explanation": "Jude Bellingham equalised and then scored the extra-time winner in England’s 2–1 victory."
+},
+{
+  "question": "Which team will England face in the 2026 World Cup semi-final?",
+  "options": [
+    "Argentina",
+    "France",
+    "Spain",
+    "Switzerland"
+  ],
+  "answer": 0,
+  "difficulty": "Current",
+  "explanation": "Argentina beat Switzerland 3–1 after extra time to set up the semi-final with England."
+},
+{
+  "question": "Where is England’s 2026 World Cup semi-final being played?",
+  "options": [
+    "Atlanta",
+    "Miami",
+    "Dallas",
+    "New York/New Jersey"
+  ],
+  "answer": 0,
+  "difficulty": "Current",
+  "explanation": "The semi-final is at Atlanta Stadium on 15 July."
+},
+{
+  "question": "Which England defender is suspended for the 2026 World Cup semi-final?",
+  "options": [
+    "Jarell Quansah",
+    "Marc Guéhi",
+    "John Stones",
+    "Ezri Konsa"
+  ],
+  "answer": 0,
+  "difficulty": "Current",
+  "explanation": "Jarell Quansah received a two-match suspension after his red card against Mexico."
+},
+{
+  "question": "Who scored England’s winner against Argentina at the 2002 World Cup?",
+  "options": [
+    "David Beckham",
+    "Michael Owen",
+    "Paul Scholes",
+    "Emile Heskey"
+  ],
+  "answer": 0,
+  "difficulty": "Medium",
+  "explanation": "David Beckham converted a penalty in England’s 1–0 group-stage victory."
+},
+{
+  "question": "Who scored England’s famous solo goal against Argentina at the 1998 World Cup?",
+  "options": [
+    "Michael Owen",
+    "Alan Shearer",
+    "David Beckham",
+    "Paul Ince"
+  ],
+  "answer": 0,
+  "difficulty": "Medium",
+  "explanation": "Michael Owen’s run and finish made the score 2–1 to England."
+},
+{
+  "question": "Which player scored both Argentina goals against England in the 1986 World Cup quarter-final?",
+  "options": [
+    "Diego Maradona",
+    "Jorge Valdano",
+    "Claudio Caniggia",
+    "Jorge Burruchaga"
+  ],
+  "answer": 0,
+  "difficulty": "Hard",
+  "explanation": "Diego Maradona scored the Hand of God goal and the celebrated solo second goal."
+},
+{
+  "question": "Who scored England’s goal against Argentina in the 1986 World Cup?",
+  "options": [
+    "Gary Lineker",
+    "Peter Beardsley",
+    "Chris Waddle",
+    "Bryan Robson"
+  ],
+  "answer": 0,
+  "difficulty": "Hard",
+  "explanation": "Gary Lineker pulled one back late in England’s 2–1 defeat."
+},
+{
+  "question": "What was the score when England beat Argentina in the 1966 World Cup quarter-final?",
+  "options": [
+    "1–0",
+    "2–0",
+    "2–1",
+    "3–1"
+  ],
+  "answer": 0,
+  "difficulty": "Hard",
+  "explanation": "Geoff Hurst scored the only goal at Wembley."
+},
+{
+  "question": "Which stadium hosts the 2026 World Cup final?",
+  "options": [
+    "New York/New Jersey Stadium",
+    "Atlanta Stadium",
+    "Miami Stadium",
+    "Dallas Stadium"
+  ],
+  "answer": 0,
+  "difficulty": "Current",
+  "explanation": "The final is scheduled for New York/New Jersey Stadium on 19 July."
+}
 ];

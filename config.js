@@ -1,46 +1,40 @@
 window.SITE_CONFIG = {
-  version: '1.5.0',
+  version: '1.7.0',
   match: {
-    competition: 'World Cup quarter-final',
+    competition: 'FIFA World Cup 2026 semi-final',
     home: 'England',
-    away: 'Norway',
-    dateISO: '2026-07-11T23:00:00+02:00',
-    venue: 'Miami',
-    stage: 'Quarter-final',
+    away: 'Argentina',
+    dateISO: '2026-07-15T20:00:00+01:00',
+    venue: 'Atlanta Stadium',
+    stage: 'Semi-final',
     lineupStatus: 'predicted',
-    lineupUpdated: 'Predicted line-up. Check official channels close to kick-off.',
+    lineupUpdated: 'Predicted line-up. Confirmed teams normally arrive around one hour before kick-off.',
     finalStatus: '',
     route: [
-      { label: 'Group Stage', detail: 'Completed', status: 'done' },
-      { label: 'Round of 32', detail: 'England 2-1 DR Congo', status: 'done' },
-      { label: 'Round of 16', detail: 'England 3-2 Mexico', status: 'done' },
-      { label: 'Quarter-final', detail: 'England v Norway', meta: 'Miami | 11 July', status: 'live' },
-      { label: 'Semi-final', detail: 'Winner advances', meta: 'Atlanta Stadium | 15 July', status: 'future' },
-      { label: 'Final', detail: 'World Cup Final', meta: 'New York New Jersey Stadium / MetLife Stadium | 19 July', status: 'future' }
+      { label: 'Round of 32', detail: 'England 2–1 DR Congo', status: 'done' },
+      { label: 'Round of 16', detail: 'England 3–2 Mexico', status: 'done' },
+      { label: 'Quarter-final', detail: 'England 2–1 Norway (aet)', meta: 'Miami | 11 July', status: 'done' },
+      { label: 'Semi-final', detail: 'England v Argentina', meta: 'Atlanta | 15 July | 20:00 UK', status: 'live' },
+      { label: 'Final', detail: 'France or Spain', meta: 'New York/New Jersey | 19 July', status: 'future' }
     ],
     highlights: {
-      title: 'England v Mexico 3-2',
-      subtitle: 'Highlights from 6 July 2026.',
-      youtubeEmbed: 'https://www.youtube.com/embed/dg4-V0LTaN0?si=3pcZ11-_SsA5wwm7'
+      title: 'Norway 1–2 England (after extra time)',
+      subtitle: 'Quarter-final result from 11 July 2026.',
+      youtubeEmbed: ''
     },
     teamNews: [
-      { status: 'green', icon: '🟢', title: 'Kane fit and available', text: 'England captain expected to lead the line.' },
-      { status: 'green', icon: '🟢', title: 'Bellingham expected to start', text: 'Midfield energy and control remain central to the plan.' },
-      { status: 'amber', icon: '🟡', title: 'Saka fitness being monitored', text: 'Final call closer to kick-off.' },
-      { status: 'red', icon: '🔴', title: 'Guehi suspended', text: 'Defensive reshuffle likely for Norway.' }
+      { status: 'red', icon: '🔴', title: 'Jarell Quansah suspended', text: 'His two-match ban following the red card against Mexico also covers the Argentina semi-final.' },
+      { status: 'amber', icon: '🟡', title: 'Jordan Henderson unavailable', text: 'The midfielder missed the Norway quarter-final with a fractured wrist.' },
+      { status: 'green', icon: '🟢', title: 'Marc Guéhi available', text: 'Guéhi was not suspended and featured against Norway.' },
+      { status: 'green', icon: '🟢', title: 'Bellingham in decisive form', text: 'He scored both goals in the 2–1 extra-time quarter-final win.' }
     ],
-    weather: { latitude: 25.958, longitude: -80.239, label: 'Miami' },
+    weather: { latitude: 33.7554, longitude: -84.4008, label: 'Atlanta' },
     nextFixtures: [
-      { opponent:'Argentina or Switzerland', date:'15 July 2026', venue:'Atlanta Stadium', competition:'World Cup semi-final', conditional:true },
-      { opponent:'Final opponent TBC', date:'19 July 2026', venue:'New York New Jersey Stadium', competition:'World Cup final', conditional:true }
-    ],
-    bbcHeadlines: [
-      { title:'Latest England team news, reports and reaction', url:'https://www.bbc.com/sport/football/teams/england' },
-      { title:'World Cup fixtures, results and coverage', url:'https://www.bbc.com/sport/football/world-cup' },
-      { title:'BBC football live coverage', url:'https://www.bbc.com/sport/football' }
+      { opponent:'Argentina', date:'15 July 2026 · 20:00 UK', venue:'Atlanta Stadium', competition:'World Cup semi-final', conditional:false },
+      { opponent:'France or Spain', date:'19 July 2026 · 20:00 UK', venue:'New York/New Jersey Stadium', competition:'World Cup final', conditional:true }
     ],
     links: {
-      bbc: 'https://www.bbc.com/sport/football/teams/england',
+      england: 'https://www.englandfootball.com/england/mens-senior-team',
       flashscore: 'https://www.flashscore.com/football/',
       fifa: 'https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026'
     }

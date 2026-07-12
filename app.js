@@ -15,7 +15,7 @@ const FALLBACK_CONTENT = {
 };
 function cfg(){ return window.SITE_CONFIG || {}; }
 function match(){ return cfg().match || {}; }
-function matchDate(){ return new Date(match().dateISO || '2026-07-11T23:00:00+02:00'); }
+function matchDate(){ return new Date(match().dateISO || '2026-07-15T20:00:00+01:00'); }
 function getContent(){ return window.ENGLAND_CONTENT || FALLBACK_CONTENT; }
 function getQuiz(){ return Array.isArray(window.WORLD_CUP_QUIZ) && window.WORLD_CUP_QUIZ.length ? window.WORLD_CUP_QUIZ : FALLBACK_QUIZ; }
 function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
@@ -40,7 +40,7 @@ function init(){
 }
 function applyConfig(){
   const m = match();
-  const title = `${m.home || 'England'} v ${m.away || 'Norway'}`;
+  const title = `${m.home || 'England'} v ${m.away || 'Argentina'}`;
   if($('heroMatch')) $('heroMatch').textContent = title;
   if($('heroStage')) $('heroStage').textContent = `${m.stage || 'Quarter-final'} countdown`;
   if($('metaCompetition')) $('metaCompetition').textContent = `⚽ ${m.competition || m.stage || 'World Cup'}`;
@@ -64,7 +64,7 @@ function renderTeamNews(){
     { status:'green', icon:'🟢', title:'Kane fit and available', text:'England captain expected to lead the line.' },
     { status:'green', icon:'🟢', title:'Bellingham expected to start', text:'Midfield energy and control remain central to the plan.' },
     { status:'amber', icon:'🟡', title:'Saka fitness being monitored', text:'Final call closer to kick-off.' },
-    { status:'red', icon:'🔴', title:'Guehi suspended', text:'Defensive reshuffle likely for Norway.' }
+    { status:'red', icon:'🔴', title:'Jarell Quansah suspended', text:'His two-match ban also covers the semi-final.' }
   ];
   list.innerHTML = items.map(item => `<article class="news-item ${esc(item.status || 'green')}"><span class="news-icon">${esc(item.icon || '🟢')}</span><div><b>${esc(item.title)}</b><p>${esc(item.text || '')}</p></div></article>`).join('');
 }
@@ -92,11 +92,11 @@ function initPrediction(){
   if(saved){ if($('engScore')) $('engScore').value=saved.eng; if($('norScore')) $('norScore').value=saved.nor; if($('firstScorer')) $('firstScorer').value=saved.scorer; if($('playerOfMatch')) $('playerOfMatch').value=saved.potm||$('playerOfMatch').value; if($('engCorners')) $('engCorners').value=saved.corners??6; if($('cleanSheet')) $('cleanSheet').value=saved.cleanSheet||'No'; }
   ['engScore','norScore','firstScorer','playerOfMatch','engCorners','cleanSheet'].forEach(id => $(id)?.addEventListener('input', () => updatePrediction()));
   $('savePrediction')?.addEventListener('click', () => { safeStoreSet('eng_wc_prediction', getPrediction()); updatePrediction('Saved. '); });
-  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: England ${d.eng}-${d.nor} Norway. First England scorer: ${d.scorer}. Player of the match: ${d.potm}. England corners: ${d.corners}. Clean sheet: ${d.cleanSheet}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
+  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: England ${d.eng}-${d.nor} ${match().away || 'Argentina'}. First England scorer: ${d.scorer}. Player of the match: ${d.potm}. England corners: ${d.corners}. Clean sheet: ${d.cleanSheet}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
   updatePrediction();
 }
 function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)), nor:Math.max(0,Number($('norScore')?.value||0)), scorer:$('firstScorer')?.value||'', potm:$('playerOfMatch')?.value||'', corners:Math.max(0,Number($('engCorners')?.value||0)), cleanSheet:$('cleanSheet')?.value||'No'}; }
-function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>England ${d.eng}–${d.nor} Norway</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
+function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>England ${d.eng}–${d.nor} ${esc(match().away || 'Argentina')}</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
 function validQuestion(q){ return q && q.question && Array.isArray(q.options) && q.options.length>=2 && Number.isInteger(q.answer) && q.answer>=0 && q.answer<q.options.length; }
 function initQuiz(){
   const source=getQuiz().filter(validQuestion);
@@ -158,8 +158,8 @@ function runSelfHeal(){
 function initPoll(){
   const box = $('pollOptions'), results = $('pollResults');
   if(!box || !results) return;
-  const choices = ['Quarter-final','Semi-final','Runner-up','World Cup winners'];
-  const fallback = {'Quarter-final':2,'Semi-final':5,'Runner-up':4,'World Cup winners':9};
+  const choices = ['Semi-final exit','Runner-up','World Cup winners'];
+  const fallback = {'Semi-final exit':3,'Runner-up':5,'World Cup winners':12};
   let counts = safeStoreGet('eng_wc_poll_counts', fallback) || fallback;
   choices.forEach(c => { if(typeof counts[c] !== 'number') counts[c] = fallback[c] || 0; });
   const voted = safeStoreGet('eng_wc_poll_vote', null);
@@ -180,7 +180,7 @@ function initPoll(){
 }
 function renderPoll(counts, voted){
   const results = $('pollResults'); if(!results) return;
-  const choices = ['Quarter-final','Semi-final','Runner-up','World Cup winners'];
+  const choices = ['Semi-final exit','Runner-up','World Cup winners'];
   const total = choices.reduce((sum,c)=>sum+(counts[c]||0),0) || 1;
   results.innerHTML = choices.map(c => {
     const pct = Math.round(((counts[c]||0) / total) * 100);
@@ -237,5 +237,5 @@ async function loadWeather(){
     const d=await res.json(), x=d.daily||{}, code=(x.weather_code||[])[0];
     const labels={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Rain',63:'Moderate rain',65:'Heavy rain',80:'Rain showers',95:'Thunderstorms'};
     box.innerHTML=`<div class="weather-main"><strong>${esc(labels[code]||'Forecast available')}</strong><span>${Math.round((x.temperature_2m_max||[])[0])}°C high</span></div><div class="weather-stats"><span>Low <b>${Math.round((x.temperature_2m_min||[])[0])}°C</b></span><span>Rain <b>${Math.round((x.precipitation_probability_max||[])[0])}%</b></span><span>Wind <b>${Math.round((x.wind_speed_10m_max||[])[0])} km/h</b></span></div><small>Forecast for ${esc(w.label||match().venue||'the stadium')}. Weather can change.</small>`;
-  }catch(e){box.innerHTML='<p>Live weather is temporarily unavailable.</p><a class="button-link" target="_blank" rel="noopener" href="https://www.metoffice.gov.uk/weather/world/miami">Check weather</a>';}
+  }catch(e){box.innerHTML='<p>Live weather is temporarily unavailable.</p><a class="button-link" target="_blank" rel="noopener" href="https://www.weather.gov/ffc/">Check weather</a>';}
 }

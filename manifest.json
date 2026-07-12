@@ -1,1 +1,9 @@
-{"name":"England Match Centre","short_name":"England Centre","start_url":"./","display":"standalone","background_color":"#f6f8fc","theme_color":"#08285a","description":"England countdown, squad picker, predictions and fan tools"}
+{
+  "name": "Three Lions Countdown \u2013 England v Argentina",
+  "short_name": "England Centre",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#08285a",
+  "description": "England v Argentina World Cup semi-final fan hub"
+}

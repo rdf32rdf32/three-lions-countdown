@@ -1,9 +1,16 @@
-ENGLAND MATCH CENTRE — VERSION 1.4
+THREE LIONS COUNTDOWN — VERSION 1.7
 
-Complete GitHub-ready site. Upload every file and folder in this directory to the repository root.
+Updated for England v Argentina, World Cup semi-final, 15 July 2026.
 
-Adds attributed quotes, three-fact player spotlights, a silent full-screen celebration, predicted/confirmed XI states, automatic match status, richer prediction cards, Road to Glory emphasis, quiz streak/best score, accessibility upgrades and removal of obsolete duplicate files.
+Main changes:
+- Corrected suspension: Jarell Quansah, not Marc Guehi
+- England 2-1 Norway quarter-final result added
+- Argentina semi-final countdown and predictor
+- Simple route-to-final graphic replacing the complicated map
+- Argentina opponent card
+- Expanded quiz bank
+- Automatic local kick-off time
+- Useful links remain at the end
+- Pick XI remains excluded
 
-Loader fix: restored missing interface initialisation functions and added a loader failsafe.
-
-Version 1.6: BBC news panel removed, Useful Links moved to the end, and tournament route map redesigned.
+Upload all files in this folder to the root of the GitHub repository.
