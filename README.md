@@ -13,7 +13,7 @@ Unofficial England men’s World Cup fan site for GitHub Pages.
 - Fan poll: how far will England go?
 - England confidence slider for the Norway match
 - Rotating England World Cup facts
-- Latest highlights and useful links
+- Latest video section and useful links
 - Cookie notice, privacy, cookies and contact pages
 
 ## Uploading to GitHub Pages

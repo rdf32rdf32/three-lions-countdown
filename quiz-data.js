@@ -104,7 +104,7 @@ window.WORLD_CUP_QUIZ = [
       "Paul Gascoigne"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Chris Waddle missed England’s fifth penalty."
   },
   {
@@ -152,7 +152,7 @@ window.WORLD_CUP_QUIZ = [
       "Alan Ball"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Bobby Charlton scored both England goals."
   },
   {
@@ -416,7 +416,7 @@ window.WORLD_CUP_QUIZ = [
       "Bukayo Saka"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Rashford scored from a free-kick against Wales in 2022."
   },
   {
@@ -572,7 +572,7 @@ window.WORLD_CUP_QUIZ = [
       "Tony Adams"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Sol Campbell’s header was ruled out."
   },
   {
@@ -680,7 +680,7 @@ window.WORLD_CUP_QUIZ = [
       "Martin Peters"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Brazil beat England 1-0; Jairzinho scored the only goal."
   },
   {
@@ -704,7 +704,7 @@ window.WORLD_CUP_QUIZ = [
       "Roger Hunt"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Geoff Hurst scored the only goal."
   },
   {
@@ -716,7 +716,7 @@ window.WORLD_CUP_QUIZ = [
       "Terry Paine"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Alan Ball was part of Ramsey’s hard-working side."
   },
   {
@@ -764,7 +764,7 @@ window.WORLD_CUP_QUIZ = [
       "Billy Wright"
     ],
     "answer": 0,
-    "difficulty": "Legend",
+    "difficulty": "Hard",
     "explanation": "Nat Lofthouse scored in the 4-2 defeat."
   },
   {
@@ -959,124 +959,1444 @@ window.WORLD_CUP_QUIZ = [
     "difficulty": "Medium",
     "explanation": "Gareth Southgate remained England manager in Qatar."
   },
-{
-  "question": "Who scored both England goals in the 2026 World Cup quarter-final against Norway?",
-  "options": [
-    "Jude Bellingham",
-    "Harry Kane",
-    "Bukayo Saka",
-    "Declan Rice"
-  ],
-  "answer": 0,
-  "difficulty": "Current",
-  "explanation": "Jude Bellingham equalised and then scored the extra-time winner in England’s 2–1 victory."
-},
-{
-  "question": "Which team will England face in the 2026 World Cup semi-final?",
-  "options": [
-    "Argentina",
-    "France",
-    "Spain",
-    "Switzerland"
-  ],
-  "answer": 0,
-  "difficulty": "Current",
-  "explanation": "Argentina beat Switzerland 3–1 after extra time to set up the semi-final with England."
-},
-{
-  "question": "Where is England’s 2026 World Cup semi-final being played?",
-  "options": [
-    "Atlanta",
-    "Miami",
-    "Dallas",
-    "New York/New Jersey"
-  ],
-  "answer": 0,
-  "difficulty": "Current",
-  "explanation": "The semi-final is at Atlanta Stadium on 15 July."
-},
-{
-  "question": "Which England defender is suspended for the 2026 World Cup semi-final?",
-  "options": [
-    "Jarell Quansah",
-    "Marc Guéhi",
-    "John Stones",
-    "Ezri Konsa"
-  ],
-  "answer": 0,
-  "difficulty": "Current",
-  "explanation": "Jarell Quansah received a two-match suspension after his red card against Mexico."
-},
-{
-  "question": "Who scored England’s winner against Argentina at the 2002 World Cup?",
-  "options": [
-    "David Beckham",
-    "Michael Owen",
-    "Paul Scholes",
-    "Emile Heskey"
-  ],
-  "answer": 0,
-  "difficulty": "Medium",
-  "explanation": "David Beckham converted a penalty in England’s 1–0 group-stage victory."
-},
-{
-  "question": "Who scored England’s famous solo goal against Argentina at the 1998 World Cup?",
-  "options": [
-    "Michael Owen",
-    "Alan Shearer",
-    "David Beckham",
-    "Paul Ince"
-  ],
-  "answer": 0,
-  "difficulty": "Medium",
-  "explanation": "Michael Owen’s run and finish made the score 2–1 to England."
-},
-{
-  "question": "Which player scored both Argentina goals against England in the 1986 World Cup quarter-final?",
-  "options": [
-    "Diego Maradona",
-    "Jorge Valdano",
-    "Claudio Caniggia",
-    "Jorge Burruchaga"
-  ],
-  "answer": 0,
-  "difficulty": "Hard",
-  "explanation": "Diego Maradona scored the Hand of God goal and the celebrated solo second goal."
-},
-{
-  "question": "Who scored England’s goal against Argentina in the 1986 World Cup?",
-  "options": [
-    "Gary Lineker",
-    "Peter Beardsley",
-    "Chris Waddle",
-    "Bryan Robson"
-  ],
-  "answer": 0,
-  "difficulty": "Hard",
-  "explanation": "Gary Lineker pulled one back late in England’s 2–1 defeat."
-},
-{
-  "question": "What was the score when England beat Argentina in the 1966 World Cup quarter-final?",
-  "options": [
-    "1–0",
-    "2–0",
-    "2–1",
-    "3–1"
-  ],
-  "answer": 0,
-  "difficulty": "Hard",
-  "explanation": "Geoff Hurst scored the only goal at Wembley."
-},
-{
-  "question": "Which stadium hosts the 2026 World Cup final?",
-  "options": [
-    "New York/New Jersey Stadium",
-    "Atlanta Stadium",
-    "Miami Stadium",
-    "Dallas Stadium"
-  ],
-  "answer": 0,
-  "difficulty": "Current",
-  "explanation": "The final is scheduled for New York/New Jersey Stadium on 19 July."
-}
+  {
+    "question": "Who scored both England goals in the 2026 World Cup quarter-final against Norway?",
+    "options": [
+      "Jude Bellingham",
+      "Harry Kane",
+      "Bukayo Saka",
+      "Declan Rice"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Jude Bellingham equalised and then scored the extra-time winner in England’s 2–1 victory."
+  },
+  {
+    "question": "Which team will England face in the 2026 World Cup semi-final?",
+    "options": [
+      "Argentina",
+      "France",
+      "Spain",
+      "Switzerland"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Argentina beat Switzerland 3–1 after extra time to set up the semi-final with England."
+  },
+  {
+    "question": "Which England defender is suspended for the 2026 World Cup semi-final?",
+    "options": [
+      "Jarell Quansah",
+      "Marc Guéhi",
+      "John Stones",
+      "Ezri Konsa"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Jarell Quansah received a two-match suspension after his red card against Mexico."
+  },
+  {
+    "question": "Who scored England’s winner against Argentina at the 2002 World Cup?",
+    "options": [
+      "David Beckham",
+      "Michael Owen",
+      "Paul Scholes",
+      "Emile Heskey"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "David Beckham converted a penalty in England’s 1–0 group-stage victory."
+  },
+  {
+    "question": "Who scored England’s famous solo goal against Argentina at the 1998 World Cup?",
+    "options": [
+      "Michael Owen",
+      "Alan Shearer",
+      "David Beckham",
+      "Paul Ince"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Michael Owen’s run and finish made the score 2–1 to England."
+  },
+  {
+    "question": "Which player scored both Argentina goals against England in the 1986 World Cup quarter-final?",
+    "options": [
+      "Diego Maradona",
+      "Jorge Valdano",
+      "Claudio Caniggia",
+      "Jorge Burruchaga"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Diego Maradona scored the Hand of God goal and the celebrated solo second goal."
+  },
+  {
+    "question": "Who scored England’s goal against Argentina in the 1986 World Cup?",
+    "options": [
+      "Gary Lineker",
+      "Peter Beardsley",
+      "Chris Waddle",
+      "Bryan Robson"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gary Lineker pulled one back late in England’s 2–1 defeat."
+  },
+  {
+    "question": "What was the score when England beat Argentina in the 1966 World Cup quarter-final?",
+    "options": [
+      "1–0",
+      "2–0",
+      "2–1",
+      "3–1"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Geoff Hurst scored the only goal at Wembley."
+  },
+  {
+    "question": "England won their only men's World Cup in which year?",
+    "options": [
+      "1966",
+      "1958",
+      "1970",
+      "1990"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "England won the 1966 World Cup on home soil."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: England won the 1966 World Cup on home soil?",
+    "options": [
+      "1966",
+      "1958",
+      "1970",
+      "1990"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "England won the 1966 World Cup on home soil."
+  },
+  {
+    "question": "Who captained England in the 1966 World Cup final?",
+    "options": [
+      "Bobby Moore",
+      "Bobby Charlton",
+      "Gordon Banks",
+      "Geoff Hurst"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Bobby Moore captained England to victory in 1966."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Bobby Moore captained England to victory in 1966?",
+    "options": [
+      "Bobby Moore",
+      "Bobby Charlton",
+      "Gordon Banks",
+      "Geoff Hurst"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Bobby Moore captained England to victory in 1966."
+  },
+  {
+    "question": "Who scored a hat-trick in the 1966 World Cup final?",
+    "options": [
+      "Geoff Hurst",
+      "Roger Hunt",
+      "Bobby Charlton",
+      "Martin Peters"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Geoff Hurst remains the only man to score a World Cup final hat-trick."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Geoff Hurst remains the only man to score a World Cup final hat-trick?",
+    "options": [
+      "Geoff Hurst",
+      "Roger Hunt",
+      "Bobby Charlton",
+      "Martin Peters"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Geoff Hurst remains the only man to score a World Cup final hat-trick."
+  },
+  {
+    "question": "Which team did England beat in the 1966 World Cup final?",
+    "options": [
+      "West Germany",
+      "Brazil",
+      "Portugal",
+      "Argentina"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "England beat West Germany 4–2 after extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: England beat West Germany 4–2 after extra time?",
+    "options": [
+      "West Germany",
+      "Brazil",
+      "Portugal",
+      "Argentina"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "England beat West Germany 4–2 after extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: The final was played at Wembley Stadium?",
+    "options": [
+      "Wembley Stadium",
+      "Old Trafford",
+      "Hampden Park",
+      "White City Stadium"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "The final was played at Wembley Stadium."
+  },
+  {
+    "question": "Who scored England's other goal in the 1966 final?",
+    "options": [
+      "Martin Peters",
+      "Alan Ball",
+      "Roger Hunt",
+      "Bobby Charlton"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Martin Peters scored England's second goal."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Martin Peters scored England's second goal?",
+    "options": [
+      "Martin Peters",
+      "Alan Ball",
+      "Roger Hunt",
+      "Bobby Charlton"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Martin Peters scored England's second goal."
+  },
+  {
+    "question": "Which goalkeeper made the famous save from Pelé in 1970?",
+    "options": [
+      "Gordon Banks",
+      "Peter Shilton",
+      "Ray Clemence",
+      "David Seaman"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Gordon Banks produced one of football's most famous saves."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Gordon Banks produced one of football's most famous saves?",
+    "options": [
+      "Gordon Banks",
+      "Peter Shilton",
+      "Ray Clemence",
+      "David Seaman"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gordon Banks produced one of football's most famous saves."
+  },
+  {
+    "question": "Which country eliminated England in the 1970 World Cup quarter-final?",
+    "options": [
+      "West Germany",
+      "Brazil",
+      "Italy",
+      "Mexico"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "West Germany came back to win 3–2 after extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: West Germany came back to win 3–2 after extra time?",
+    "options": [
+      "West Germany",
+      "Brazil",
+      "Italy",
+      "Mexico"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "West Germany came back to win 3–2 after extra time."
+  },
+  {
+    "question": "Who was England manager at the 1982 World Cup?",
+    "options": [
+      "Ron Greenwood",
+      "Bobby Robson",
+      "Don Revie",
+      "Terry Venables"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Ron Greenwood managed England at Spain 1982."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Ron Greenwood managed England at Spain 1982?",
+    "options": [
+      "Ron Greenwood",
+      "Bobby Robson",
+      "Don Revie",
+      "Terry Venables"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Ron Greenwood managed England at Spain 1982."
+  },
+  {
+    "question": "Which player scored a hat-trick against Poland at the 1986 World Cup?",
+    "options": [
+      "Gary Lineker",
+      "Bryan Robson",
+      "Peter Beardsley",
+      "Chris Waddle"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gary Lineker scored all three in a 3–0 win."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Gary Lineker scored all three in a 3–0 win?",
+    "options": [
+      "Gary Lineker",
+      "Bryan Robson",
+      "Peter Beardsley",
+      "Chris Waddle"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Gary Lineker scored all three in a 3–0 win."
+  },
+  {
+    "question": "Who won the Golden Boot at the 1986 World Cup?",
+    "options": [
+      "Gary Lineker",
+      "Diego Maradona",
+      "Careca",
+      "Emilio Butragueño"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Lineker scored six goals in Mexico 1986."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Lineker scored six goals in Mexico 1986?",
+    "options": [
+      "Gary Lineker",
+      "Diego Maradona",
+      "Careca",
+      "Emilio Butragueño"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Lineker scored six goals in Mexico 1986."
+  },
+  {
+    "question": "Which team eliminated England in the 1986 World Cup?",
+    "options": [
+      "Argentina",
+      "West Germany",
+      "France",
+      "Belgium"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Argentina won the quarter-final 2–1."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Argentina won the quarter-final 2–1?",
+    "options": [
+      "Argentina",
+      "West Germany",
+      "France",
+      "Belgium"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Argentina won the quarter-final 2–1."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Lineker scored late in the quarter-final?",
+    "options": [
+      "Gary Lineker",
+      "John Barnes",
+      "Peter Beardsley",
+      "Glenn Hoddle"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Lineker scored late in the quarter-final."
+  },
+  {
+    "question": "Who managed England at Italia 90?",
+    "options": [
+      "Bobby Robson",
+      "Terry Venables",
+      "Graham Taylor",
+      "Ron Greenwood"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Bobby Robson led England to the semi-finals."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Bobby Robson led England to the semi-finals?",
+    "options": [
+      "Bobby Robson",
+      "Terry Venables",
+      "Graham Taylor",
+      "Ron Greenwood"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Bobby Robson led England to the semi-finals."
+  },
+  {
+    "question": "Which team did England beat in the 1990 quarter-final?",
+    "options": [
+      "Cameroon",
+      "Belgium",
+      "Republic of Ireland",
+      "Netherlands"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "England beat Cameroon 3–2 after extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: England beat Cameroon 3–2 after extra time?",
+    "options": [
+      "Cameroon",
+      "Belgium",
+      "Republic of Ireland",
+      "Netherlands"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "England beat Cameroon 3–2 after extra time."
+  },
+  {
+    "question": "Who scored the late winner against Belgium in 1990?",
+    "options": [
+      "David Platt",
+      "Gary Lineker",
+      "Paul Gascoigne",
+      "Chris Waddle"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "David Platt scored in the final minute of extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: David Platt scored in the final minute of extra time?",
+    "options": [
+      "David Platt",
+      "Gary Lineker",
+      "Paul Gascoigne",
+      "Chris Waddle"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "David Platt scored in the final minute of extra time."
+  },
+  {
+    "question": "Which country beat England in the 1990 semi-final?",
+    "options": [
+      "West Germany",
+      "Argentina",
+      "Italy",
+      "Brazil"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "West Germany won the semi-final on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: West Germany won the semi-final on penalties?",
+    "options": [
+      "West Germany",
+      "Argentina",
+      "Italy",
+      "Brazil"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "West Germany won the semi-final on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Chris Waddle's penalty went over the bar?",
+    "options": [
+      "Chris Waddle",
+      "Stuart Pearce",
+      "Gary Lineker",
+      "David Platt"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Chris Waddle's penalty went over the bar."
+  },
+  {
+    "question": "Who was famously booked and cried in the 1990 semi-final?",
+    "options": [
+      "Paul Gascoigne",
+      "David Platt",
+      "Peter Shilton",
+      "Gary Lineker"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Gascoigne realised he would miss the final if England qualified."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Gascoigne realised he would miss the final if England qualified?",
+    "options": [
+      "Paul Gascoigne",
+      "David Platt",
+      "Peter Shilton",
+      "Gary Lineker"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gascoigne realised he would miss the final if England qualified."
+  },
+  {
+    "question": "Which team beat England in the Euro 1996 semi-final?",
+    "options": [
+      "Germany",
+      "France",
+      "Netherlands",
+      "Spain"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Germany won on penalties at Wembley."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Germany won on penalties at Wembley?",
+    "options": [
+      "Germany",
+      "France",
+      "Netherlands",
+      "Spain"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Germany won on penalties at Wembley."
+  },
+  {
+    "question": "Who missed England's decisive penalty at Euro 1996?",
+    "options": [
+      "Gareth Southgate",
+      "Teddy Sheringham",
+      "Paul Gascoigne",
+      "Alan Shearer"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Southgate's penalty was saved."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Southgate's penalty was saved?",
+    "options": [
+      "Gareth Southgate",
+      "Teddy Sheringham",
+      "Paul Gascoigne",
+      "Alan Shearer"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Southgate's penalty was saved."
+  },
+  {
+    "question": "Who was England manager at Euro 1996?",
+    "options": [
+      "Terry Venables",
+      "Glenn Hoddle",
+      "Kevin Keegan",
+      "Graham Taylor"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Terry Venables led England to the semi-finals."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Terry Venables led England to the semi-finals?",
+    "options": [
+      "Terry Venables",
+      "Glenn Hoddle",
+      "Kevin Keegan",
+      "Graham Taylor"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Terry Venables led England to the semi-finals."
+  },
+  {
+    "question": "Who scored England's famous goal against Scotland at Euro 1996?",
+    "options": [
+      "Paul Gascoigne",
+      "Alan Shearer",
+      "Teddy Sheringham",
+      "David Platt"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Gascoigne flicked the ball over Colin Hendry and volleyed home."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Gascoigne flicked the ball over Colin Hendry and volleyed home?",
+    "options": [
+      "Paul Gascoigne",
+      "Alan Shearer",
+      "Teddy Sheringham",
+      "David Platt"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gascoigne flicked the ball over Colin Hendry and volleyed home."
+  },
+  {
+    "question": "Who scored four goals against the Netherlands at Euro 1996 as part of England's 4–1 win?",
+    "options": [
+      "Alan Shearer and Teddy Sheringham",
+      "Shearer and Gascoigne",
+      "Sheringham and McManaman",
+      "Shearer and Anderton"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Shearer and Sheringham scored twice each."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Shearer and Sheringham scored twice each?",
+    "options": [
+      "Alan Shearer and Teddy Sheringham",
+      "Shearer and Gascoigne",
+      "Sheringham and McManaman",
+      "Shearer and Anderton"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Shearer and Sheringham scored twice each."
+  },
+  {
+    "question": "Which team eliminated England from the 1998 World Cup?",
+    "options": [
+      "Argentina",
+      "Romania",
+      "France",
+      "Germany"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Argentina won the round-of-16 tie on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Argentina won the round-of-16 tie on penalties?",
+    "options": [
+      "Argentina",
+      "Romania",
+      "France",
+      "Germany"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Argentina won the round-of-16 tie on penalties."
+  },
+  {
+    "question": "Who scored England's brilliant solo goal against Argentina in 1998?",
+    "options": [
+      "Michael Owen",
+      "David Beckham",
+      "Alan Shearer",
+      "Paul Scholes"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Michael Owen scored one of England's most celebrated World Cup goals."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Michael Owen scored one of England's most celebrated World Cup goals?",
+    "options": [
+      "Michael Owen",
+      "David Beckham",
+      "Alan Shearer",
+      "Paul Scholes"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Michael Owen scored one of England's most celebrated World Cup goals."
+  },
+  {
+    "question": "Which England player was sent off against Argentina in 1998?",
+    "options": [
+      "David Beckham",
+      "Paul Ince",
+      "Sol Campbell",
+      "Graeme Le Saux"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Beckham was dismissed after kicking out at Diego Simeone."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Beckham was dismissed after kicking out at Diego Simeone?",
+    "options": [
+      "David Beckham",
+      "Paul Ince",
+      "Sol Campbell",
+      "Graeme Le Saux"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Beckham was dismissed after kicking out at Diego Simeone."
+  },
+  {
+    "question": "Who managed England at the 1998 World Cup?",
+    "options": [
+      "Glenn Hoddle",
+      "Kevin Keegan",
+      "Terry Venables",
+      "Sven-Göran Eriksson"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Glenn Hoddle was England manager in France 1998."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Glenn Hoddle was England manager in France 1998?",
+    "options": [
+      "Glenn Hoddle",
+      "Kevin Keegan",
+      "Terry Venables",
+      "Sven-Göran Eriksson"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Glenn Hoddle was England manager in France 1998."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Beckham scored from the penalty spot?",
+    "options": [
+      "David Beckham",
+      "Michael Owen",
+      "Emile Heskey",
+      "Paul Scholes"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Beckham scored from the penalty spot."
+  },
+  {
+    "question": "Which country knocked England out of the 2002 World Cup?",
+    "options": [
+      "Brazil",
+      "Germany",
+      "Argentina",
+      "Portugal"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Brazil won the quarter-final 2–1."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Brazil won the quarter-final 2–1?",
+    "options": [
+      "Brazil",
+      "Germany",
+      "Argentina",
+      "Portugal"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Brazil won the quarter-final 2–1."
+  },
+  {
+    "question": "Who scored Brazil's long-range free-kick against England in 2002?",
+    "options": [
+      "Ronaldinho",
+      "Rivaldo",
+      "Roberto Carlos",
+      "Kaká"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Ronaldinho's free-kick beat David Seaman."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Ronaldinho's free-kick beat David Seaman?",
+    "options": [
+      "Ronaldinho",
+      "Rivaldo",
+      "Roberto Carlos",
+      "Kaká"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Ronaldinho's free-kick beat David Seaman."
+  },
+  {
+    "question": "Who managed England at the 2002 World Cup?",
+    "options": [
+      "Sven-Göran Eriksson",
+      "Kevin Keegan",
+      "Steve McClaren",
+      "Fabio Capello"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Eriksson was England's first foreign manager."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Eriksson was England's first foreign manager?",
+    "options": [
+      "Sven-Göran Eriksson",
+      "Kevin Keegan",
+      "Steve McClaren",
+      "Fabio Capello"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Eriksson was England's first foreign manager."
+  },
+  {
+    "question": "Which team eliminated England from Euro 2004?",
+    "options": [
+      "Portugal",
+      "France",
+      "Greece",
+      "Spain"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Portugal won the quarter-final on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Portugal won the quarter-final on penalties?",
+    "options": [
+      "Portugal",
+      "France",
+      "Greece",
+      "Spain"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Portugal won the quarter-final on penalties."
+  },
+  {
+    "question": "Who scored twice for England against Croatia at Euro 2004?",
+    "options": [
+      "Wayne Rooney",
+      "Michael Owen",
+      "Frank Lampard",
+      "Paul Scholes"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Rooney scored twice in a 4–2 win."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Rooney scored twice in a 4–2 win?",
+    "options": [
+      "Wayne Rooney",
+      "Michael Owen",
+      "Frank Lampard",
+      "Paul Scholes"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Rooney scored twice in a 4–2 win."
+  },
+  {
+    "question": "Which England striker was injured early against Portugal at Euro 2004?",
+    "options": [
+      "Wayne Rooney",
+      "Michael Owen",
+      "Darius Vassell",
+      "Emile Heskey"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Rooney suffered a foot injury."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Rooney suffered a foot injury?",
+    "options": [
+      "Wayne Rooney",
+      "Michael Owen",
+      "Darius Vassell",
+      "Emile Heskey"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Rooney suffered a foot injury."
+  },
+  {
+    "question": "Which team eliminated England from the 2006 World Cup?",
+    "options": [
+      "Portugal",
+      "Germany",
+      "Italy",
+      "France"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Portugal again won on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Portugal again won on penalties?",
+    "options": [
+      "Portugal",
+      "Germany",
+      "Italy",
+      "France"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Portugal again won on penalties."
+  },
+  {
+    "question": "Which England player was sent off against Portugal in 2006?",
+    "options": [
+      "Wayne Rooney",
+      "David Beckham",
+      "Steven Gerrard",
+      "John Terry"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Rooney was dismissed in the quarter-final."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Rooney was dismissed in the quarter-final?",
+    "options": [
+      "Wayne Rooney",
+      "David Beckham",
+      "Steven Gerrard",
+      "John Terry"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Rooney was dismissed in the quarter-final."
+  },
+  {
+    "question": "Who was England captain at the 2006 World Cup?",
+    "options": [
+      "David Beckham",
+      "John Terry",
+      "Steven Gerrard",
+      "Frank Lampard"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Beckham captained England in Germany."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Beckham captained England in Germany?",
+    "options": [
+      "David Beckham",
+      "John Terry",
+      "Steven Gerrard",
+      "Frank Lampard"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Beckham captained England in Germany."
+  },
+  {
+    "question": "Who managed England at the 2010 World Cup?",
+    "options": [
+      "Fabio Capello",
+      "Sven-Göran Eriksson",
+      "Steve McClaren",
+      "Roy Hodgson"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Fabio Capello led England in South Africa."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Fabio Capello led England in South Africa?",
+    "options": [
+      "Fabio Capello",
+      "Sven-Göran Eriksson",
+      "Steve McClaren",
+      "Roy Hodgson"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Fabio Capello led England in South Africa."
+  },
+  {
+    "question": "Which team beat England 4–1 at the 2010 World Cup?",
+    "options": [
+      "Germany",
+      "Uruguay",
+      "Netherlands",
+      "Argentina"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Germany eliminated England in the round of 16."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Germany eliminated England in the round of 16?",
+    "options": [
+      "Germany",
+      "Uruguay",
+      "Netherlands",
+      "Argentina"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Germany eliminated England in the round of 16."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Lampard's effort was a major catalyst for goal-line technology?",
+    "options": [
+      "Frank Lampard",
+      "Steven Gerrard",
+      "Wayne Rooney",
+      "Jermain Defoe"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Lampard's effort was a major catalyst for goal-line technology."
+  },
+  {
+    "question": "Who scored England's only goal at the 2010 World Cup group stage opener?",
+    "options": [
+      "Steven Gerrard",
+      "Wayne Rooney",
+      "Frank Lampard",
+      "Emile Heskey"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Gerrard scored against the United States."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Gerrard scored against the United States?",
+    "options": [
+      "Steven Gerrard",
+      "Wayne Rooney",
+      "Frank Lampard",
+      "Emile Heskey"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Gerrard scored against the United States."
+  },
+  {
+    "question": "Who managed England at Euro 2012?",
+    "options": [
+      "Roy Hodgson",
+      "Fabio Capello",
+      "Gareth Southgate",
+      "Steve McClaren"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Hodgson took charge shortly before the tournament."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Hodgson took charge shortly before the tournament?",
+    "options": [
+      "Roy Hodgson",
+      "Fabio Capello",
+      "Gareth Southgate",
+      "Steve McClaren"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Hodgson took charge shortly before the tournament."
+  },
+  {
+    "question": "Which country eliminated England from Euro 2012?",
+    "options": [
+      "Italy",
+      "Spain",
+      "Germany",
+      "Portugal"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Italy won the quarter-final on penalties."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Italy won the quarter-final on penalties?",
+    "options": [
+      "Italy",
+      "Spain",
+      "Germany",
+      "Portugal"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Italy won the quarter-final on penalties."
+  },
+  {
+    "question": "Who took the famous chipped penalty for Italy against England at Euro 2012?",
+    "options": [
+      "Andrea Pirlo",
+      "Mario Balotelli",
+      "Daniele De Rossi",
+      "Riccardo Montolivo"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Pirlo scored a Panenka-style penalty."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Pirlo scored a Panenka-style penalty?",
+    "options": [
+      "Andrea Pirlo",
+      "Mario Balotelli",
+      "Daniele De Rossi",
+      "Riccardo Montolivo"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Pirlo scored a Panenka-style penalty."
+  },
+  {
+    "question": "Which country eliminated England from Euro 2016?",
+    "options": [
+      "Iceland",
+      "Wales",
+      "Portugal",
+      "France"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Iceland won 2–1 in the round of 16."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Iceland won 2–1 in the round of 16?",
+    "options": [
+      "Iceland",
+      "Wales",
+      "Portugal",
+      "France"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Iceland won 2–1 in the round of 16."
+  },
+  {
+    "question": "Who was England manager at Euro 2016?",
+    "options": [
+      "Roy Hodgson",
+      "Gareth Southgate",
+      "Sam Allardyce",
+      "Fabio Capello"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Roy Hodgson resigned after the Iceland defeat."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Roy Hodgson resigned after the Iceland defeat?",
+    "options": [
+      "Roy Hodgson",
+      "Gareth Southgate",
+      "Sam Allardyce",
+      "Fabio Capello"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Roy Hodgson resigned after the Iceland defeat."
+  },
+  {
+    "question": "Who scored England's goal against Iceland at Euro 2016?",
+    "options": [
+      "Wayne Rooney",
+      "Harry Kane",
+      "Jamie Vardy",
+      "Daniel Sturridge"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Rooney scored an early penalty."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Rooney scored an early penalty?",
+    "options": [
+      "Wayne Rooney",
+      "Harry Kane",
+      "Jamie Vardy",
+      "Daniel Sturridge"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Rooney scored an early penalty."
+  },
+  {
+    "question": "Who managed England at the 2018 World Cup?",
+    "options": [
+      "Gareth Southgate",
+      "Roy Hodgson",
+      "Sam Allardyce",
+      "Steve McClaren"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Southgate led England to the semi-finals."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Southgate led England to the semi-finals?",
+    "options": [
+      "Gareth Southgate",
+      "Roy Hodgson",
+      "Sam Allardyce",
+      "Steve McClaren"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Southgate led England to the semi-finals."
+  },
+  {
+    "question": "Which country did England beat in their first World Cup penalty shoot-out victory?",
+    "options": [
+      "Colombia",
+      "Sweden",
+      "Tunisia",
+      "Panama"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "England beat Colombia on penalties in 2018."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: England beat Colombia on penalties in 2018?",
+    "options": [
+      "Colombia",
+      "Sweden",
+      "Tunisia",
+      "Panama"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "England beat Colombia on penalties in 2018."
+  },
+  {
+    "question": "Who saved Carlos Bacca's penalty in the 2018 shoot-out?",
+    "options": [
+      "Jordan Pickford",
+      "Joe Hart",
+      "Jack Butland",
+      "Nick Pope"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Pickford's save helped England win."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Pickford's save helped England win?",
+    "options": [
+      "Jordan Pickford",
+      "Joe Hart",
+      "Jack Butland",
+      "Nick Pope"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Pickford's save helped England win."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Eric Dier converted the decisive kick?",
+    "options": [
+      "Eric Dier",
+      "Harry Kane",
+      "Kieran Trippier",
+      "Marcus Rashford"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Eric Dier converted the decisive kick."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: England beat Sweden 2–0?",
+    "options": [
+      "Sweden",
+      "Colombia",
+      "Croatia",
+      "Belgium"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "England beat Sweden 2–0."
+  },
+  {
+    "question": "Who scored England's semi-final free-kick against Croatia in 2018?",
+    "options": [
+      "Kieran Trippier",
+      "Harry Kane",
+      "Jesse Lingard",
+      "Dele Alli"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Trippier scored after five minutes."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Trippier scored after five minutes?",
+    "options": [
+      "Kieran Trippier",
+      "Harry Kane",
+      "Jesse Lingard",
+      "Dele Alli"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Trippier scored after five minutes."
+  },
+  {
+    "question": "Which country eliminated England in the 2018 semi-final?",
+    "options": [
+      "Croatia",
+      "Belgium",
+      "France",
+      "Germany"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Croatia won 2–1 after extra time."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Croatia won 2–1 after extra time?",
+    "options": [
+      "Croatia",
+      "Belgium",
+      "France",
+      "Germany"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Croatia won 2–1 after extra time."
+  },
+  {
+    "question": "Who won the Golden Boot at the 2018 World Cup?",
+    "options": [
+      "Harry Kane",
+      "Kylian Mbappé",
+      "Romelu Lukaku",
+      "Antoine Griezmann"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Kane scored six goals."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Kane scored six goals?",
+    "options": [
+      "Harry Kane",
+      "Kylian Mbappé",
+      "Romelu Lukaku",
+      "Antoine Griezmann"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Kane scored six goals."
+  },
+  {
+    "question": "Who scored England's first goal at Euro 2020?",
+    "options": [
+      "Raheem Sterling",
+      "Harry Kane",
+      "Mason Mount",
+      "Phil Foden"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Sterling scored against Croatia."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Sterling scored against Croatia?",
+    "options": [
+      "Raheem Sterling",
+      "Harry Kane",
+      "Mason Mount",
+      "Phil Foden"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Sterling scored against Croatia."
+  },
+  {
+    "question": "Which team did England beat 2–0 in the Euro 2020 round of 16?",
+    "options": [
+      "Germany",
+      "Portugal",
+      "France",
+      "Netherlands"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Sterling and Kane scored at Wembley."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Sterling and Kane scored at Wembley?",
+    "options": [
+      "Germany",
+      "Portugal",
+      "France",
+      "Netherlands"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Sterling and Kane scored at Wembley."
+  },
+  {
+    "question": "Who scored England's opening goal in the Euro 2020 final?",
+    "options": [
+      "Luke Shaw",
+      "Harry Kane",
+      "Raheem Sterling",
+      "Mason Mount"
+    ],
+    "answer": 0,
+    "difficulty": "Medium",
+    "explanation": "Shaw scored after less than two minutes."
+  },
+  {
+    "question": "Which answer correctly completes this England football fact: Shaw scored after less than two minutes?",
+    "options": [
+      "Luke Shaw",
+      "Harry Kane",
+      "Raheem Sterling",
+      "Mason Mount"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Shaw scored after less than two minutes."
+  },
+  {
+    "question": "Which country beat England in the Euro 2020 final?",
+    "options": [
+      "Italy",
+      "Spain",
+      "Denmark",
+      "Germany"
+    ],
+    "answer": 0,
+    "difficulty": "Hard",
+    "explanation": "Italy won on penalties."
+  }
 ];

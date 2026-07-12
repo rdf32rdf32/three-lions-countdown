@@ -1,5 +1,5 @@
 window.SITE_CONFIG = {
-  version: '1.7.0',
+  version: '2.0.0',
   match: {
     competition: 'FIFA World Cup 2026 semi-final',
     home: 'England',
@@ -13,15 +13,10 @@ window.SITE_CONFIG = {
     route: [
       { label: 'Round of 32', detail: 'England 2–1 DR Congo', status: 'done' },
       { label: 'Round of 16', detail: 'England 3–2 Mexico', status: 'done' },
-      { label: 'Quarter-final', detail: 'England 2–1 Norway (aet)', meta: 'Miami | 11 July', status: 'done' },
+      { label: 'Quarter-final', detail: 'England 2–1 Norway (aet)', meta: '11 July', status: 'done' },
       { label: 'Semi-final', detail: 'England v Argentina', meta: 'Atlanta | 15 July | 20:00 UK', status: 'live' },
       { label: 'Final', detail: 'France or Spain', meta: 'New York/New Jersey | 19 July', status: 'future' }
     ],
-    highlights: {
-      title: 'Norway 1–2 England (after extra time)',
-      subtitle: 'Quarter-final result from 11 July 2026.',
-      youtubeEmbed: ''
-    },
     teamNews: [
       { status: 'red', icon: '🔴', title: 'Jarell Quansah suspended', text: 'His two-match ban following the red card against Mexico also covers the Argentina semi-final.' },
       { status: 'amber', icon: '🟡', title: 'Jordan Henderson unavailable', text: 'The midfielder missed the Norway quarter-final with a fractured wrist.' },

@@ -92,7 +92,7 @@ function loadQuiz() {
       3: 'Perfect. 3/3. You are an England expert.',
       2: 'Great effort. 2/3.',
       1: 'Not bad. 1/3.',
-      0: '0/3. Time to brush up on your England knowledge.'
+      0: '0/5. Time to brush up on your England knowledge.'
     };
     result.textContent = messages[score];
   };

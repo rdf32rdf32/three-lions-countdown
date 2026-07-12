@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', init);
 function init(){
   applyConfig();
   fillScorers();
-  tick(); setInterval(tick, 1000);
-  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); renderFixtures(); loadWeather(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
+  tick(); updateDetectedLocalTime(); setInterval(tick, 1000); setInterval(updateDetectedLocalTime, 1000);
+  renderFact(); renderTeamNews(); renderMatchdayExtras(); renderMatchStatus(); renderFixtures(); loadWeather(); updateDetectedLocalTime(); initQuiz(); initPrediction(); initPoll(); initConfidence(); initCookie(); initUI(); runSelfHeal();
   $('newQuiz')?.addEventListener('click', initQuiz);
   $('checkQuiz')?.addEventListener('click', checkQuiz);
   $('newFact')?.addEventListener('click', renderFact);
@@ -49,10 +49,6 @@ function applyConfig(){
   if($('dashMatch')) $('dashMatch').textContent = title;
   if($('dashProgress')) $('dashProgress').textContent = `${m.stage || 'Quarter-final'} stage`;
   if($('journey')) $('journey').innerHTML = (m.route || []).map(step => `<div class="${esc(step.status)}"><b>${esc(step.label)}</b><span>${esc(step.detail)}</span>${step.meta ? `<small>${esc(step.meta)}</small>` : ''}</div>`).join('');
-  const h = m.highlights || {};
-  if($('highlightTitle')) $('highlightTitle').textContent = h.title || 'Latest match highlights';
-  if($('highlightSubtitle')) $('highlightSubtitle').textContent = h.subtitle || '';
-  if($('videoWrap') && h.youtubeEmbed){ $('videoWrap').innerHTML = `<iframe src="${esc(h.youtubeEmbed)}" title="${esc(h.title || 'England highlights')}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`; }
   if(m.links){ if($('englandLink')) $('englandLink').href=m.links.england || $('englandLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
   const ls=m.lineupStatus==='confirmed'?'Confirmed XI':'Predicted XI'; if($('lineupBadge')){ $('lineupBadge').textContent=ls; $('lineupBadge').className='lineup-badge '+(m.lineupStatus==='confirmed'?'confirmed':'predicted'); } if($('lineupUpdated')) $('lineupUpdated').textContent=m.lineupUpdated||'Check official team channels close to kick-off.';
   if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'}`;
@@ -67,6 +63,15 @@ function renderTeamNews(){
     { status:'red', icon:'🔴', title:'Jarell Quansah suspended', text:'His two-match ban also covers the semi-final.' }
   ];
   list.innerHTML = items.map(item => `<article class="news-item ${esc(item.status || 'green')}"><span class="news-icon">${esc(item.icon || '🟢')}</span><div><b>${esc(item.title)}</b><p>${esc(item.text || '')}</p></div></article>`).join('');
+}
+function updateDetectedLocalTime(){
+  const el=$('localTimeExtra'); if(!el) return;
+  try{
+    const zone=Intl.DateTimeFormat().resolvedOptions().timeZone || 'Device timezone';
+    const formatted=matchDate().toLocaleString([], {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit', timeZone:zone});
+    el.textContent=formatted;
+    el.title=`Detected automatically: ${zone}`;
+  }catch(e){ el.textContent=matchDate().toLocaleString([], {dateStyle:'medium', timeStyle:'short'}); }
 }
 function tick(){
   let diff = Math.max(0, matchDate() - new Date());
@@ -99,24 +104,27 @@ function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)
 function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>England ${d.eng}–${d.nor} ${esc(match().away || 'Argentina')}</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
 function validQuestion(q){ return q && q.question && Array.isArray(q.options) && q.options.length>=2 && Number.isInteger(q.answer) && q.answer>=0 && q.answer<q.options.length; }
 function initQuiz(){
-  const source=getQuiz().filter(validQuestion);
-  const used = safeStoreGet('eng_wc_quiz_used', []);
-  let available = source.filter(q => !used.includes(q.question));
-  if(available.length < 3){ available = [...source]; safeStoreSet('eng_wc_quiz_used', []); }
-  const shuffled=[...available].sort(()=>Math.random()-.5);
-  currentQuiz=[];
-  ['Medium','Hard','Legend'].forEach(level=>{ const q=shuffled.find(x=>x.difficulty===level && !currentQuiz.includes(x)); if(q) currentQuiz.push(q); });
-  while(currentQuiz.length<3 && shuffled.length){ const q=shuffled.pop(); if(q && !currentQuiz.includes(q)) currentQuiz.push(q); }
-  currentQuiz=currentQuiz.slice(0,3).sort(()=>Math.random()-.5);
-  safeStoreSet('eng_wc_quiz_used', [...new Set([...used, ...currentQuiz.map(q=>q.question)])].slice(-240));
-  if($('quizResult')) $('quizResult').textContent=''; if($('quizStreak')) $('quizStreak').textContent=safeStoreGet('eng_wc_quiz_streak',0); if($('quizBest')) $('quizBest').textContent=safeStoreGet('eng_wc_quiz_best',0)+'/3';
-  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(String(q.question).replace(/\s+#\d+$/,''))}</strong><span class="badge">${esc(q.difficulty||'Hard')}</span></div><div class="options">${q.options.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}"><span>${esc(o)}</span></label>`).join('')}</div><p class="explanation">${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
+  const source=getQuiz().filter(validQuestion).filter(q=>q.difficulty!=='Easy');
+  const used=safeStoreGet('eng_wc_quiz_used', []);
+  let available=source.filter(q=>!used.includes(q.question));
+  if(available.length<5){ available=[...source]; safeStoreSet('eng_wc_quiz_used', []); }
+  currentQuiz=[...available].sort(()=>Math.random()-.5).slice(0,5);
+  safeStoreSet('eng_wc_quiz_used', [...new Set([...used,...currentQuiz.map(q=>q.question)])].slice(-400));
+  if($('quizResult')) $('quizResult').textContent='';
+  if($('quizStreak')) $('quizStreak').textContent=safeStoreGet('eng_wc_quiz_streak',0);
+  if($('quizBest')) $('quizBest').textContent=safeStoreGet('eng_wc_quiz_best',0)+'/5';
+  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(String(q.question).replace(/\s+#\d+$/,''))}</strong><span class="badge">${esc(q.difficulty||'Hard')}</span></div><div class="options">${[...q.options].map((o,j)=>({o,j})).sort(()=>Math.random()-.5).map(x=>`<label class="option"><input type="radio" name="q${i}" value="${x.j}"><span>${esc(x.o)}</span></label>`).join('')}</div><p class="explanation">${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
 }
 function checkQuiz(){
-  let score=0;
-  document.querySelectorAll('.question').forEach((el,i)=>{ const q=currentQuiz[i]; if(!q) return; el.classList.add('reviewed'); const chosen=el.querySelector('input:checked'); el.querySelectorAll('.option').forEach((opt,j)=>{ opt.classList.toggle('correct',j===q.answer); opt.classList.toggle('wrong',chosen && Number(chosen.value)===j && j!==q.answer); }); if(chosen && Number(chosen.value)===q.answer) score++; });
-  const previousBest=safeStoreGet('eng_wc_quiz_best',0); if(score>previousBest)safeStoreSet('eng_wc_quiz_best',score); let streak=safeStoreGet('eng_wc_quiz_streak',0); streak=score===3?streak+1:0; safeStoreSet('eng_wc_quiz_streak',streak); if($('quizStreak')) $('quizStreak').textContent=streak; if($('quizBest')) $('quizBest').textContent=Math.max(score,previousBest)+'/3'; if($('quizResult')) $('quizResult').textContent = score===3 ? `Perfect score: 3/3. Streak: ${streak}.` : `You scored ${score}/3. The explanations are now shown.`;
-  if(score===3) launchCelebration();
+  let score=0, answered=0;
+  document.querySelectorAll('.question').forEach((el,i)=>{ const q=currentQuiz[i]; if(!q)return; const chosen=el.querySelector('input:checked'); if(chosen)answered++; el.classList.add('reviewed'); el.querySelectorAll('.option').forEach(opt=>{ const j=Number(opt.querySelector('input').value); opt.classList.toggle('correct',j===q.answer); opt.classList.toggle('wrong',chosen&&Number(chosen.value)===j&&j!==q.answer); }); if(chosen&&Number(chosen.value)===q.answer)score++; });
+  if(answered<5){ if($('quizResult')) $('quizResult').textContent=`You answered ${answered}/5. Unanswered questions count as incorrect.`; }
+  const previousBest=safeStoreGet('eng_wc_quiz_best',0); if(score>previousBest)safeStoreSet('eng_wc_quiz_best',score);
+  let streak=safeStoreGet('eng_wc_quiz_streak',0); streak=score===5?streak+1:0; safeStoreSet('eng_wc_quiz_streak',streak);
+  if($('quizStreak')) $('quizStreak').textContent=streak; if($('quizBest')) $('quizBest').textContent=Math.max(score,previousBest)+'/5';
+  const titles=['Back to training','Needs more caps','Matchday regular','Strong supporter','England expert','Three Lions legend'];
+  if($('quizResult')) $('quizResult').textContent=`${titles[score]}: ${score}/5. Explanations are now shown.`;
+  if(score===5)launchCelebration();
 }
 function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; for(let i=0;i<120;i++){ const p=document.createElement('i'); p.className='confetti-piece'; p.textContent=['✦','★','◆','🦁','🏆'][i%5]; p.style.left=Math.random()*100+'vw'; p.style.animationDelay=(Math.random()*.8)+'s'; p.style.fontSize=(14+Math.random()*20)+'px'; document.body.appendChild(p); setTimeout(()=>p.remove(),4200); } }
 function launchCelebration(){ $('celebration')?.classList.add('show'); document.body.classList.add('celebrating'); confetti(); }
