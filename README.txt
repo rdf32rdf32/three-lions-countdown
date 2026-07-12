@@ -14,3 +14,12 @@ Main changes:
 - Pick XI remains excluded
 
 Upload all files in this folder to the root of the GitHub repository.
+
+QUIZ QUALITY UPDATE
+- 200 medium and hard questions
+- answer-leakage audit passed
+- volatile 2026 match questions removed
+- three medium and two hard questions per game
+- category variety built into each round
+- explanations and category labels included
+- last 80 seen questions remembered to reduce repetition

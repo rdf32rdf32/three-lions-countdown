@@ -103,17 +103,36 @@ function initPrediction(){
 function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)), nor:Math.max(0,Number($('norScore')?.value||0)), scorer:$('firstScorer')?.value||'', potm:$('playerOfMatch')?.value||'', corners:Math.max(0,Number($('engCorners')?.value||0)), cleanSheet:$('cleanSheet')?.value||'No'}; }
 function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>England ${d.eng}–${d.nor} ${esc(match().away || 'Argentina')}</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
 function validQuestion(q){ return q && q.question && Array.isArray(q.options) && q.options.length>=2 && Number.isInteger(q.answer) && q.answer>=0 && q.answer<q.options.length; }
+function pickBalancedQuiz(source, usedQuestions){
+  const unused=source.filter(q=>!usedQuestions.includes(q.question));
+  const pool=unused.length>=5?unused:[...source];
+  const shuffle=a=>[...a].sort(()=>Math.random()-.5);
+  const chosen=[];
+  const categories=new Set();
+  const take=(difficulty,count)=>{
+    const candidates=shuffle(pool.filter(q=>q.difficulty===difficulty&&!chosen.includes(q)));
+    for(const q of candidates){
+      if(chosen.length>=5||count<=0)break;
+      if(!categories.has(q.category)){chosen.push(q);categories.add(q.category);count--;}
+    }
+    for(const q of candidates){
+      if(chosen.length>=5||count<=0)break;
+      if(!chosen.includes(q)){chosen.push(q);categories.add(q.category);count--;}
+    }
+  };
+  take('Medium',3); take('Hard',2);
+  for(const q of shuffle(pool)){if(chosen.length>=5)break;if(!chosen.includes(q))chosen.push(q);}
+  return chosen.sort((a,b)=>(a.difficulty==='Hard')-(b.difficulty==='Hard'));
+}
 function initQuiz(){
-  const source=getQuiz().filter(validQuestion).filter(q=>q.difficulty!=='Easy');
+  const source=getQuiz().filter(validQuestion).filter(q=>q.difficulty==='Medium'||q.difficulty==='Hard');
   const used=safeStoreGet('eng_wc_quiz_used', []);
-  let available=source.filter(q=>!used.includes(q.question));
-  if(available.length<5){ available=[...source]; safeStoreSet('eng_wc_quiz_used', []); }
-  currentQuiz=[...available].sort(()=>Math.random()-.5).slice(0,5);
-  safeStoreSet('eng_wc_quiz_used', [...new Set([...used,...currentQuiz.map(q=>q.question)])].slice(-400));
+  currentQuiz=pickBalancedQuiz(source,used);
+  safeStoreSet('eng_wc_quiz_used', [...new Set([...used,...currentQuiz.map(q=>q.question)])].slice(-80));
   if($('quizResult')) $('quizResult').textContent='';
   if($('quizStreak')) $('quizStreak').textContent=safeStoreGet('eng_wc_quiz_streak',0);
   if($('quizBest')) $('quizBest').textContent=safeStoreGet('eng_wc_quiz_best',0)+'/5';
-  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(String(q.question).replace(/\s+#\d+$/,''))}</strong><span class="badge">${esc(q.difficulty||'Hard')}</span></div><div class="options">${[...q.options].map((o,j)=>({o,j})).sort(()=>Math.random()-.5).map(x=>`<label class="option"><input type="radio" name="q${i}" value="${x.j}"><span>${esc(x.o)}</span></label>`).join('')}</div><p class="explanation">${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
+  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(q.question)}</strong><span class="badge">${esc(q.category||'England')}</span></div><div class="options">${[...q.options].map((o,j)=>({o,j})).sort(()=>Math.random()-.5).map(x=>`<label class="option"><input type="radio" name="q${i}" value="${x.j}"><span>${esc(x.o)}</span></label>`).join('')}</div><p class="explanation"><b>${esc(q.difficulty)}:</b> ${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
 }
 function checkQuiz(){
   let score=0, answered=0;
