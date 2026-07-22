@@ -1,67 +1,211 @@
-window.ENGLAND_CONTENT = {
-  squad: [
-    {name:'Jordan Pickford',position:'Goalkeeper',club:'Everton'},
-    {name:'Dean Henderson',position:'Goalkeeper',club:'Crystal Palace'},
-    {name:'James Trafford',position:'Goalkeeper',club:'Burnley'},
-    {name:'Ezri Konsa',position:'Defender',club:'Aston Villa'},
-    {name:"Nico O'Reilly",position:'Defender',club:'Manchester City'},
-    {name:'John Stones',position:'Defender',club:'Manchester City'},
-    {name:'Marc Guéhi',position:'Defender',club:'Crystal Palace'},
-    {name:'Trevoh Chalobah',position:'Defender',club:'Chelsea'},
-    {name:'Dan Burn',position:'Defender',club:'Newcastle United'},
-    {name:'Reece James',position:'Defender',club:'Chelsea'},
-    {name:'Djed Spence',position:'Defender',club:'Tottenham Hotspur'},
-    {name:'Jarell Quansah',position:'Defender',club:'Liverpool'},
-    {name:'Declan Rice',position:'Midfielder',club:'Arsenal'},
-    {name:'Elliot Anderson',position:'Midfielder',club:'Nottingham Forest'},
-    {name:'Jude Bellingham',position:'Midfielder',club:'Real Madrid'},
-    {name:'Jordan Henderson',position:'Midfielder',club:'Ajax'},
-    {name:'Kobbie Mainoo',position:'Midfielder',club:'Manchester United'},
-    {name:'Morgan Rogers',position:'Midfielder',club:'Aston Villa'},
-    {name:'Bukayo Saka',position:'Forward',club:'Arsenal'},
-    {name:'Harry Kane',position:'Forward',club:'Bayern Munich'},
-    {name:'Marcus Rashford',position:'Forward',club:'Manchester United'},
-    {name:'Anthony Gordon',position:'Forward',club:'Newcastle United'},
-    {name:'Ollie Watkins',position:'Forward',club:'Aston Villa'},
-    {name:'Noni Madueke',position:'Forward',club:'Chelsea'},
-    {name:'Eberechi Eze',position:'Forward',club:'Crystal Palace'},
-    {name:'Ivan Toney',position:'Forward',club:'Al-Ahli'}
+window.ALBION_CONTENT = {
+  "squad": [
+    {
+      "name": "Bart Verbruggen",
+      "position": "Goalkeeper",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Jason Steele",
+      "position": "Goalkeeper",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Tom McGill",
+      "position": "Goalkeeper",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Carl Rushworth",
+      "position": "Goalkeeper",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Lewis Dunk",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Jan Paul van Hecke",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Ferdi Kadioglu",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Olivier Boscagli",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Maxim De Cuyper",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Diego Coppola",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Igor Julio",
+      "position": "Defender",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Jack Hinshelwood",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Carlos Baleba",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Kaoru Mitoma",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Diego Gomez",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Matt O'Riley",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "James Milner",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Brajan Gruda",
+      "position": "Midfielder",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Georginio Rutter",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Yankuba Minteh",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Danny Welbeck",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Stefanos Tzimas",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Charalampos Kostoulas",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    },
+    {
+      "name": "Tommy Watson",
+      "position": "Forward",
+      "club": "Brighton & Hove Albion"
+    }
   ],
-  scorers: ['Ezri Konsa',"Nico O'Reilly",'John Stones','Marc Guéhi','Trevoh Chalobah','Dan Burn','Reece James','Djed Spence','Jarell Quansah','Declan Rice','Elliot Anderson','Jude Bellingham','Jordan Henderson','Kobbie Mainoo','Morgan Rogers','Bukayo Saka','Harry Kane','Marcus Rashford','Anthony Gordon','Ollie Watkins','Noni Madueke','Eberechi Eze','Ivan Toney'],
-  recentForm: ['W','W','W','D','W'],
-  quotes: [
-    {text:'Football is nothing without fans.',by:'Sir Matt Busby'},
-    {text:'Some people think football is a matter of life and death. I assure you, it is much more serious than that.',by:'Bill Shankly'},
-    {text:'The more difficult the victory, the greater the happiness in winning.',by:'Pelé'},
-    {text:'You have to fight to reach your dream. You have to sacrifice and work hard for it.',by:'Lionel Messi'},
-    {text:'Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and love of what you are doing.',by:'Pelé'}
+  "scorers": [
+    "Lewis Dunk",
+    "Jan Paul van Hecke",
+    "Ferdi Kadioglu",
+    "Olivier Boscagli",
+    "Maxim De Cuyper",
+    "Diego Coppola",
+    "Igor Julio",
+    "Jack Hinshelwood",
+    "Carlos Baleba",
+    "Kaoru Mitoma",
+    "Diego Gomez",
+    "Matt O'Riley",
+    "James Milner",
+    "Brajan Gruda",
+    "Georginio Rutter",
+    "Yankuba Minteh",
+    "Danny Welbeck",
+    "Stefanos Tzimas",
+    "Charalampos Kostoulas",
+    "Tommy Watson"
   ],
-  spotlightFacts: {
-    'Harry Kane':['England captain and all-time leading men’s goalscorer.','Won the Golden Boot at the 2018 World Cup.','Known for finishing, passing range and leadership.'],
-    'Jude Bellingham':['Made his senior England debut as a teenager.','Plays as an attacking or central midfielder.','Known for ball carrying, pressing and late runs into the box.'],
-    'Bukayo Saka':['Scored twice against Iran at the 2022 World Cup.','Can play on either wing or as a wing-back.','Known for direct running, creativity and composure.'],
-    'Declan Rice':['A central midfielder valued for ball recovery and control.','Has captained club and country-level sides.','Known for carrying the ball through midfield and long-range shooting.']
+  "recentForm": [
+    "W",
+    "D",
+    "W",
+    "L",
+    "W"
+  ],
+  "quotes": [
+    {
+      "text": "Football is nothing without fans.",
+      "by": "Sir Matt Busby"
+    },
+    {
+      "text": "Some people think football is a matter of life and death. I assure you, it is much more serious than that.",
+      "by": "Bill Shankly"
+    },
+    {
+      "text": "The more difficult the victory, the greater the happiness in winning.",
+      "by": "Pelé"
+    }
+  ],
+  "spotlightFacts": {
+    "Lewis Dunk": [
+      "Club captain and academy graduate.",
+      "A central defender known for leadership and passing.",
+      "Represented England at senior level."
+    ],
+    "Kaoru Mitoma": [
+      "Japan international winger.",
+      "Known for acceleration and close control.",
+      "Joined Albion from Kawasaki Frontale."
+    ],
+    "Carlos Baleba": [
+      "Cameroon international midfielder.",
+      "Known for power, ball carrying and recovery work.",
+      "Joined Albion from Lille."
+    ],
+    "Bart Verbruggen": [
+      "Netherlands international goalkeeper.",
+      "Comfortable distributing from the back.",
+      "Joined Albion from Anderlecht."
+    ]
   },
-  facts: [
-    'England won the 1966 men’s World Cup at Wembley after extra time against West Germany.',
-    'Geoff Hurst remains the only player to score a hat-trick in a men’s World Cup final.',
-    'Gary Lineker won the Golden Boot at the 1986 men’s World Cup in Mexico.',
-    'England reached men’s World Cup semi-finals in 1966, 1990 and 2018.',
-    'England’s first men’s World Cup appearance came in Brazil in 1950.',
-    'England’s first World Cup penalty shoot-out win came against Colombia in 2018.',
-    'Bobby Charlton scored two goals in England’s 1966 semi-final win over Portugal.',
-    'England’s 6-1 win against Panama in 2018 is their biggest men’s World Cup win.',
-    'Martin Peters scored England’s second goal in the 1966 World Cup final.',
-    'Gordon Banks kept clean sheets in England’s 1966 knockout wins before the final.',
-    'David Platt scored a famous extra-time volley against Belgium at Italia 90.',
-    'Michael Owen scored his famous solo goal against Argentina at France 98.',
-    'England beat Denmark 3-0 in the 2002 World Cup round of 16.',
-    'David Beckham scored the penalty that beat Argentina at the 2002 World Cup.',
-    'England lost on penalties to Portugal at both the 2006 World Cup and Euro 2004.',
-    'Harry Kane won the Golden Boot at the 2018 men’s World Cup.',
-    'England beat Sweden 2-0 in the 2018 World Cup quarter-final.',
-    'Kieran Trippier scored England’s free-kick in the 2018 semi-final against Croatia.',
-    'England beat Iran 6-2 in their opening match at the 2022 World Cup.',
-    'Bukayo Saka scored twice for England against Iran at the 2022 World Cup.'
+  "facts": [
+    "Brighton & Hove Albion were founded in 1901.",
+    "The club’s nickname is the Seagulls.",
+    "Albion played at the Goldstone Ground from 1902 until 1997.",
+    "The 1997 draw at Hereford United preserved Albion’s Football League status.",
+    "The club shared grounds at Gillingham and Withdean before moving to Falmer.",
+    "The American Express Stadium opened in 2011.",
+    "Brighton reached the FA Cup final in 1983.",
+    "The 1983 final against Manchester United finished 2-2 before the replay.",
+    "Albion won promotion to the Premier League in 2017.",
+    "Chris Hughton guided Brighton into the Premier League.",
+    "Lewis Dunk came through the club’s youth system.",
+    "Brighton’s traditional home colours are blue and white stripes.",
+    "The rivalry with Crystal Palace is often called the M23 derby.",
+    "The club first qualified for European competition in 2023.",
+    "Albion played in the UEFA Europa League in 2023/24.",
+    "Brighton won the League One title in 2010/11.",
+    "The club’s home is in Falmer, between Brighton and Lewes.",
+    "The North Stand at the Amex is known for its vocal support.",
+    "Peter Ward is one of the most celebrated players in Albion history.",
+    "The phrase “Together making history” is closely associated with the club."
   ]
 };

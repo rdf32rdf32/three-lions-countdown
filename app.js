@@ -3,21 +3,21 @@ const $ = id => document.getElementById(id);
 let currentQuiz = [];
 let usedFacts = new Set();
 const FALLBACK_QUIZ = [
-  {question:'Who scored England’s hat-trick in the 1966 men’s World Cup final?', options:['Geoff Hurst','Bobby Charlton','Martin Peters','Roger Hunt'], answer:0, difficulty:'Medium', explanation:'Geoff Hurst scored three in England’s 4-2 win over West Germany.'},
-  {question:'Who was England’s top scorer at the 1986 men’s World Cup?', options:['Gary Lineker','Peter Beardsley','Bryan Robson','Chris Waddle'], answer:0, difficulty:'Hard', explanation:'Gary Lineker won the Golden Boot with six goals at Mexico 1986.'},
-  {question:'Which country knocked England out of the 2002 men’s World Cup?', options:['Brazil','Portugal','Germany','Argentina'], answer:0, difficulty:'Medium', explanation:'Brazil beat England 2-1 in the quarter-final in Shizuoka.'},
-  {question:'Who scored twice for England in the 1966 World Cup semi-final?', options:['Bobby Charlton','Geoff Hurst','Roger Hunt','Martin Peters'], answer:0, difficulty:'Legend', explanation:'Bobby Charlton scored both goals in England’s 2-1 win over Portugal.'}
+  {question:'Who scored Albion’s hat-trick in the 1966 men’s Premier League final?', options:['Geoff Hurst','Bobby Charlton','Martin Peters','Roger Hunt'], answer:0, difficulty:'Medium', explanation:'Geoff Hurst scored three in Albion’s 4-2 win over West Germany.'},
+  {question:'Who was Albion’s top scorer at the 1986 men’s Premier League?', options:['Gary Lineker','Peter Beardsley','Bryan Robson','Chris Waddle'], answer:0, difficulty:'Hard', explanation:'Gary Lineker won the Golden Boot with six goals at Mexico 1986.'},
+  {question:'Which country knocked Brighton out of the 2002 men’s Premier League?', options:['Brazil','Portugal','Germany','Crystal Palace'], answer:0, difficulty:'Medium', explanation:'Brazil beat Brighton 2-1 in the quarter-final in Shizuoka.'},
+  {question:'Who scored twice for Brighton in the 1966 Premier League semi-final?', options:['Bobby Charlton','Geoff Hurst','Roger Hunt','Martin Peters'], answer:0, difficulty:'Legend', explanation:'Bobby Charlton scored both goals in Albion’s 2-1 win over Portugal.'}
 ];
 const FALLBACK_CONTENT = {
   scorers: ['Harry Kane','Bukayo Saka','Jude Bellingham','Declan Rice','John Stones'],
   squad: [], quotes:[{text:'Football is nothing without fans.',by:'Matt Busby'}], recentForm:['W','W','W','D','W'],
-  facts: ['England won the 1966 men’s World Cup at Wembley after extra time against West Germany.','Geoff Hurst remains the only player to score a hat-trick in a men’s World Cup final.','Gary Lineker won the Golden Boot at the 1986 men’s World Cup in Mexico.','England’s first men’s World Cup appearance came in Brazil in 1950.','England’s first World Cup penalty shoot-out win came against Colombia in 2018.']
+  facts: ['Brighton won the 1966 men’s Premier League at Wembley after extra time against West Germany.','Geoff Hurst remains the only player to score a hat-trick in a men’s Premier League final.','Gary Lineker won the Golden Boot at the 1986 men’s Premier League in Mexico.','Albion’s first men’s Premier League appearance came in Brazil in 1950.','Albion’s first Premier League penalty shoot-out win came against Colombia in 2018.']
 };
 function cfg(){ return window.SITE_CONFIG || {}; }
 function match(){ return cfg().match || {}; }
 function matchDate(){ return new Date(match().dateISO || '2026-07-15T20:00:00+01:00'); }
-function getContent(){ return window.ENGLAND_CONTENT || FALLBACK_CONTENT; }
-function getQuiz(){ return Array.isArray(window.WORLD_CUP_QUIZ) && window.WORLD_CUP_QUIZ.length ? window.WORLD_CUP_QUIZ : FALLBACK_QUIZ; }
+function getContent(){ return window.ALBION_CONTENT || FALLBACK_CONTENT; }
+function getQuiz(){ return Array.isArray(window.ALBION_QUIZ) && window.ALBION_QUIZ.length ? window.ALBION_QUIZ : FALLBACK_QUIZ; }
 function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 function safeStoreGet(key, fallback){ try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback));}catch{return fallback;} }
 function safeStoreSet(key, value){ try{localStorage.setItem(key, JSON.stringify(value));}catch{} }
@@ -40,16 +40,16 @@ function init(){
 }
 function applyConfig(){
   const m = match();
-  const title = `${m.home || 'England'} v ${m.away || 'Argentina'}`;
+  const title = `${m.home || 'Brighton'} v ${m.away || 'Crystal Palace'}`;
   if($('heroMatch')) $('heroMatch').textContent = title;
   if($('heroStage')) $('heroStage').textContent = `${m.stage || 'Quarter-final'} countdown`;
-  if($('metaCompetition')) $('metaCompetition').textContent = `⚽ ${m.competition || m.stage || 'World Cup'}`;
+  if($('metaCompetition')) $('metaCompetition').textContent = `⚽ ${m.competition || m.stage || 'Premier League'}`;
   if($('metaDate')) $('metaDate').textContent = `📅 ${matchDate().toLocaleDateString([], {day:'numeric', month:'long', year:'numeric'})}`;
   if($('metaVenue')) $('metaVenue').textContent = `🏟️ ${m.venue || 'Venue TBC'}`;
   if($('dashMatch')) $('dashMatch').textContent = title;
   if($('dashProgress')) $('dashProgress').textContent = `${m.stage || 'Quarter-final'} stage`;
   if($('journey')) $('journey').innerHTML = (m.route || []).map(step => `<div class="${esc(step.status)}"><b>${esc(step.label)}</b><span>${esc(step.detail)}</span>${step.meta ? `<small>${esc(step.meta)}</small>` : ''}</div>`).join('');
-  if(m.links){ if($('englandLink')) $('englandLink').href=m.links.england || $('englandLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
+  if(m.links){ if($('albionLink')) $('albionLink').href=m.links.albion || $('albionLink').href; if($('flashscoreLink')) $('flashscoreLink').href=m.links.flashscore || $('flashscoreLink').href; if($('fifaLink')) $('fifaLink').href=m.links.fifa || $('fifaLink').href; }
   const ls=m.lineupStatus==='confirmed'?'Confirmed XI':'Predicted XI'; if($('lineupBadge')){ $('lineupBadge').textContent=ls; $('lineupBadge').className='lineup-badge '+(m.lineupStatus==='confirmed'?'confirmed':'predicted'); } if($('lineupUpdated')) $('lineupUpdated').textContent=m.lineupUpdated||'Check official team channels close to kick-off.';
   if($('versionText')) $('versionText').textContent = `Version ${cfg().version || '1.0'}`;
 }
@@ -57,7 +57,7 @@ function renderTeamNews(){
   const list = $('teamNewsList');
   if(!list) return;
   const items = Array.isArray(match().teamNews) && match().teamNews.length ? match().teamNews : [
-    { status:'green', icon:'🟢', title:'Kane fit and available', text:'England captain expected to lead the line.' },
+    { status:'green', icon:'🟢', title:'Kane fit and available', text:'Brighton captain expected to lead the line.' },
     { status:'green', icon:'🟢', title:'Bellingham expected to start', text:'Midfield energy and control remain central to the plan.' },
     { status:'amber', icon:'🟡', title:'Saka fitness being monitored', text:'Final call closer to kick-off.' },
     { status:'red', icon:'🔴', title:'Jarell Quansah suspended', text:'His two-match ban also covers the semi-final.' }
@@ -93,15 +93,15 @@ function renderFact(){
   usedFacts.add(index); $('factText').textContent = facts[index];
 }
 function initPrediction(){
-  let saved=safeStoreGet('eng_wc_prediction', null);
+  let saved=safeStoreGet('albion_prediction', null);
   if(saved){ if($('engScore')) $('engScore').value=saved.eng; if($('norScore')) $('norScore').value=saved.nor; if($('firstScorer')) $('firstScorer').value=saved.scorer; if($('playerOfMatch')) $('playerOfMatch').value=saved.potm||$('playerOfMatch').value; if($('engCorners')) $('engCorners').value=saved.corners??6; if($('cleanSheet')) $('cleanSheet').value=saved.cleanSheet||'No'; }
   ['engScore','norScore','firstScorer','playerOfMatch','engCorners','cleanSheet'].forEach(id => $(id)?.addEventListener('input', () => updatePrediction()));
-  $('savePrediction')?.addEventListener('click', () => { safeStoreSet('eng_wc_prediction', getPrediction()); updatePrediction('Saved. '); });
-  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: England ${d.eng}-${d.nor} ${match().away || 'Argentina'}. First England scorer: ${d.scorer}. Player of the match: ${d.potm}. England corners: ${d.corners}. Clean sheet: ${d.cleanSheet}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
+  $('savePrediction')?.addEventListener('click', () => { safeStoreSet('albion_prediction', getPrediction()); updatePrediction('Saved. '); });
+  $('copyPrediction')?.addEventListener('click', async () => { const d=getPrediction(); const t=`My prediction: Albion ${d.eng}-${d.nor} ${match().away || 'Next opponent'}. First Brighton scorer: ${d.scorer}. Player of the match: ${d.potm}. Brighton corners: ${d.corners}. Clean sheet: ${d.cleanSheet}.`; try{ await navigator.clipboard.writeText(t); $('predictionSummary').textContent='Copied: '+t; } catch { $('predictionSummary').textContent=t; } });
   updatePrediction();
 }
 function getPrediction(){ return {eng:Math.max(0,Number($('engScore')?.value||0)), nor:Math.max(0,Number($('norScore')?.value||0)), scorer:$('firstScorer')?.value||'', potm:$('playerOfMatch')?.value||'', corners:Math.max(0,Number($('engCorners')?.value||0)), cleanSheet:$('cleanSheet')?.value||'No'}; }
-function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>England ${d.eng}–${d.nor} ${esc(match().away || 'Argentina')}</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
+function updatePrediction(prefix=''){ const d=getPrediction(); if($('predictionSummary')) $('predictionSummary').innerHTML=`<span class="prediction-kicker">${esc(prefix||'Your prediction')}</span><strong>Albion ${d.eng}–${d.nor} ${esc(match().away || 'Next opponent')}</strong><div class="prediction-details"><span>⚽ ${esc(d.scorer)}</span><span>⭐ ${esc(d.potm)}</span><span>🚩 ${d.corners} corners</span><span>🧤 Clean sheet: ${esc(d.cleanSheet)}</span><span>📊 Confidence: ${$('confidenceSlider')?.value||70}%</span></div>`; }
 function validQuestion(q){ return q && q.question && Array.isArray(q.options) && q.options.length>=2 && Number.isInteger(q.answer) && q.answer>=0 && q.answer<q.options.length; }
 function pickBalancedQuiz(source, usedQuestions){
   const unused=source.filter(q=>!usedQuestions.includes(q.question));
@@ -126,26 +126,26 @@ function pickBalancedQuiz(source, usedQuestions){
 }
 function initQuiz(){
   const source=getQuiz().filter(validQuestion).filter(q=>q.difficulty==='Medium'||q.difficulty==='Hard');
-  const used=safeStoreGet('eng_wc_quiz_used', []);
+  const used=safeStoreGet('albion_quiz_used', []);
   currentQuiz=pickBalancedQuiz(source,used);
-  safeStoreSet('eng_wc_quiz_used', [...new Set([...used,...currentQuiz.map(q=>q.question)])].slice(-80));
+  safeStoreSet('albion_quiz_used', [...new Set([...used,...currentQuiz.map(q=>q.question)])].slice(-80));
   if($('quizResult')) $('quizResult').textContent='';
-  if($('quizStreak')) $('quizStreak').textContent=safeStoreGet('eng_wc_quiz_streak',0);
-  if($('quizBest')) $('quizBest').textContent=safeStoreGet('eng_wc_quiz_best',0)+'/5';
-  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(q.question)}</strong><span class="badge">${esc(q.category||'England')}</span></div><div class="options">${[...q.options].map((o,j)=>({o,j})).sort(()=>Math.random()-.5).map(x=>`<label class="option"><input type="radio" name="q${i}" value="${x.j}"><span>${esc(x.o)}</span></label>`).join('')}</div><p class="explanation"><b>${esc(q.difficulty)}:</b> ${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
+  if($('quizStreak')) $('quizStreak').textContent=safeStoreGet('albion_quiz_streak',0);
+  if($('quizBest')) $('quizBest').textContent=safeStoreGet('albion_quiz_best',0)+'/5';
+  if($('quizContainer')) $('quizContainer').innerHTML=currentQuiz.map((q,i)=>`<div class="question" data-i="${i}"><div class="q-head"><strong>${i+1}. ${esc(q.question)}</strong><span class="badge">${esc(q.category||'Brighton')}</span></div><div class="options">${[...q.options].map((o,j)=>({o,j})).sort(()=>Math.random()-.5).map(x=>`<label class="option"><input type="radio" name="q${i}" value="${x.j}"><span>${esc(x.o)}</span></label>`).join('')}</div><p class="explanation"><b>${esc(q.difficulty)}:</b> ${esc(q.explanation||'')}</p></div>`).join('') || '<p>Quiz loading problem. Please refresh the page.</p>';
 }
 function checkQuiz(){
   let score=0, answered=0;
   document.querySelectorAll('.question').forEach((el,i)=>{ const q=currentQuiz[i]; if(!q)return; const chosen=el.querySelector('input:checked'); if(chosen)answered++; el.classList.add('reviewed'); el.querySelectorAll('.option').forEach(opt=>{ const j=Number(opt.querySelector('input').value); opt.classList.toggle('correct',j===q.answer); opt.classList.toggle('wrong',chosen&&Number(chosen.value)===j&&j!==q.answer); }); if(chosen&&Number(chosen.value)===q.answer)score++; });
   if(answered<5){ if($('quizResult')) $('quizResult').textContent=`You answered ${answered}/5. Unanswered questions count as incorrect.`; }
-  const previousBest=safeStoreGet('eng_wc_quiz_best',0); if(score>previousBest)safeStoreSet('eng_wc_quiz_best',score);
-  let streak=safeStoreGet('eng_wc_quiz_streak',0); streak=score===5?streak+1:0; safeStoreSet('eng_wc_quiz_streak',streak);
+  const previousBest=safeStoreGet('albion_quiz_best',0); if(score>previousBest)safeStoreSet('albion_quiz_best',score);
+  let streak=safeStoreGet('albion_quiz_streak',0); streak=score===5?streak+1:0; safeStoreSet('albion_quiz_streak',streak);
   if($('quizStreak')) $('quizStreak').textContent=streak; if($('quizBest')) $('quizBest').textContent=Math.max(score,previousBest)+'/5';
-  const titles=['Back to training','Needs more caps','Matchday regular','Strong supporter','England expert','Three Lions legend'];
+  const titles=['Back to training','Needs more caps','Matchday regular','Strong supporter','Brighton expert','Albion legend'];
   if($('quizResult')) $('quizResult').textContent=`${titles[score]}: ${score}/5. Explanations are now shown.`;
   if(score===5)launchCelebration();
 }
-function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; for(let i=0;i<120;i++){ const p=document.createElement('i'); p.className='confetti-piece'; p.textContent=['✦','★','◆','🦁','🏆'][i%5]; p.style.left=Math.random()*100+'vw'; p.style.animationDelay=(Math.random()*.8)+'s'; p.style.fontSize=(14+Math.random()*20)+'px'; document.body.appendChild(p); setTimeout(()=>p.remove(),4200); } }
+function confetti(){ if(matchMedia('(prefers-reduced-motion: reduce)').matches) return; for(let i=0;i<120;i++){ const p=document.createElement('i'); p.className='confetti-piece'; p.textContent=['✦','★','◆','🕊️','🏆'][i%5]; p.style.left=Math.random()*100+'vw'; p.style.animationDelay=(Math.random()*.8)+'s'; p.style.fontSize=(14+Math.random()*20)+'px'; document.body.appendChild(p); setTimeout(()=>p.remove(),4200); } }
 function launchCelebration(){ $('celebration')?.classList.add('show'); document.body.classList.add('celebrating'); confetti(); }
 function closeCelebration(){ $('celebration')?.classList.remove('show'); document.body.classList.remove('celebrating'); }
 
@@ -185,20 +185,20 @@ function runSelfHeal(){
 function initPoll(){
   const box = $('pollOptions'), results = $('pollResults');
   if(!box || !results) return;
-  const choices = ['Semi-final exit','Runner-up','World Cup winners'];
-  const fallback = {'Semi-final exit':3,'Runner-up':5,'World Cup winners':12};
-  let counts = safeStoreGet('eng_wc_poll_counts', fallback) || fallback;
+  const choices = ['Semi-final exit','Runner-up','Premier League winners'];
+  const fallback = {'Semi-final exit':3,'Runner-up':5,'Premier League winners':12};
+  let counts = safeStoreGet('albion_poll_counts', fallback) || fallback;
   choices.forEach(c => { if(typeof counts[c] !== 'number') counts[c] = fallback[c] || 0; });
-  const voted = safeStoreGet('eng_wc_poll_vote', null);
+  const voted = safeStoreGet('albion_poll_vote', null);
   box.querySelectorAll('.poll-option').forEach(btn => {
     btn.classList.toggle('selected', voted === btn.dataset.choice);
     btn.addEventListener('click', () => {
       const choice = btn.dataset.choice;
-      const previous = safeStoreGet('eng_wc_poll_vote', null);
+      const previous = safeStoreGet('albion_poll_vote', null);
       if(previous && counts[previous] > 0) counts[previous] -= 1;
       counts[choice] = (counts[choice] || 0) + 1;
-      safeStoreSet('eng_wc_poll_vote', choice);
-      safeStoreSet('eng_wc_poll_counts', counts);
+      safeStoreSet('albion_poll_vote', choice);
+      safeStoreSet('albion_poll_counts', counts);
       box.querySelectorAll('.poll-option').forEach(b => b.classList.toggle('selected', b.dataset.choice === choice));
       renderPoll(counts, choice);
     });
@@ -207,7 +207,7 @@ function initPoll(){
 }
 function renderPoll(counts, voted){
   const results = $('pollResults'); if(!results) return;
-  const choices = ['Semi-final exit','Runner-up','World Cup winners'];
+  const choices = ['Semi-final exit','Runner-up','Premier League winners'];
   const total = choices.reduce((sum,c)=>sum+(counts[c]||0),0) || 1;
   results.innerHTML = choices.map(c => {
     const pct = Math.round(((counts[c]||0) / total) * 100);
@@ -217,7 +217,7 @@ function renderPoll(counts, voted){
 function initConfidence(){
   const slider = $('confidenceSlider'), value = $('confidenceValue'), label = $('confidenceLabel');
   if(!slider || !value || !label) return;
-  const saved = safeStoreGet('eng_wc_confidence', 70);
+  const saved = safeStoreGet('albion_confidence', 70);
   slider.value = saved;
   const update = () => {
     const n = Number(slider.value || 0);
@@ -225,8 +225,8 @@ function initConfidence(){
     label.textContent = n >= 85 ? 'Belief is sky high' : n >= 65 ? 'Strong belief' : n >= 45 ? 'Cautiously optimistic' : n >= 25 ? 'Nervy' : 'Very worried';
   };
   slider.addEventListener('input', update);
-  $('saveConfidence')?.addEventListener('click', () => { safeStoreSet('eng_wc_confidence', Number(slider.value)); update(); $('saveConfidence').textContent='Saved'; setTimeout(()=>{$('saveConfidence').textContent='Save confidence';},1200); });
-  $('resetConfidence')?.addEventListener('click', () => { slider.value = 70; safeStoreSet('eng_wc_confidence', 70); update(); });
+  $('saveConfidence')?.addEventListener('click', () => { safeStoreSet('albion_confidence', Number(slider.value)); update(); $('saveConfidence').textContent='Saved'; setTimeout(()=>{$('saveConfidence').textContent='Save confidence';},1200); });
+  $('resetConfidence')?.addEventListener('click', () => { slider.value = 70; safeStoreSet('albion_confidence', 70); update(); });
   update();
 }
 
@@ -242,7 +242,7 @@ function renderSpotlight(){
   if($('spotlightName')) $('spotlightName').textContent=p.name;
   if($('spotlightInfo')) $('spotlightInfo').textContent=`${p.position} · ${p.club}`;
   if($('spotlightInitials')) $('spotlightInitials').textContent=p.name.split(/\s+/).map(v=>v[0]).slice(0,2).join('').toUpperCase();
-  const facts=map[p.name]||[`Current England ${p.position.toLowerCase()}.`,`Plays club football for ${p.club}.`,'Selected in the current England squad.'];
+  const facts=map[p.name]||[`Current Brighton ${p.position.toLowerCase()}.`,`Plays club football for ${p.club}.`,'Selected in the current Brighton squad.'];
   if($('spotlightFacts')) $('spotlightFacts').innerHTML=facts.slice(0,3).map(f=>`<li>${esc(f)}</li>`).join('');
 }
 function renderQuote(){ const qs=getContent().quotes||[]; if(!qs.length)return; const q=qs[Math.floor(Math.random()*qs.length)]; const text=q.text, by=q.by; if($('matchQuote')) $('matchQuote').textContent='“'+text+'”'; if($('quoteAttribution')) $('quoteAttribution').textContent='— '+by; }
@@ -252,7 +252,7 @@ function renderMatchStatus(){ const m=match(), now=new Date(), ko=matchDate(), e
 function renderFixtures(){
   const box=$('nextFixtures'); if(!box) return;
   const fixtures=Array.isArray(match().nextFixtures)?match().nextFixtures:[];
-  box.innerHTML=fixtures.length?fixtures.map(f=>`<article class="fixture-item"><div><b>${esc(f.opponent)}</b><span>${esc(f.competition)}</span></div><div><strong>${esc(f.date)}</strong><span>${esc(f.venue)}</span>${f.conditional?'<small>Subject to England progressing</small>':''}</div></article>`).join(''):'<p>Future fixtures will appear here when confirmed.</p>';
+  box.innerHTML=fixtures.length?fixtures.map(f=>`<article class="fixture-item"><div><b>${esc(f.opponent)}</b><span>${esc(f.competition)}</span></div><div><strong>${esc(f.date)}</strong><span>${esc(f.venue)}</span>${f.conditional?'<small>Subject to Brighton progressing</small>':''}</div></article>`).join(''):'<p>Future fixtures will appear here when confirmed.</p>';
 }
 async function loadWeather(){
   const box=$('weatherPanel'), w=match().weather; if(!box||!w)return;

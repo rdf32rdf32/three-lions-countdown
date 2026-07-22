@@ -20,7 +20,7 @@ loadFacts();
 loadQuiz();
 handleCookie();
 initPredictor();
-initEnglandXi();
+initBrightonXi();
 
 function startCountdown() {
   const diff = target - Date.now();
@@ -29,7 +29,7 @@ function startCountdown() {
   if (diff <= 0) {
     document.getElementById('countdown').innerHTML = '<div class="live-now">Matchday is here</div>';
     els.mode.textContent = 'It is matchday';
-    els.lead.textContent = 'Come on England. Follow the match and the road to the trophy.';
+    els.lead.textContent = 'Come on Brighton. Follow the match and the road to the trophy.';
     return;
   }
 
@@ -56,12 +56,12 @@ function loadFacts() {
   const didYouKnow = config.didYouKnow || [];
   const randomFact = document.getElementById('randomFact');
   const ticker = document.getElementById('didYouKnow');
-  randomFact.textContent = facts[Math.floor(Math.random() * facts.length)] || 'England fact loading soon.';
+  randomFact.textContent = facts[Math.floor(Math.random() * facts.length)] || 'Brighton fact loading soon.';
   let index = didYouKnow.length ? new Date().getDate() % didYouKnow.length : 0;
   const setTicker = () => {
     ticker.style.opacity = 0;
     setTimeout(() => {
-      ticker.textContent = didYouKnow[index] || 'More England facts coming soon.';
+      ticker.textContent = didYouKnow[index] || 'More Brighton facts coming soon.';
       ticker.style.opacity = 1;
       index = didYouKnow.length ? (index + 1) % didYouKnow.length : 0;
     }, 250);
@@ -89,10 +89,10 @@ function loadQuiz() {
       return;
     }
     const messages = {
-      3: 'Perfect. 3/3. You are an England expert.',
+      3: 'Perfect. 3/3. You are an Brighton expert.',
       2: 'Great effort. 2/3.',
       1: 'Not bad. 1/3.',
-      0: '0/5. Time to brush up on your England knowledge.'
+      0: '0/5. Time to brush up on your Brighton knowledge.'
     };
     result.textContent = messages[score];
   };
@@ -146,7 +146,7 @@ function defineShareLinks() {
   const text = encodeURIComponent(config.shareText);
   document.getElementById('whatsappShare').href = `https://wa.me/?text=${text}%20${url}`;
   document.getElementById('facebookShare').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-  document.getElementById('emailShare').href = `mailto:?subject=${encodeURIComponent('Three Lions Countdown')}&body=${text}%0A%0A${url}`;
+  document.getElementById('emailShare').href = `mailto:?subject=${encodeURIComponent('Albion Fan Hub')}&body=${text}%0A%0A${url}`;
   document.getElementById('copyLink').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -183,20 +183,20 @@ function initPredictor() {
     document.getElementById('predictionMessage').value = saved.message || '';
     renderPrediction(saved);
   } else {
-    updatePredictionShare('My prediction: Norway 1–2 England. First England scorer: Harry Kane. Come on England!');
+    updatePredictionShare('My prediction: Palace 1–2 Brighton. First Brighton scorer: Harry Kane. Come on Brighton!');
   }
   document.getElementById('savePrediction')?.addEventListener('click', () => {
     const prediction = {
       home: clampScore(document.getElementById('homeScore').value),
       away: clampScore(document.getElementById('awayScore').value),
       scorer: scorer.value || 'Harry Kane',
-      message: (document.getElementById('predictionMessage').value || 'Come on England!').trim().slice(0, 90)
+      message: (document.getElementById('predictionMessage').value || 'Come on Brighton!').trim().slice(0, 90)
     };
     localStorage.setItem('tlcPrediction', JSON.stringify(prediction));
     renderPrediction(prediction);
   });
   document.getElementById('copyPrediction')?.addEventListener('click', async () => {
-    const text = document.getElementById('predictionResult').textContent || document.getElementById('predictionPreview').textContent || 'My England prediction is ready.';
+    const text = document.getElementById('predictionResult').textContent || document.getElementById('predictionPreview').textContent || 'My Brighton prediction is ready.';
     try {
       await navigator.clipboard.writeText(`${text} ${window.location.href}`);
       document.getElementById('copyPrediction').textContent = 'Copied';
@@ -214,7 +214,7 @@ function clampScore(value) {
 
 function renderPrediction(prediction) {
   const message = prediction.message ? ` ${prediction.message}` : '';
-  const text = `My prediction: Norway ${prediction.home}–${prediction.away} England. First England scorer: ${prediction.scorer}.${message}`;
+  const text = `My prediction: Palace ${prediction.home}–${prediction.away} Brighton. First Brighton scorer: ${prediction.scorer}.${message}`;
   document.getElementById('predictionResult').textContent = text;
   const preview = document.getElementById('predictionPreview');
   if (preview) preview.textContent = text.replace('My prediction: ', '');
@@ -285,7 +285,7 @@ function activeSlotIds() {
   return activeFormation().rows.flat();
 }
 
-function initEnglandXi() {
+function initBrightonXi() {
   const squadList = document.getElementById('squadList');
   const pitch = document.getElementById('xiPitch');
   if (!squadList || !pitch) return;
@@ -306,8 +306,8 @@ function initEnglandXi() {
     const clean = {};
     valid.forEach(slotId => clean[slotId] = assignments[slotId] || '');
     assignments = clean;
-    localStorage.setItem('tlcEnglandXiSlots', JSON.stringify(assignments));
-    localStorage.setItem('tlcEnglandXi', JSON.stringify(selectedNames()));
+    localStorage.setItem('tlcBrightonXiSlots', JSON.stringify(assignments));
+    localStorage.setItem('tlcBrightonXi', JSON.stringify(selectedNames()));
   };
 
   const findPlayerSlot = name => Object.keys(assignments).find(slotId => assignments[slotId] === name);
@@ -381,7 +381,7 @@ function initEnglandXi() {
     document.getElementById('xiCounter').textContent = `${selectedNames().length}/11 selected`;
     const result = document.getElementById('xiResult');
     if (result) {
-      if (selectedNames().length === 11) result.textContent = `Your ${activeFormation().label} England XI is ready to share.`;
+      if (selectedNames().length === 11) result.textContent = `Your ${activeFormation().label} Brighton XI is ready to share.`;
       else if (activePlayerName) result.textContent = `${activePlayerName} selected. Tap a position on the pitch.`;
       else result.textContent = 'Tap a player, then tap a shirt position. Desktop users can also drag and drop.';
     }
@@ -401,13 +401,13 @@ function initEnglandXi() {
   document.getElementById('clearXi')?.addEventListener('click', () => {
     assignments = emptyAssignments();
     activePlayerName = '';
-    localStorage.removeItem('tlcEnglandXiSlots');
-    localStorage.removeItem('tlcEnglandXi');
+    localStorage.removeItem('tlcBrightonXiSlots');
+    localStorage.removeItem('tlcBrightonXi');
     render();
   });
 
   document.getElementById('copyXi')?.addEventListener('click', async () => {
-    const text = selectedNames().length ? `My England XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.` : 'I am choosing my England XI.';
+    const text = selectedNames().length ? `My Brighton XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.` : 'I am choosing my Brighton XI.';
     try {
       await navigator.clipboard.writeText(`${text} ${window.location.href}`);
       document.getElementById('copyXi').textContent = 'Copied';
@@ -441,11 +441,11 @@ function ensureValidAssignments(assignments) {
 function loadXiAssignments() {
   const empty = emptyAssignments();
   try {
-    const savedSlots = JSON.parse(localStorage.getItem('tlcEnglandXiSlots') || 'null');
+    const savedSlots = JSON.parse(localStorage.getItem('tlcBrightonXiSlots') || 'null');
     if (savedSlots && typeof savedSlots === 'object') return migrateAssignments({ ...savedSlots });
   } catch {}
   try {
-    const oldSaved = JSON.parse(localStorage.getItem('tlcEnglandXi') || '[]');
+    const oldSaved = JSON.parse(localStorage.getItem('tlcBrightonXi') || '[]');
     const names = Array.isArray(oldSaved) ? oldSaved.map(item => typeof item === 'string' ? item : item.name).filter(Boolean).slice(0, 11) : [];
     const assignments = { ...empty };
     names.forEach(name => {
@@ -638,11 +638,11 @@ function formatXiByLine(assignments, playerByName) {
 
 function updateXiShare(selected, assignments = null, playerByName = null) {
   const url = encodeURIComponent(window.location.href);
-  let text = 'Choose your England XI on Three Lions Countdown.';
+  let text = 'Choose your Brighton XI on Albion Fan Hub.';
   if (selected.length) {
     text = assignments && playerByName
-      ? `My England XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.`
-      : `My England XI: ${selected.join(', ')}.`;
+      ? `My Brighton XI (${activeFormation().label}): ${formatXiByLine(assignments, playerByName)}.`
+      : `My Brighton XI: ${selected.join(', ')}.`;
   }
   const encoded = encodeURIComponent(text);
   const fb = document.getElementById('xiFacebook');

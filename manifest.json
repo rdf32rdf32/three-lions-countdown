@@ -1,9 +1,9 @@
 {
-  "name": "Three Lions Countdown \u2013 England v Argentina",
-  "short_name": "England Centre",
+  "name": "Albion Fan Hub",
+  "short_name": "Albion Hub",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f6f8fc",
-  "theme_color": "#08285a",
-  "description": "England v Argentina World Cup semi-final fan hub"
+  "background_color": "#ffffff",
+  "theme_color": "#0057b8",
+  "icons": []
 }
