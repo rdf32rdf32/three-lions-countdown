@@ -1,6 +1,6 @@
 # Albion Fan Hub
 
-A Brighton & Hove Albion supporters’ website adapted from the supplied working England site.
+A Brighton & Hove Albion supporters’ website adapted from the supplied working Albion site.
 
 ## Publish on GitHub Pages
 
