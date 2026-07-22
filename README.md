@@ -1,9 +1,23 @@
-# Albion Fan Hub
+# Three Lions Countdown
 
-A Brighton & Hove Albion supporters’ website adapted from the supplied working Albion site.
+Unofficial England men’s World Cup fan site for GitHub Pages.
 
-## Publish on GitHub Pages
+## Features
 
-Upload all extracted files and the `assets` folder to the repository root. In **Settings → Pages**, publish from the `main` branch and `/ (root)`.
+- Live countdown to England v Norway
+- England’s road to the final with venues
+- Random men’s World Cup quiz questions
+- Mobile-friendly quiz answers with proper wrapping
+- Big congratulations banner for a perfect 3/3 quiz score
+- Score predictor with saved and copied predictions
+- Fan poll: how far will England go?
+- England confidence slider for the Norway match
+- Rotating England World Cup facts
+- Latest video section and useful links
+- Cookie notice, privacy, cookies and contact pages
 
-The poll, confidence meter, predictor, theme and cookie choice are stored only in the visitor’s browser.
+## Uploading to GitHub Pages
+
+Upload all files and folders from this ZIP to the root of the repository. The `index.html` file should be visible at the top level.
+
+Version 1.6: BBC news panel removed, Useful Links moved to the end, and tournament route map redesigned.
